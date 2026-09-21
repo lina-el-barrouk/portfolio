@@ -1,0 +1,872 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap");
+:root {
+  --wine: #47232d;
+  --deep: #392128;
+  --blush: #e8c3be;
+  --ivory: #f8f5ef;
+  --cream: #f0ebe2;
+  --terra: #b23f1e;
+  --ink: #21171a;
+  --line: rgba(71, 35, 45, 0.28);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+button,
+a {
+  font: inherit;
+}
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.progress {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--terra);
+  transform-origin: 0 50%;
+}
+.nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  color: var(--ivory);
+  mix-blend-mode: normal;
+  transition: 0.3s;
+}
+.brand {
+  font-family: Oswald, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-align: left;
+  line-height: 0.9;
+}
+.brand span {
+  display: block;
+  font-family: "DM Sans";
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  margin-top: 5px;
+  font-weight: 500;
+}
+.navlinks {
+  display: flex;
+  gap: 30px;
+  margin-left: auto;
+  margin-right: 28px;
+}
+.navlinks button,
+.menuBtn {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+.menuBtn {
+  border-radius: 999px;
+  padding: 13px 19px;
+  background: var(--terra);
+  color: var(--ivory);
+}
+.menuBtn span {
+  margin-left: 10px;
+}
+.cursor {
+  display: none;
+}
+.menuOverlay {
+  position: fixed;
+  z-index: 200;
+  top: 78px;
+  right: 5vw;
+  width: 360px;
+  background: var(--ivory);
+  color: var(--wine);
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(57, 33, 40, 0.18);
+  border-radius: 4px;
+}
+
+.menuClose {
+  align-self: flex-end;
+  color: var(--wine);
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.menuItems {
+  margin: 25px 0 15px;
+}
+
+.menuItems button {
+  display: grid;
+  grid-template-columns: 35px 1fr 20px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  font-family: Oswald, sans-serif;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--wine);
+  border-bottom: 1px solid rgba(71, 35, 45, 0.15);
+  padding: 13px 0;
+  transition: 0.3s ease;
+}
+
+.menuItems button:hover {
+  color: var(--terra);
+  padding-left: 5px;
+}
+
+.menuItems small {
+  font: 600 9px "DM Sans";
+  letter-spacing: 0.12em;
+}
+
+.menuItems span {
+  font-family: "DM Sans";
+  font-size: 18px;
+}
+
+.menuFoot {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  margin-top: 15px;
+}
+.menuClose {
+  align-self: flex-end;
+  color: var(--ivory);
+  letter-spacing: 0.14em;
+  font-size: 11px;
+}
+
+.menuItems button:hover {
+  color: var(--blush);
+}
+.menuItems small {
+  font: 600 11px "DM Sans";
+  letter-spacing: 0.12em;
+}
+.menuItems span {
+  font-family: "DM Sans";
+  font-size: 30px;
+}
+.menuFoot {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+.dark {
+  background: var(--wine);
+  color: var(--ivory);
+}
+.deep {
+  background: var(--deep);
+  color: var(--ivory);
+}
+.blush {
+  background: var(--blush);
+  color: var(--ink);
+}
+.ivory {
+  background: var(--ivory);
+}
+.cream {
+  background: var(--cream);
+}
+.hero {
+  min-height: 100vh;
+  position: relative;
+  padding: 130px 6vw 60px;
+  display: flex;
+  align-items: center;
+}
+.heroGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 6vw;
+  align-items: center;
+}
+.eyebrow,
+.sectionMeta {
+  font-size: 10px;
+  letter-spacing: 0.17em;
+  font-weight: 700;
+}
+.hero h1,
+h2 {
+  font-family: Oswald, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 18px 0 22px;
+}
+.hero h1 {
+  font-size: clamp(64px, 7.5vw, 115px);
+  line-height: 0.86;
+}
+.hero h1 em,
+h2 em {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+.hero h1 em {
+  color: var(--blush);
+}
+.serifLead {
+  font: italic 500 clamp(22px, 2.5vw, 35px) "Playfair Display";
+  max-width: 570px;
+  margin: 25px 0 17px;
+}
+.heroDesc {
+  max-width: 590px;
+  line-height: 1.7;
+  font-size: 14px;
+  color: rgba(248, 245, 239, 0.78);
+}
+.pill,
+.contactPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  border-radius: 999px;
+  padding: 17px 24px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-top: 22px;
+}
+.pill.light {
+  background: var(--blush);
+  color: var(--wine);
+}
+.pill span,
+.contactPill span {
+  font-size: 18px;
+}
+.heroVisual {
+  display: flex;
+  justify-content: center;
+}
+.portraitFrame {
+  width: min(440px, 38vw);
+  height: min(600px, 65vh);
+  border-radius: 48% 48% 6% 6%;
+  background: var(--blush);
+  position: relative;
+  overflow: hidden;
+}
+.portraitPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  background: linear-gradient(145deg, #efd7d1, #c99c98);
+}
+.portraitPlaceholder span {
+  font: 600 clamp(80px, 12vw, 150px) Oswald;
+  color: var(--wine);
+  opacity: 0.9;
+}
+.portraitPlaceholder small {
+  letter-spacing: 0.2em;
+  font-size: 9px;
+  text-align: center;
+  color: var(--wine);
+}
+.portraitLabel {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--wine);
+}
+.scrollCue {
+  position: absolute;
+  bottom: 27px;
+  left: 6vw;
+  font-size: 9px;
+  letter-spacing: 0.17em;
+  opacity: 0.65;
+}
+.scrollCue span {
+  margin-left: 10px;
+  color: var(--blush);
+}
+.sectionPad {
+  padding: 110px 7vw;
+}
+.sectionMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid var(--line);
+}
+.lightMeta {
+  border-color: rgba(248, 245, 239, 0.2);
+  color: rgba(248, 245, 239, 0.72);
+}
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10vw;
+  align-items: start;
+}
+.sectionPad h2 {
+  font-size: clamp(58px, 7vw, 105px);
+  line-height: 0.88;
+  margin-top: 55px;
+}
+.bodyBlock {
+  padding-top: 65px;
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.bodyBlock p {
+  margin: 0 0 22px;
+}
+.signature {
+  font: italic 500 25px "Playfair Display";
+  margin-top: 35px;
+}
+.journeyTitle h2 {
+  margin-bottom: 75px;
+}
+.timeline {
+  max-width: 1050px;
+  margin-left: auto;
+  border-left: 1px solid var(--line);
+}
+.timelineItem {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 40px;
+  padding: 35px 0 35px 35px;
+  border-bottom: 1px solid var(--line);
+}
+.timeYear {
+  font-family: Oswald;
+  font-size: 24px;
+}
+.timelineItem h3 {
+  font: 600 22px Oswald;
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+.timelineItem p {
+  margin: 0;
+  line-height: 1.65;
+  max-width: 650px;
+  font-size: 14px;
+}
+.work h2 {
+  font-size: clamp(72px, 10vw, 150px);
+  line-height: 0.82;
+}
+.lightText {
+  color: rgba(248, 245, 239, 0.72);
+}
+.intro {
+  max-width: 530px;
+  line-height: 1.7;
+  margin: 0 0 75px;
+}
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+.project {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 7vw;
+  align-items: center;
+}
+.project:nth-child(even) {
+  grid-template-columns: 1.18fr 0.82fr;
+}
+.project:nth-child(even) .projectInfo {
+  order: 2;
+}
+.projectNo {
+  font: 500 13px Oswald;
+  color: var(--blush);
+  letter-spacing: 0.15em;
+}
+.projectInfo h3 {
+  font: 600 clamp(45px, 6vw, 82px) Oswald;
+  line-height: 0.9;
+  margin: 12px 0 9px;
+}
+.projectInfo h4 {
+  font: italic 500 20px "Playfair Display";
+  margin: 0 0 22px;
+  color: var(--blush);
+}
+.projectInfo p {
+  line-height: 1.75;
+  color: rgba(248, 245, 239, 0.75);
+  max-width: 520px;
+  font-size: 14px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 25px 0;
+}
+.tags span {
+  border: 1px solid rgba(248, 245, 239, 0.22);
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.projectInfo a {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+.projectInfo a span {
+  color: var(--terra);
+  font-size: 17px;
+  margin-left: 8px;
+}
+.projectVisual {
+  aspect-ratio: 1.18/1;
+  background: var(--cream);
+  color: var(--wine);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.6s var(--ease);
+}
+.projectVisual:hover {
+  transform: translateY(-6px) rotate(0.3deg);
+}
+.visualChrome {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 18px;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  border-bottom: 1px solid rgba(71, 35, 45, 0.15);
+}
+.visualArt {
+  position: absolute;
+  inset: 65px 8% 7%;
+  display: grid;
+  place-items: center;
+}
+.chainLogo {
+  font: 600 120px Oswald;
+  color: var(--wine);
+}
+.chainLogo span {
+  color: var(--terra);
+  font-family: "Playfair Display";
+  font-style: italic;
+}
+.doc {
+  position: absolute;
+  right: 4%;
+  bottom: 2%;
+  background: var(--ivory);
+  padding: 18px 25px;
+  box-shadow: 0 20px 40px rgba(71, 35, 45, 0.15);
+  font: 700 12px Oswald;
+  letter-spacing: 0.08em;
+}
+.doc small {
+  font: 500 8px "DM Sans";
+  letter-spacing: 0.12em;
+}
+.learnTitle {
+  font: 600 clamp(40px, 6vw, 78px) Oswald;
+}
+.learnTitle span {
+  font-family: "Playfair Display";
+  font-style: italic;
+  color: var(--terra);
+}
+.chatBubble {
+  position: absolute;
+  right: 8%;
+  top: 8%;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  background: var(--wine);
+  color: var(--blush);
+  display: grid;
+  place-items: center;
+  font: 600 12px Oswald;
+  transform: rotate(8deg);
+}
+.trainTitle {
+  font: 600 clamp(45px, 6vw, 80px) Oswald;
+  line-height: 0.8;
+}
+.trainTitle em {
+  font: italic 500 0.75em "Playfair Display";
+  color: var(--terra);
+}
+.trainLine {
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  background: var(--terra);
+  transform: rotate(-7deg);
+  bottom: 25%;
+  left: 20%;
+}
+.statement {
+  padding: 130px 7vw;
+  text-align: center;
+}
+.statement h2 {
+  font-size: clamp(72px, 11vw, 165px);
+  line-height: 0.8;
+  margin: 0;
+}
+.statement p {
+  font: italic 500 clamp(24px, 3vw, 40px) "Playfair Display";
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+.cyberGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  align-items: center;
+}
+.cyberGrid h2 {
+  font-size: clamp(75px, 10vw, 145px);
+  line-height: 0.8;
+}
+.cyberGrid p {
+  max-width: 540px;
+  color: rgba(248, 245, 239, 0.75);
+  line-height: 1.75;
+  font-size: 14px;
+}
+.cyberGrid strong {
+  font: italic 500 25px "Playfair Display";
+  display: block;
+  margin-top: 30px;
+}
+.securityOrb {
+  min-height: 480px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.orb {
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(232, 195, 190, 0.55);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  position: relative;
+  box-shadow: 0 0 80px rgba(232, 195, 190, 0.07);
+}
+.orb span {
+  font: 600 26px Oswald;
+}
+.orb i {
+  font-style: normal;
+  color: var(--terra);
+  font-size: 26px;
+}
+.orb b {
+  font: 500 13px "DM Sans";
+  letter-spacing: 0.2em;
+}
+.orbit {
+  position: absolute;
+  border: 1px solid rgba(232, 195, 190, 0.22);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--blush);
+}
+.o1 {
+  top: 7%;
+  right: 20%;
+}
+.o2 {
+  bottom: 15%;
+  left: 4%;
+}
+.o3 {
+  top: 43%;
+  right: 0;
+}
+.o4 {
+  bottom: 0;
+  right: 28%;
+}
+.securityOrb:before,
+.securityOrb:after {
+  content: "";
+  position: absolute;
+  border: 1px dashed rgba(232, 195, 190, 0.12);
+  border-radius: 50%;
+  animation: spin 24s linear infinite;
+}
+.securityOrb:before {
+  width: 350px;
+  height: 350px;
+}
+.securityOrb:after {
+  width: 470px;
+  height: 230px;
+  transform: rotate(25deg);
+  animation-duration: 32s;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.skills h2 {
+  font-size: clamp(65px, 9vw, 130px);
+  line-height: 0.82;
+}
+.skillCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 70px;
+  max-width: 1150px;
+}
+.skillCloud span {
+  font: 500 clamp(24px, 3vw, 45px) Oswald;
+  border: 1px solid rgba(71, 35, 45, 0.22);
+  border-radius: 999px;
+  padding: 11px 20px;
+  transition: 0.3s;
+}
+.skillCloud span:hover {
+  background: var(--wine);
+  color: var(--ivory);
+  border-color: var(--wine);
+}
+.volunteerRow {
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.volunteerRow span {
+  font: 600 22px Oswald;
+}
+.volunteerRow small {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  align-self: center;
+}
+.contact h2 {
+  font-size: clamp(75px, 11vw, 165px);
+  line-height: 0.78;
+}
+.contact > div:nth-child(2) > p {
+  max-width: 550px;
+  color: rgba(248, 245, 239, 0.7);
+  line-height: 1.7;
+}
+.contactPill {
+  background: var(--blush);
+  color: var(--wine);
+  font-size: 13px;
+  padding: 20px 30px;
+}
+.contactLinks {
+  display: flex;
+  gap: 35px;
+  border-top: 1px solid rgba(248, 245, 239, 0.18);
+  margin-top: 90px;
+  padding-top: 25px;
+}
+.contactLinks a {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+.footer {
+  background: var(--deep);
+  color: var(--ivory);
+  padding: 32px 7vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer strong {
+  font-family: Oswald;
+  font-size: 18px;
+}
+.footerRight {
+  text-align: right;
+}
+.footerRight em {
+  font-family: "Playfair Display";
+  font-size: 14px;
+  opacity: 0.7;
+}
+@media (max-width: 850px) {
+  .nav {
+    height: 62px;
+    padding: 0 5vw;
+  }
+  .navlinks {
+    display: none;
+  }
+  .menuBtn {
+    padding: 11px 15px;
+  }
+  .cursor {
+    display: none;
+  }
+  .hero {
+    padding: 110px 6vw 70px;
+  }
+  .heroGrid,
+  .twoCol,
+  .project,
+  .project:nth-child(even),
+  .cyberGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroVisual {
+    order: -1;
+    justify-content: flex-end;
+  }
+  .portraitFrame {
+    width: 58vw;
+    height: 62vw;
+    max-height: 430px;
+    margin-right: 3vw;
+  }
+  .hero h1 {
+    font-size: clamp(68px, 19vw, 120px);
+  }
+  .serifLead {
+    font-size: 24px;
+  }
+  .sectionPad {
+    padding: 80px 6vw;
+  }
+  .sectionMeta {
+    font-size: 8px;
+  }
+  .sectionPad h2 {
+    font-size: clamp(62px, 17vw, 105px);
+    margin-top: 40px;
+  }
+  .bodyBlock {
+    padding-top: 10px;
+  }
+  .journeyTitle h2 {
+    margin-bottom: 50px;
+  }
+  .timelineItem {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-left: 22px;
+  }
+  .project:nth-child(even) .projectInfo {
+    order: 0;
+  }
+  .projectVisual {
+    margin-top: 15px;
+  }
+  .projects {
+    gap: 70px;
+  }
+  .cyberGrid h2 {
+    font-size: clamp(68px, 17vw, 110px);
+  }
+  .securityOrb {
+    min-height: 380px;
+  }
+  .skillCloud {
+    margin-top: 45px;
+  }
+  .skillCloud span {
+    font-size: 24px;
+  }
+  .volunteerRow {
+    display: block;
+  }
+  .volunteerRow small {
+    display: block;
+    margin-top: 8px;
+  }
+  .contactLinks {
+    flex-wrap: wrap;
+    margin-top: 60px;
+  }
+  .footer {
+    display: block;
+  }
+  .footerRight {
+    text-align: left;
+    margin-top: 25px;
+  }
+  .menuItems button {
+    grid-template-columns: 40px 1fr 25px;
+    font-size: clamp(39px, 12vw, 70px);
+  }
+  .menuItems small {
+    font-size: 8px;
+  }
+  .heroDesc {
+    font-size: 13px;
+  }
+}
