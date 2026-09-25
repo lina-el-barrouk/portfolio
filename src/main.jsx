@@ -66,6 +66,7 @@ function Reveal({ children, delay = 0, className = "" }) {
 
 function App() {
   const [menu, setMenu] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [cursor, setCursor] = useState({
     x: 0,
     y: 0,
@@ -330,7 +331,7 @@ function App() {
           </p>
           <div className="projects">
             {projects.map((p, i) => (
-              <ProjectCard key={p.title} p={p} i={i} />
+              <ProjectCard key={p.title} p={p} i={i} onClick={() => setSelectedProject(p)} />
             ))}
           </div>
         </section>
@@ -490,66 +491,74 @@ function App() {
           <em>Built with curiosity.</em>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
 
-function ProjectCard({ p, i }) {
+function ProjectCard({ p, i, onClick }) {
   return (
     <Reveal delay={i * 0.08}>
-      <article className="project">
-        <div className="projectTop">
-          <span className="projectNumber">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-
-          <span className="projectCategory">{p.category}</span>
+      <article className="project" onClick={onClick}>
+        <div className="projectVisual">
+          <div className="visualChrome">
+            <span>PROJECT {p.n}</span>
+            <span>VIEW</span>
+          </div>
+          <div className="visualArt">
+            {p.type === "chain" && (
+              <>
+                <div className="chainLogo">
+                  DC<span>+</span>
+                </div>
+                <div className="doc">
+                  DIPLOMA
+                  <br />
+                  <small>VERIFIED</small>
+                </div>
+              </>
+            )}
+            {p.type === "learn" && (
+              <>
+                <div className="learnTitle">
+                  CLICK<span>2</span>LEARN
+                </div>
+                <div className="chatBubble">AI</div>
+              </>
+            )}
+            {p.type === "training" && (
+              <>
+                <div className="trainTitle">
+                  TRAINING
+                  <br />
+                  <em>Platform</em>
+                </div>
+                <div className="trainLine"></div>
+              </>
+            )}
+          </div>
         </div>
-
-        <div className="projectGrid">
-          <div className="projectInfo">
-            <h3>{p.title}</h3>
-
-            <p className="projectSubtitle">{p.subtitle}</p>
-
-            <p className="projectDescription">{p.description}</p>
-
-            <div className="projectTags">
-              {p.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-
-            <a
-              href={p.link || "#"}
-              className="projectLink"
-              target="_blank"
-              rel="noreferrer"
-            >
-              VIEW PROJECT <span>↗</span>
-            </a>
+        <div className="projectNo">{p.n}</div>
+        <div className="projectInfo">
+          <h3>{p.title}</h3>
+          <h4>{p.subtitle}</h4>
+          <p>{p.desc}</p>
+          <div className="tags">
+            {p.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
           </div>
-
-          <div className="projectVisual">
-            <div className="projectMockup">
-              <div className="mockupHeader">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div className="mockupContent">
-                <span className="mockupNumber">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                <span className="mockupTitle">{p.title}</span>
-
-                <span className="mockupLine"></span>
-                <span className="mockupLine short"></span>
-              </div>
-            </div>
-          </div>
+          <a href="#" onClick={(e) => e.preventDefault()}>
+            VIEW DETAILS <span>↗</span>
+          </a>
         </div>
       </article>
     </Reveal>

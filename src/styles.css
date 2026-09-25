@@ -409,93 +409,107 @@ h2 em {
   margin: 0 0 75px;
 }
 .projects {
-  display: flex;
-  flex-direction: column;
-  gap: 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  max-width: 1200px;
 }
 .project {
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 7vw;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease);
+  background: var(--cream);
+  border-radius: 8px;
+  overflow: hidden;
 }
-.project:nth-child(even) {
-  grid-template-columns: 1.18fr 0.82fr;
-}
-.project:nth-child(even) .projectInfo {
-  order: 2;
+.project:hover {
+  transform: translateY(-8px);
 }
 .projectNo {
-  font: 500 13px Oswald;
-  color: var(--blush);
+  font: 500 11px Oswald;
+  color: var(--terra);
   letter-spacing: 0.15em;
+  padding: 18px 20px 0;
+}
+.projectInfo {
+  padding: 0 20px 25px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .projectInfo h3 {
-  font: 600 clamp(45px, 6vw, 82px) Oswald;
-  line-height: 0.9;
-  margin: 12px 0 9px;
+  font: 600 28px Oswald;
+  line-height: 1.1;
+  margin: 10px 0 8px;
+  color: var(--wine);
 }
 .projectInfo h4 {
-  font: italic 500 20px "Playfair Display";
-  margin: 0 0 22px;
-  color: var(--blush);
+  font: italic 500 15px "Playfair Display";
+  margin: 0 0 12px;
+  color: var(--terra);
 }
 .projectInfo p {
-  line-height: 1.75;
-  color: rgba(248, 245, 239, 0.75);
-  max-width: 520px;
-  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+  opacity: 0.75;
+  font-size: 13px;
+  margin: 0;
+  flex: 1;
 }
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin: 25px 0;
+  gap: 6px;
+  margin: 15px 0 18px;
 }
 .tags span {
-  border: 1px solid rgba(248, 245, 239, 0.22);
+  border: 1px solid rgba(71, 35, 45, 0.25);
   border-radius: 999px;
-  padding: 7px 10px;
+  padding: 5px 9px;
   font-size: 8px;
   letter-spacing: 0.12em;
+  color: var(--wine);
 }
 .projectInfo a {
   font-size: 10px;
   letter-spacing: 0.15em;
   font-weight: 700;
+  color: var(--wine);
+  align-self: flex-start;
 }
 .projectInfo a span {
   color: var(--terra);
-  font-size: 17px;
-  margin-left: 8px;
+  font-size: 15px;
+  margin-left: 6px;
 }
 .projectVisual {
-  aspect-ratio: 1.18/1;
-  background: var(--cream);
+  aspect-ratio: 1.4/1;
+  background: var(--ivory);
   color: var(--wine);
   position: relative;
   overflow: hidden;
-  transition: transform 0.6s var(--ease);
+  transition: none;
 }
 .projectVisual:hover {
-  transform: translateY(-6px) rotate(0.3deg);
+  transform: none;
 }
 .visualChrome {
   display: flex;
   justify-content: space-between;
-  padding: 15px 18px;
-  font-size: 8px;
+  padding: 12px 15px;
+  font-size: 7px;
   letter-spacing: 0.15em;
   border-bottom: 1px solid rgba(71, 35, 45, 0.15);
 }
 .visualArt {
   position: absolute;
-  inset: 65px 8% 7%;
+  inset: 50px 8% 7%;
   display: grid;
   place-items: center;
 }
 .chainLogo {
-  font: 600 120px Oswald;
+  font: 600 80px Oswald;
   color: var(--wine);
 }
 .chainLogo span {
@@ -507,18 +521,18 @@ h2 em {
   position: absolute;
   right: 4%;
   bottom: 2%;
-  background: var(--ivory);
-  padding: 18px 25px;
-  box-shadow: 0 20px 40px rgba(71, 35, 45, 0.15);
-  font: 700 12px Oswald;
+  background: var(--cream);
+  padding: 12px 18px;
+  box-shadow: 0 15px 30px rgba(71, 35, 45, 0.12);
+  font: 700 10px Oswald;
   letter-spacing: 0.08em;
 }
 .doc small {
-  font: 500 8px "DM Sans";
+  font: 500 7px "DM Sans";
   letter-spacing: 0.12em;
 }
 .learnTitle {
-  font: 600 clamp(40px, 6vw, 78px) Oswald;
+  font: 600 55px Oswald;
 }
 .learnTitle span {
   font-family: "Playfair Display";
@@ -530,18 +544,18 @@ h2 em {
   right: 8%;
   top: 8%;
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   background: var(--wine);
   color: var(--blush);
   display: grid;
   place-items: center;
-  font: 600 12px Oswald;
+  font: 600 10px Oswald;
   transform: rotate(8deg);
 }
 .trainTitle {
-  font: 600 clamp(45px, 6vw, 80px) Oswald;
-  line-height: 0.8;
+  font: 600 55px Oswald;
+  line-height: 0.9;
 }
 .trainTitle em {
   font: italic 500 0.75em "Playfair Display";
@@ -779,7 +793,6 @@ h2 em {
   .heroGrid,
   .twoCol,
   .project,
-  .project:nth-child(even),
   .cyberGrid {
     grid-template-columns: 1fr;
   }
@@ -820,14 +833,12 @@ h2 em {
     gap: 10px;
     padding-left: 22px;
   }
-  .project:nth-child(even) .projectInfo {
-    order: 0;
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
   .projectVisual {
-    margin-top: 15px;
-  }
-  .projects {
-    gap: 70px;
+    margin-top: 0;
   }
   .cyberGrid h2 {
     font-size: clamp(68px, 17vw, 110px);
@@ -868,5 +879,127 @@ h2 em {
   }
   .heroDesc {
     font-size: 13px;
+  }
+}
+.projectModal {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  background: rgba(57, 33, 40, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 5vw;
+  overflow-y: auto;
+}
+.modalContent {
+  background: var(--ivory);
+  max-width: 900px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.modalClose {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--ivory);
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+.modalClose:hover {
+  background: var(--terra);
+  transform: rotate(90deg);
+}
+.modalVisual {
+  width: 100%;
+  aspect-ratio: 2/1;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.modalBody {
+  padding: 45px 50px 50px;
+}
+.modalBody .projectNo {
+  padding: 0;
+  margin-bottom: 8px;
+}
+.modalBody h3 {
+  font: 600 48px Oswald;
+  line-height: 1;
+  margin: 0 0 10px;
+  color: var(--wine);
+}
+.modalBody h4 {
+  font: italic 500 22px "Playfair Display";
+  margin: 0 0 25px;
+  color: var(--terra);
+}
+.modalBody p {
+  line-height: 1.8;
+  color: var(--ink);
+  font-size: 15px;
+  margin: 0 0 25px;
+  max-width: 750px;
+}
+.modalBody .tags {
+  margin: 25px 0 30px;
+}
+.modalBody .tags span {
+  padding: 7px 12px;
+  font-size: 9px;
+}
+.modalBody a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 15px 25px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.modalBody a:hover {
+  background: var(--terra);
+}
+.modalBody a span {
+  font-size: 18px;
+  color: var(--ivory);
+  margin: 0;
+}
+@media (max-width: 850px) {
+  .projectModal {
+    padding: 0;
+    align-items: flex-start;
+  }
+  .modalContent {
+    border-radius: 0;
+    min-height: 100vh;
+  }
+  .modalClose {
+    top: 20px;
+    right: 20px;
+  }
+  .modalBody {
+    padding: 35px 25px 40px;
+  }
+  .modalBody h3 {
+    font-size: 38px;
+  }
+  .modalBody h4 {
+    font-size: 18px;
   }
 }
