@@ -284,29 +284,44 @@ function App() {
               </h2>
             </Reveal>
           </div>
-          <div className="timeline">
+          <div className="horizontalTimeline">
             {[
-              [
-                "2025",
-                "LICENCE — APPLICATION DEVELOPMENT",
-                "Licence in Application Development at FST Tanger.",
-              ],
-              [
-                "2025 → 2026",
-                "WEB DEVELOPMENT",
-                "Building web applications and exploring modern development technologies.",
-              ],
-              [
-                "2026 →",
-                "MASTER — INTELLIGENT SYSTEMS & CYBERSECURITY",
-                "Exploring intelligent systems, cybersecurity and the technologies behind secure digital environments.",
-              ],
-            ].map(([year, title, desc], i) => (
-              <Reveal key={year} delay={i * 0.08} className="timelineItem">
-                <div className="timeYear">{year}</div>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{desc}</p>
+              {
+                year: "2021—2022",
+                title: "BAC SCIENCE PHYSIQUE",
+                desc: "French Option with Honors at Ibn Batouta High School, Tangier.",
+              },
+              {
+                year: "2022—2023",
+                title: "1ST YEAR DEUST",
+                desc: "MIPC Program (Mathematics, Computer Science, Physics, Chemistry) at FST Tangier.",
+              },
+              {
+                year: "2023—2024",
+                title: "2ND YEAR DEUST",
+                desc: "Faculty of Sciences and Technologies, Tangier.",
+              },
+              {
+                year: "2024—2025",
+                title: "BACHELOR DEGREE IDAI",
+                desc: "Software Application Development Engineering at FST Tangier.",
+              },
+              {
+                year: "2025—2026",
+                title: "JOBINTECH TRAINING",
+                desc: "Cybersecurity and Systems Engineering at Faculty of Sciences, Rabat.",
+              },
+              {
+                year: "2026—NOW",
+                title: "MASTER'S DEGREE SIC",
+                desc: "Intelligent Systems and Cybersecurity at FST Tangier.",
+              },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08} className="htimelineItem">
+                <div className="htimelineYear">{item.year}</div>
+                <div className="htimelineContent">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -318,17 +333,17 @@ function App() {
             <span>02 — SELECTED WORK</span>
             <span>PROJECTS</span>
           </div>
-          <Reveal>
-            <h2>
-              THINGS
-              <br />
-              I’VE <em>BUILT.</em>
-            </h2>
-          </Reveal>
-          <p className="intro lightText">
-            A selection of projects where development, problem-solving and
-            curiosity meet.
-          </p>
+          <div className="workHeader">
+            <Reveal>
+              <h2>
+                THINGS I’VE <em>BUILT.</em>
+              </h2>
+            </Reveal>
+            <p className="intro lightText">
+              A selection of projects where development, problem-solving and
+              curiosity meet.
+            </p>
+          </div>
           <div className="projects">
             {projects.map((p, i) => (
               <ProjectCard key={p.title} p={p} i={i} onClick={() => setSelectedProject(p)} />

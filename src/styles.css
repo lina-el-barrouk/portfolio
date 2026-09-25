@@ -92,12 +92,23 @@ a {
 }
 .menuBtn {
   border-radius: 999px;
-  padding: 13px 19px;
-  background: var(--terra);
-  color: var(--ivory);
+  padding: 12px 22px;
+  background: var(--blush);
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  border: 1px solid var(--blush);
+  transition: 0.3s ease;
+}
+.menuBtn:hover {
+  background: transparent;
+  color: var(--blush);
+  border-color: var(--blush);
 }
 .menuBtn span {
   margin-left: 10px;
+  font-size: 14px;
 }
 .cursor {
   display: none;
@@ -369,6 +380,73 @@ h2 em {
 .journeyTitle h2 {
   margin-bottom: 75px;
 }
+.horizontalTimeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  padding: 60px 0 80px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.horizontalTimeline:before {
+  content: "";
+  position: absolute;
+  top: 90px;
+  left: calc(100% / 12);
+  right: calc(100% / 12);
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+.htimelineItem {
+  position: relative;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.htimelineItem:before {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--wine);
+  border: 3px solid var(--cream);
+  z-index: 2;
+}
+.htimelineYear {
+  font-family: Oswald;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--wine);
+  text-align: center;
+  margin-bottom: 45px;
+  letter-spacing: 0.05em;
+}
+.htimelineContent {
+  text-align: center;
+  max-width: 220px;
+}
+.htimelineContent h3 {
+  font: 600 17px Oswald;
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+  color: var(--wine);
+  line-height: 1.3;
+}
+.htimelineContent p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 12px;
+  color: var(--ink);
+  opacity: 0.75;
+}
 .timeline {
   max-width: 1050px;
   margin-left: auto;
@@ -399,6 +477,21 @@ h2 em {
 .work h2 {
   font-size: clamp(72px, 10vw, 150px);
   line-height: 0.82;
+}
+.workHeader {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 75px;
+}
+.workHeader h2 {
+  font-size: clamp(55px, 8vw, 95px);
+  line-height: 0.9;
+  margin-top: 55px;
+}
+.workHeader .intro {
+  max-width: 100%;
+  margin: 25px auto 0;
+  font-size: 14px;
 }
 .lightText {
   color: rgba(248, 245, 239, 0.72);
@@ -827,6 +920,42 @@ h2 em {
   }
   .journeyTitle h2 {
     margin-bottom: 50px;
+  }
+  .horizontalTimeline {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+  .horizontalTimeline:before {
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    height: auto;
+    right: auto;
+  }
+  .htimelineItem {
+    min-width: 100%;
+    padding: 0 0 35px 50px;
+    text-align: left;
+  }
+  .htimelineItem:before {
+    left: 14px;
+    top: 5px;
+    transform: none;
+  }
+  .htimelineYear {
+    text-align: left;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .htimelineContent {
+    text-align: left;
+  }
+  .htimelineContent h3 {
+    font-size: 16px;
+  }
+  .htimelineContent p {
+    font-size: 12px;
   }
   .timelineItem {
     grid-template-columns: 1fr;
