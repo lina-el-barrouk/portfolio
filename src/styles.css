@@ -798,6 +798,90 @@ h2 em {
   color: var(--ivory);
   border-color: var(--wine);
 }
+.beyondHeader {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 75px;
+}
+.beyondHeader h2 {
+  font-size: clamp(55px, 8vw, 95px);
+  line-height: 0.9;
+  margin-top: 55px;
+}
+.beyondHeader .intro {
+  max-width: 100%;
+  margin: 25px auto 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.volunteerProjects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.volunteerCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--ivory);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease);
+  cursor: pointer;
+}
+.volunteerCard:hover {
+  transform: translateY(-8px);
+}
+.volunteerVisual {
+  aspect-ratio: 1.4/1;
+  background: var(--cream);
+  color: var(--wine);
+  position: relative;
+  overflow: hidden;
+}
+.volunteerIcon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.iconLarge {
+  font-size: 80px;
+  opacity: 0.85;
+}
+.volunteerNo {
+  font: 500 11px Oswald;
+  color: var(--terra);
+  letter-spacing: 0.15em;
+  padding: 18px 20px 0;
+}
+.volunteerInfo {
+  padding: 0 20px 25px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.volunteerInfo h3 {
+  font: 600 28px Oswald;
+  line-height: 1.1;
+  margin: 10px 0 8px;
+  color: var(--wine);
+}
+.volunteerInfo h4 {
+  font: italic 500 15px "Playfair Display";
+  margin: 0 0 12px;
+  color: var(--terra);
+}
+.volunteerInfo p {
+  line-height: 1.65;
+  color: var(--ink);
+  opacity: 0.75;
+  font-size: 13px;
+  margin: 0;
+  flex: 1;
+}
 .volunteerRow {
   padding: 22px 0;
   border-top: 1px solid var(--line);
@@ -980,6 +1064,10 @@ h2 em {
   }
   .skillCloud span {
     font-size: 24px;
+  }
+  .volunteerProjects {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
   .volunteerRow {
     display: block;

@@ -30,6 +30,59 @@ const projects = [
   },
 ];
 
+const volunteerProjects = [
+  {
+    n: "01",
+    period: "SEP 2024 — JUL 2025",
+    title: "Creative Minds",
+    subtitle: "English Teaching for Children",
+    desc: "Collaborated with teaching partners to provide interactive English lessons tailored to children's learning needs, fostering a fun and immersive environment.",
+    tags: ["EDUCATION", "TEACHING", "LEADERSHIP", "CREATIVITY"],
+    org: "Lyed f Lyed CSC",
+    type: "education",
+  },
+  {
+    n: "02",
+    period: "JAN 2025 — FEB 2025",
+    title: "JOUD Campaign",
+    subtitle: "Winter Clothing Distribution",
+    desc: "Collected and distributed warm clothes for rural populations while organizing activities and entertainment for beneficiaries in remote communities.",
+    tags: ["COMMUNITY", "LOGISTICS", "TEAMWORK", "SOCIAL IMPACT"],
+    org: "Lyed f Lyed CSC",
+    type: "community",
+  },
+  {
+    n: "03",
+    period: "FEB 2025 — MAR 2025",
+    title: "Ramadan Kit Project",
+    subtitle: "Food Aid Distribution",
+    desc: "Collected funds and food supplies to assemble and distribute Ramadan kits to people in need, coordinating with local associations.",
+    tags: ["FUNDRAISING", "COORDINATION", "COMMUNITY", "IMPACT"],
+    org: "Lyed f Lyed CSC",
+    type: "aid",
+  },
+  {
+    n: "04",
+    period: "APR 2025 — MAY 2025",
+    title: "Harmony of Generations",
+    subtitle: "Retirement Home Volunteering",
+    desc: "Organized activities, games, and cultural events at a retirement home to foster intergenerational connection and bring joy to elderly residents.",
+    tags: ["ELDERLY CARE", "ACTIVITIES", "CONNECTION", "EMPATHY"],
+    org: "Lyed f Lyed CSC",
+    type: "care",
+  },
+  {
+    n: "05",
+    period: "JUN 2025",
+    title: "Sanad",
+    subtitle: "Medical & Awareness Campaign",
+    desc: "Supported a blood donation and health awareness campaign, guiding participants through the process and participating in first aid training.",
+    tags: ["HEALTH", "AWARENESS", "FIRST AID", "COMMUNITY"],
+    org: "Global Shapers Tangier",
+    type: "health",
+  },
+];
+
 const skills = [
   "Python",
   "Java",
@@ -67,6 +120,7 @@ function Reveal({ children, delay = 0, className = "" }) {
 function App() {
   const [menu, setMenu] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedVolunteer, setSelectedVolunteer] = useState(null);
   const [cursor, setCursor] = useState({
     x: 0,
     y: 0,
@@ -430,36 +484,22 @@ function App() {
             <span>BEYOND THE CODE</span>
             <span>COMMUNITY · LEADERSHIP</span>
           </div>
-          <div className="twoCol">
+          <div className="beyondHeader">
             <Reveal>
               <h2>
-                BEYOND
-                <br />
-                THE <em>CODE.</em>
+                BEYOND THE <em>CODE.</em>
               </h2>
             </Reveal>
-            <Reveal delay={0.1} className="bodyBlock">
-              <p>
-                <strong>Technology is also about people.</strong>
-              </p>
-              <p>
-                Through volunteering and community projects, I’ve had the
-                opportunity to work with others, organize activities and create
-                meaningful experiences.
-              </p>
-              <div className="volunteerRow">
-                <span>LYED F LYED</span>
-                <small>Education · Community · Leadership</small>
-              </div>
-              <div className="volunteerRow">
-                <span>COMMUNITY INITIATIVES</span>
-                <small>Volunteering · Events · Social impact</small>
-              </div>
-              <div className="signature">
-                I believe that what we build matters — but so does the impact we
-                leave behind.
-              </div>
-            </Reveal>
+            <p className="intro">
+              Technology is also about people. Through volunteering and community
+              projects, I’ve had the opportunity to work with others, organize
+              activities and create meaningful experiences.
+            </p>
+          </div>
+          <div className="volunteerProjects">
+            {volunteerProjects.map((v, i) => (
+              <VolunteerCard key={v.title} v={v} i={i} onClick={() => setSelectedVolunteer(v)} />
+            ))}
           </div>
         </section>
 
@@ -512,6 +552,12 @@ function App() {
           <ProjectModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+          />
+        )}
+        {selectedVolunteer && (
+          <VolunteerModal
+            volunteer={selectedVolunteer}
+            onClose={() => setSelectedVolunteer(null)}
           />
         )}
       </AnimatePresence>
@@ -577,6 +623,89 @@ function ProjectCard({ p, i, onClick }) {
         </div>
       </article>
     </Reveal>
+  );
+}
+
+function VolunteerCard({ v, i, onClick }) {
+  return (
+    <Reveal delay={i * 0.08}>
+      <article className="volunteerCard" onClick={onClick}>
+        <div className="volunteerVisual">
+          <div className="visualChrome">
+            <span>{v.org}</span>
+            <span>{v.period}</span>
+          </div>
+          <div className="volunteerIcon">
+            {v.type === "education" && <span className="iconLarge">📚</span>}
+            {v.type === "community" && <span className="iconLarge">🤝</span>}
+            {v.type === "aid" && <span className="iconLarge">🎁</span>}
+            {v.type === "care" && <span className="iconLarge">💝</span>}
+            {v.type === "health" && <span className="iconLarge">🩺</span>}
+          </div>
+        </div>
+        <div className="volunteerNo">{v.n}</div>
+        <div className="volunteerInfo">
+          <h3>{v.title}</h3>
+          <h4>{v.subtitle}</h4>
+          <p>{v.desc}</p>
+          <div className="tags">
+            {v.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+function VolunteerModal({ volunteer, onClose }) {
+  return (
+    <motion.div
+      className="projectModal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="modalContent"
+        initial={{ scale: 0.9, y: 50 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 50 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modalClose" onClick={onClose}>
+          ×
+        </button>
+        <div className="modalVisual">
+          <div className="visualChrome">
+            <span>{volunteer.org}</span>
+            <span>{volunteer.period}</span>
+          </div>
+          <div className="volunteerIcon">
+            {volunteer.type === "education" && <span className="iconLarge" style={{ fontSize: "120px" }}>📚</span>}
+            {volunteer.type === "community" && <span className="iconLarge" style={{ fontSize: "120px" }}>🤝</span>}
+            {volunteer.type === "aid" && <span className="iconLarge" style={{ fontSize: "120px" }}>🎁</span>}
+            {volunteer.type === "care" && <span className="iconLarge" style={{ fontSize: "120px" }}>💝</span>}
+            {volunteer.type === "health" && <span className="iconLarge" style={{ fontSize: "120px" }}>🩺</span>}
+          </div>
+        </div>
+        <div className="modalBody">
+          <div className="projectNo">{volunteer.n}</div>
+          <h3>{volunteer.title}</h3>
+          <h4>{volunteer.subtitle}</h4>
+          <p>{volunteer.desc}</p>
+          <div className="tags">
+            {volunteer.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
