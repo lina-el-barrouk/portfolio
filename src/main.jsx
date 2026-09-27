@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import "./styles.css";
+import portrait from "../chatgptme.png";
 
 const projects = [
   {
@@ -15,7 +16,7 @@ const projects = [
       "Cryptographic certificate signing and verification on Hedera ledger.",
       "FastAPI asynchronous backend with robust JWT role-based access control.",
       "Intuitive React dashboard for students, universities, and verifying recruiters.",
-      "Zero-knowledge verification flow ensuring privacy and integrity."
+      "Zero-knowledge verification flow ensuring privacy and integrity.",
     ],
   },
   {
@@ -29,7 +30,7 @@ const projects = [
       "Custom conversational AI assistant providing 24/7 contextual tutoring.",
       "Adaptive quiz engine calibrating difficulty based on learner mastery.",
       "Real-time student progress analytics and interactive study groups.",
-      "Modern, distraction-free user interface designed for deep focus."
+      "Modern, distraction-free user interface designed for deep focus.",
     ],
   },
   {
@@ -37,13 +38,19 @@ const projects = [
     title: "Training Platform",
     subtitle: "Modular Learning & Certification Suite",
     desc: "A flexible enterprise web application supporting online training programs, structured curriculum modules, and interactive guidance bots.",
-    tags: ["JAVASCRIPT", "HTML5/CSS3", "CHATBOT UX", "REST APIS", "UI/UX DESIGN"],
+    tags: [
+      "JAVASCRIPT",
+      "HTML5/CSS3",
+      "CHATBOT UX",
+      "REST APIS",
+      "UI/UX DESIGN",
+    ],
     type: "training",
     highlights: [
       "Modular course builder with dynamic video, quiz, and text units.",
       "Integrated search and help chatbot facilitating rapid onboarding.",
       "Custom analytics dashboard tracking completion rates and test scores.",
-      "Responsive, accessible design adhering to WCAG standards."
+      "Responsive, accessible design adhering to WCAG standards.",
     ],
   },
 ];
@@ -53,25 +60,59 @@ const skillCategories = [
     title: "Software & Architecture",
     icon: "⚡",
     desc: "Core programming paradigms, object-oriented design, and design patterns.",
-    skills: ["Python", "Java / J2EE", "C++", "C", "Object-Oriented Design", "UML", "Data Structures", "Algorithms"],
+    skills: [
+      "Python",
+      "Java / J2EE",
+      "C++",
+      "C",
+      "Object-Oriented Design",
+      "UML",
+      "Data Structures",
+      "Algorithms",
+    ],
   },
   {
     title: "Fullstack & Mobile Development",
     icon: "🌐",
     desc: "Modern front-end frameworks, robust backends, and cross-platform APIs.",
-    skills: ["React.js", "JavaScript (ES6+)", "FastAPI", "Laravel", "PHP", "Angular", "HTML5 & Modern CSS", "RESTful APIs"],
+    skills: [
+      "React.js",
+      "JavaScript (ES6+)",
+      "FastAPI",
+      "Laravel",
+      "PHP",
+      "Angular",
+      "HTML5 & Modern CSS",
+      "RESTful APIs",
+    ],
   },
   {
     title: "Cybersecurity & Systems",
     icon: "🛡️",
     desc: "Defensive architectures, hardening, protocol analysis, and threat mitigation.",
-    skills: ["Linux Hardening", "Bash Scripting", "OWASP Top 10", "Network Security", "PKI & Cryptography", "IAM / JWT", "Docker / DevSecOps"],
+    skills: [
+      "Linux Hardening",
+      "Bash Scripting",
+      "OWASP Top 10",
+      "Network Security",
+      "PKI & Cryptography",
+      "IAM / JWT",
+      "Docker / DevSecOps",
+    ],
   },
   {
     title: "AI & Data Science",
     icon: "🧠",
     desc: "Machine learning, computer vision, data analysis, and intelligent agents.",
-    skills: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "Pandas & NumPy", "Data Modeling", "MySQL & Database Admin"],
+    skills: [
+      "Machine Learning",
+      "Deep Learning",
+      "Computer Vision",
+      "NLP",
+      "Pandas & NumPy",
+      "Data Modeling",
+      "MySQL & Database Admin",
+    ],
   },
 ];
 
@@ -154,12 +195,18 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Raisonnement scientifique", "Mathématiques", "Résolution de problèmes", "Rigueur analytique"],
+    skills: [
+      "Raisonnement scientifique",
+      "Mathématiques",
+      "Résolution de problèmes",
+      "Rigueur analytique",
+    ],
     experiences: [
       "Cursus scientifique Option Française au Lycée Ibn Batouta à Tanger.",
       "Obtention du Baccalauréat avec mention, posant les bases pour les études supérieures en informatique et technologies.",
     ],
-    goals: "Confirmer l'attrait pour les sciences informatiques et intégrer un parcours universitaire scientifique.",
+    goals:
+      "Confirmer l'attrait pour les sciences informatiques et intégrer un parcours universitaire scientifique.",
   },
   {
     slug: "first-year-deust",
@@ -194,12 +241,19 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Programmation en C", "Algorithmique & Pointeurs", "Analyse mathématique", "Algèbre linéaire", "Calcul scientifique"],
+    skills: [
+      "Programmation en C",
+      "Algorithmique & Pointeurs",
+      "Analyse mathématique",
+      "Algèbre linéaire",
+      "Calcul scientifique",
+    ],
     experiences: [
       "Apprentissage approfondi des bases algorithmiques et de la programmation structurée en C.",
       "Résolution de problèmes d'ingénierie et modélisation mathématique appliquée.",
     ],
-    goals: "Approfondir la programmation orientée objet, les bases de données et les architectures systèmes.",
+    goals:
+      "Approfondir la programmation orientée objet, les bases de données et les architectures systèmes.",
   },
   {
     slug: "second-year-deust",
@@ -234,12 +288,19 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Programmation C++ / Java", "Bases de Données (SQL)", "Systèmes d'exploitation", "Théorie des graphes", "Modélisation relationnelle"],
+    skills: [
+      "Programmation C++ / Java",
+      "Bases de Données (SQL)",
+      "Systèmes d'exploitation",
+      "Théorie des graphes",
+      "Modélisation relationnelle",
+    ],
     experiences: [
       "Conception et modélisation de bases de données avec requêtes SQL avancées.",
       "Implémentation de structures de données dynamiques et programmation orientée objet.",
     ],
-    goals: "Rejoindre la Licence d'Ingénierie du Développement des Applications Informatiques (IDAI).",
+    goals:
+      "Rejoindre la Licence d'Ingénierie du Développement des Applications Informatiques (IDAI).",
   },
   {
     slug: "bachelor-idai",
@@ -247,7 +308,8 @@ const journeyItems = [
     title: "LICENCE LST IDAI",
     desc: "Ingénierie du Développement des Applications Informatiques à la FST de Tanger.",
     institutionName: "FST Tanger (Licence LST IDAI)",
-    institutionLink: "https://fstt.ac.ma/portail/formation-initiale/licence/idai/",
+    institutionLink:
+      "https://fstt.ac.ma/portail/formation-initiale/licence/idai/",
     overview:
       "La Licence Sciences et Techniques IDAI est une formation d'excellence axée sur le génie logiciel, le développement web fullstack, les architectures distribuées, le mobile et les méthodes agiles.",
     semesters: [
@@ -273,12 +335,21 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Fullstack (React, FastAPI, Laravel)", "Java / J2EE", "Mobile Dev", "UML & Architecture", "DevOps & Docker", "APIs REST", "Bases de données"],
+    skills: [
+      "Fullstack (React, FastAPI, Laravel)",
+      "Java / J2EE",
+      "Mobile Dev",
+      "UML & Architecture",
+      "DevOps & Docker",
+      "APIs REST",
+      "Bases de données",
+    ],
     experiences: [
       "Conception et développement de la plateforme DiplomaChain (vérification de diplômes sur Hedera Blockchain).",
       "Développement de projets fullstack intégrant architectures sécurisées, REST APIs et interfaces modernes.",
     ],
-    goals: "Poursuivre vers un Master spécialisé en Intelligence Artificielle et Cybersécurité.",
+    goals:
+      "Poursuivre vers un Master spécialisé en Intelligence Artificielle et Cybersécurité.",
   },
   {
     slug: "jobintech-training",
@@ -303,12 +374,20 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Linux Hardening", "Sécurité Réseaux & Pare-feu", "Pentesting & OWASP", "SOC & SIEM", "Cryptographie & IAM", "DevSecOps"],
+    skills: [
+      "Linux Hardening",
+      "Sécurité Réseaux & Pare-feu",
+      "Pentesting & OWASP",
+      "SOC & SIEM",
+      "Cryptographie & IAM",
+      "DevSecOps",
+    ],
     experiences: [
       "Mise en place d'environnements virtualisés sécurisés avec surveillance de trafic et détection d'intrusions.",
       "Audits de sécurité d'applications web et déploiement d'architectures d'authentification robuste.",
     ],
-    goals: "Intégrer les principes de sécurité dès la phase de conception logicielle (Security by Design).",
+    goals:
+      "Intégrer les principes de sécurité dès la phase de conception logicielle (Security by Design).",
   },
   {
     slug: "masters-sic",
@@ -360,12 +439,20 @@ const journeyItems = [
         ],
       },
     ],
-    skills: ["Machine Learning & Deep Learning", "Computer Vision & NLP", "Cybersécurité avancée", "Forensics & Reverse Engineering", "Blockchain", "DevSecOps"],
+    skills: [
+      "Machine Learning & Deep Learning",
+      "Computer Vision & NLP",
+      "Cybersécurité avancée",
+      "Forensics & Reverse Engineering",
+      "Blockchain",
+      "DevSecOps",
+    ],
     experiences: [
       "Recherche et conception d'architectures combinant modèles d'intelligence artificielle et mécanismes de défense cybernétique.",
       "Développement de projets innovants alliant vision par ordinateur, traitement des données et sécurité des systèmes distribués.",
     ],
-    goals: "Concevoir des solutions intelligentes, hautement sécurisées et à fort impact technologique.",
+    goals:
+      "Concevoir des solutions intelligentes, hautement sécurisées et à fort impact technologique.",
   },
 ];
 
@@ -380,6 +467,92 @@ function Reveal({ children, delay = 0, className = "" }) {
     >
       {children}
     </motion.div>
+  );
+}
+
+/* ================= MAIL COMPOSER MENU ================= */
+const EMAIL = "linaelbarrouk@gmail.com";
+
+function openMail(kind) {
+  const subject = encodeURIComponent("Contact — Portfolio");
+  if (kind === "gmail") {
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${subject}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  } else if (kind === "outlook") {
+    window.open(
+      `https://outlook.live.com/mail/0/deeplink/compose?to=${EMAIL}&subject=${subject}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  } else {
+    window.location.href = `mailto:${EMAIL}?subject=${subject}`;
+  }
+}
+
+function MailComposerMenu() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div className="mailMenuWrap" ref={ref}>
+      <button
+        className="pill light"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+      >
+        INITIALIZE CONVERSATION <span>{open ? "▴" : "▾"}</span>
+      </button>
+
+      {open && (
+        <motion.div
+          className="mailMenu"
+          role="menu"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.18 }}
+        >
+          {[
+            ["gmail", "Gmail", "Ouvre le composeur Gmail"],
+            ["outlook", "Outlook", "Ouvre le composeur Outlook"],
+            ["default", "Client par défaut", "Ouvre ton app mail (mailto:)"],
+          ].map(([kind, label, hint]) => (
+            <button
+              key={kind}
+              role="menuitem"
+              className="mailMenuItem"
+              onClick={() => {
+                setOpen(false);
+                openMail(kind);
+              }}
+            >
+              <strong>{label}</strong>
+              <small>{hint}</small>
+            </button>
+          ))}
+        </motion.div>
+      )}
+    </div>
   );
 }
 
@@ -407,7 +580,9 @@ function App() {
     activeFilter === "ALL"
       ? projects
       : projects.filter((p) =>
-          p.tags.some((t) => t.toUpperCase().includes(activeFilter.toUpperCase()))
+          p.tags.some((t) =>
+            t.toUpperCase().includes(activeFilter.toUpperCase()),
+          ),
         );
 
   return (
@@ -506,7 +681,11 @@ function App() {
               <motion.h1
                 initial={{ opacity: 0, y: 35 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.25,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
                 ARCHITECTING
                 <br />
@@ -521,9 +700,11 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.45 }}
               >
-                I’m <strong>Lina El Barrouk</strong>, a software developer pursuing a Master's
-                in <strong>Intelligent Systems &amp; Cybersecurity</strong>. I design reliable,
-                modern web applications engineered with security and artificial intelligence at their core.
+                I’m <strong>Lina El Barrouk</strong>, a software developer
+                pursuing a Master's in{" "}
+                <strong>Intelligent Systems &amp; Cybersecurity</strong>. I
+                design reliable, modern web applications engineered with
+                security and artificial intelligence at their core.
               </motion.p>
 
               <motion.div
@@ -556,7 +737,11 @@ function App() {
               className="heroVisual"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.9,
+                delay: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
               <div className="portraitComposition">
                 <div className="floatingCard f1">
@@ -569,8 +754,7 @@ function App() {
 
                 <div className="portraitFrame">
                   <div className="portraitArt">
-                    <span className="monogram">LE</span>
-                    <span className="monogramRole">LINA EL BARROUK</span>
+                    <img src={portrait} alt="Portrait of Lina El Barrouk" />
                   </div>
                 </div>
 
@@ -597,28 +781,35 @@ function App() {
             <div className="aboutGrid">
               <Reveal>
                 <div className="aboutQuote">
-                  "Engineering software is not only about writing functional code; it is about{" "}
-                  <em>anticipating vulnerabilities</em>, crafting clear interfaces, and embedding{" "}
-                  <em>intelligence</em>."
+                  "Engineering software is not only about writing functional
+                  code; it is about <em>anticipating vulnerabilities</em>,
+                  crafting clear interfaces, and embedding <em>intelligence</em>
+                  ."
                 </div>
               </Reveal>
 
               <Reveal delay={0.15}>
                 <div className="aboutText">
                   <p>
-                    With an academic grounding spanning mathematical foundations, software engineering,
-                    and intensive cybersecurity practice, my path is driven by continuous rigor and deep curiosity.
+                    With an academic grounding spanning mathematical
+                    foundations, software engineering, and intensive
+                    cybersecurity practice, my path is driven by continuous
+                    rigor and deep curiosity.
                   </p>
                   <p>
-                    Currently enrolled in the <strong>Master SIC</strong> (Intelligent Systems &amp;
-                    Cybersecurity) at FST Tanger, I specialize in architecting secure fullstack platforms,
-                    exploring offensive and defensive security principles, and integrating applied machine learning models.
+                    Currently enrolled in the <strong>Master SIC</strong>{" "}
+                    (Intelligent Systems &amp; Cybersecurity) at FST Tanger, I
+                    specialize in architecting secure fullstack platforms,
+                    exploring offensive and defensive security principles, and
+                    integrating applied machine learning models.
                   </p>
                   <div className="aboutPillars">
                     <div className="aboutPillarCard">
                       <span className="pillarNum">01</span>
                       <h4>Robust Dev</h4>
-                      <p>Clean code, modular APIs, and modern UI architectures.</p>
+                      <p>
+                        Clean code, modular APIs, and modern UI architectures.
+                      </p>
                     </div>
                     <div className="aboutPillarCard">
                       <span className="pillarNum">02</span>
@@ -628,7 +819,10 @@ function App() {
                     <div className="aboutPillarCard">
                       <span className="pillarNum">03</span>
                       <h4>Applied AI</h4>
-                      <p>Intelligent assistants, classification, and computer vision.</p>
+                      <p>
+                        Intelligent assistants, classification, and computer
+                        vision.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -654,8 +848,9 @@ function App() {
                 </h2>
               </Reveal>
               <p className="sectionDesc">
-                Each milestone represents a formative foundation. Select any card below to explore its
-                detailed academic curriculum, semester modules, official institutions, and hands-on deliverables.
+                Each milestone represents a formative foundation. Select any
+                card below to explore its detailed academic curriculum, semester
+                modules, official institutions, and hands-on deliverables.
               </p>
             </div>
 
@@ -671,7 +866,11 @@ function App() {
                       <div className="timelineCardHead">
                         <span className="timelineYearPill">{item.year}</span>
                         <span className="timelineModuleCount">
-                          {item.semesters.reduce((acc, s) => acc + s.modules.length, 0)} MODULES
+                          {item.semesters.reduce(
+                            (acc, s) => acc + s.modules.length,
+                            0,
+                          )}{" "}
+                          MODULES
                         </span>
                       </div>
                       <h3>{item.title}</h3>
@@ -706,9 +905,12 @@ function App() {
                   <em>DEVELOPMENTS.</em>
                 </h2>
               </Reveal>
-              <p className="sectionDesc" style={{ color: "rgba(248, 245, 239, 0.75)" }}>
-                A selection of systems developed with focus on robust security, decentralized trust,
-                and seamless interactive experiences.
+              <p
+                className="sectionDesc"
+                style={{ color: "rgba(248, 245, 239, 0.75)" }}
+              >
+                A selection of systems developed with focus on robust security,
+                decentralized trust, and seamless interactive experiences.
               </p>
             </div>
 
@@ -727,7 +929,10 @@ function App() {
             <div className="projectsGrid">
               {filteredProjects.map((p, i) => (
                 <Reveal key={p.title} delay={i * 0.08}>
-                  <article className="projectCard" onClick={() => setSelectedProject(p)}>
+                  <article
+                    className="projectCard"
+                    onClick={() => setSelectedProject(p)}
+                  >
                     <div className="projectCardVisual">
                       <div className="visualHeader">
                         <span>PROJECT {p.n}</span>
@@ -777,19 +982,25 @@ function App() {
             <div className="cyberGrid">
               <Reveal>
                 <div className="cyberText">
-                  <h2 className="sectionTitle" style={{ color: "var(--ivory)" }}>
+                  <h2
+                    className="sectionTitle"
+                    style={{ color: "var(--ivory)" }}
+                  >
                     DEFENSE
                     <br />
                     IN <em>DEPTH.</em>
                   </h2>
                   <h3>Security is an ongoing architectural practice.</h3>
                   <p>
-                    Combining low-level Linux administration, network segregation, modern cryptographic
-                    identities (PKI, JWT, OAuth2), and continuous vulnerability assessments according to OWASP guidelines.
+                    Combining low-level Linux administration, network
+                    segregation, modern cryptographic identities (PKI, JWT,
+                    OAuth2), and continuous vulnerability assessments according
+                    to OWASP guidelines.
                   </p>
                   <p>
-                    My workflow integrates automated linting, container isolation, and defense mechanisms
-                    to protect sensitive data and service integrity.
+                    My workflow integrates automated linting, container
+                    isolation, and defense mechanisms to protect sensitive data
+                    and service integrity.
                   </p>
                 </div>
               </Reveal>
@@ -797,7 +1008,13 @@ function App() {
               <Reveal delay={0.15}>
                 <div className="cyberMatrixCard">
                   <div className="matrixHead">
-                    <span style={{ fontFamily: "JetBrains Mono", fontSize: "11px", color: "var(--blush)" }}>
+                    <span
+                      style={{
+                        fontFamily: "JetBrains Mono",
+                        fontSize: "11px",
+                        color: "var(--blush)",
+                      }}
+                    >
                       DEFENSE FRAMEWORK
                     </span>
                     <div className="matrixLive">
@@ -810,25 +1027,37 @@ function App() {
                     <div className="layerBox">
                       <div className="layerIcon">🔐</div>
                       <h5>Identity &amp; Auth</h5>
-                      <p>JWT, PKI certificates, asymmetric hashing, and role-based policies.</p>
+                      <p>
+                        JWT, PKI certificates, asymmetric hashing, and
+                        role-based policies.
+                      </p>
                     </div>
 
                     <div className="layerBox">
                       <div className="layerIcon">🌐</div>
                       <h5>Network &amp; Perimeter</h5>
-                      <p>VLAN routing, strict firewall policies, TLS encryption, and VPN tunnels.</p>
+                      <p>
+                        VLAN routing, strict firewall policies, TLS encryption,
+                        and VPN tunnels.
+                      </p>
                     </div>
 
                     <div className="layerBox">
                       <div className="layerIcon">🐧</div>
                       <h5>Linux Hardening</h5>
-                      <p>Kernel parameter tuning, permission matrices, and Bash automation.</p>
+                      <p>
+                        Kernel parameter tuning, permission matrices, and Bash
+                        automation.
+                      </p>
                     </div>
 
                     <div className="layerBox">
                       <div className="layerIcon">🛡️</div>
                       <h5>App Sec &amp; Audit</h5>
-                      <p>OWASP Top 10 remediation, safe serialization, and container lockdown.</p>
+                      <p>
+                        OWASP Top 10 remediation, safe serialization, and
+                        container lockdown.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -854,8 +1083,8 @@ function App() {
                 </h2>
               </Reveal>
               <p className="sectionDesc">
-                A structured overview of the languages, frameworks, and defense tools I leverage to build
-                dependable software systems.
+                A structured overview of the languages, frameworks, and defense
+                tools I leverage to build dependable software systems.
               </p>
             </div>
 
@@ -899,15 +1128,20 @@ function App() {
                 </h2>
               </Reveal>
               <p className="sectionDesc">
-                Technology finds its true value in serving people. Through humanitarian initiatives,
-                education programs, and youth development, I actively dedicate time to impactful community causes.
+                Technology finds its true value in serving people. Through
+                humanitarian initiatives, education programs, and youth
+                development, I actively dedicate time to impactful community
+                causes.
               </p>
             </div>
 
             <div className="volunteerGrid">
               {volunteerProjects.map((v, i) => (
                 <Reveal key={v.title} delay={i * 0.08}>
-                  <article className="volunteerCard" onClick={() => setSelectedVolunteer(v)}>
+                  <article
+                    className="volunteerCard"
+                    onClick={() => setSelectedVolunteer(v)}
+                  >
                     <div className="volunteerHead">
                       <span className="volunteerOrg">{v.org}</span>
                       <span className="volunteerPeriod">{v.period}</span>
@@ -924,7 +1158,11 @@ function App() {
 
                     <div className="tagsRow">
                       {v.tags.map((t) => (
-                        <span key={t} className="tagPill" style={{ color: "var(--wine)" }}>
+                        <span
+                          key={t}
+                          className="tagPill"
+                          style={{ color: "var(--wine)" }}
+                        >
                           {t}
                         </span>
                       ))}
@@ -953,18 +1191,17 @@ function App() {
                 </h2>
 
                 <p>
-                  Whether you are seeking a software engineer for a challenging project, an academic
-                  collaboration, or a technical inquiry, my inbox is always open.
+                  Whether you are seeking a software engineer for a challenging
+                  project, an academic collaboration, or a technical inquiry, my
+                  inbox is always open.
                 </p>
 
-                <a className="pill light" href="mailto:hello@linaelbarrouk.dev">
-                  INITIALIZE CONVERSATION <span>↗</span>
-                </a>
+                <MailComposerMenu />
 
                 <div className="contactLinksBar">
                   <a
                     className="contactLinkItem"
-                    href="https://www.linkedin.com"
+                    href="https://www.linkedin.com/in/lina-el-barrouk"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -972,13 +1209,18 @@ function App() {
                   </a>
                   <a
                     className="contactLinkItem"
-                    href="https://github.com"
+                    href="https://github.com/lina-el-barrouk"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     GITHUB <span>↗</span>
                   </a>
-                  <a className="contactLinkItem" href="mailto:hello@linaelbarrouk.dev">
+                  <a
+                    className="contactLinkItem"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=linaelbarrouk@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     EMAIL <span>↗</span>
                   </a>
                 </div>
@@ -993,15 +1235,23 @@ function App() {
           <strong>LINA EL BARROUK</strong>
           <span>Software Developer · Master SIC · AI &amp; Cybersecurity</span>
         </div>
-        <div className="footerNote">© 2026 — Crafted with precision &amp; curiosity.</div>
+        <div className="footerNote">
+          © 2026 — Crafted with precision &amp; curiosity.
+        </div>
       </footer>
 
       <AnimatePresence>
         {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         )}
         {selectedVolunteer && (
-          <VolunteerModal volunteer={selectedVolunteer} onClose={() => setSelectedVolunteer(null)} />
+          <VolunteerModal
+            volunteer={selectedVolunteer}
+            onClose={() => setSelectedVolunteer(null)}
+          />
         )}
       </AnimatePresence>
     </>
@@ -1027,14 +1277,24 @@ function ProjectModal({ project, onClose }) {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modalClose" onClick={onClose} aria-label="Close modal">
+        <button
+          className="modalClose"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
           ×
         </button>
 
         <div className="modalVisualHead">
           <div className="modalMeta">
             <span className="modalBadge">PROJECT {project.n}</span>
-            <span style={{ fontSize: "11px", letterSpacing: "0.1em", color: "var(--blush)" }}>
+            <span
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+                color: "var(--blush)",
+              }}
+            >
               SPECIFICATION
             </span>
           </div>
@@ -1055,7 +1315,14 @@ function ProjectModal({ project, onClose }) {
           <h5 className="modalSubtitle">TECHNOLOGY STACK</h5>
           <div className="tagsRow">
             {project.tags.map((t) => (
-              <span key={t} className="tagPill" style={{ color: "var(--wine)", background: "rgba(71,35,45,0.06)" }}>
+              <span
+                key={t}
+                className="tagPill"
+                style={{
+                  color: "var(--wine)",
+                  background: "rgba(71,35,45,0.06)",
+                }}
+              >
                 {t}
               </span>
             ))}
@@ -1084,14 +1351,24 @@ function VolunteerModal({ volunteer, onClose }) {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modalClose" onClick={onClose} aria-label="Close modal">
+        <button
+          className="modalClose"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
           ×
         </button>
 
         <div className="modalVisualHead">
           <div className="modalMeta">
             <span className="modalBadge">{volunteer.org}</span>
-            <span style={{ fontSize: "11px", letterSpacing: "0.1em", color: "var(--blush)" }}>
+            <span
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+                color: "var(--blush)",
+              }}
+            >
               {volunteer.period}
             </span>
           </div>
@@ -1103,15 +1380,27 @@ function VolunteerModal({ volunteer, onClose }) {
           <p>{volunteer.desc}</p>
 
           <h5 className="modalSubtitle">COMMUNITY IMPACT</h5>
-          <div className="volunteerImpactPill" style={{ fontSize: "13px", padding: "10px 16px" }}>
+          <div
+            className="volunteerImpactPill"
+            style={{ fontSize: "13px", padding: "10px 16px" }}
+          >
             <span>✦</span>
             <span>{volunteer.impact}</span>
           </div>
 
-          <h5 className="modalSubtitle" style={{ marginTop: "24px" }}>CORE COMPETENCIES DEVELOPED</h5>
+          <h5 className="modalSubtitle" style={{ marginTop: "24px" }}>
+            CORE COMPETENCIES DEVELOPED
+          </h5>
           <div className="tagsRow">
             {volunteer.tags.map((t) => (
-              <span key={t} className="tagPill" style={{ color: "var(--wine)", background: "rgba(71,35,45,0.06)" }}>
+              <span
+                key={t}
+                className="tagPill"
+                style={{
+                  color: "var(--wine)",
+                  background: "rgba(71,35,45,0.06)",
+                }}
+              >
                 {t}
               </span>
             ))}
@@ -1176,7 +1465,9 @@ function JourneyDetail({ item }) {
           <Reveal delay={0.05}>
             <div className="detailCard">
               <div className="cardHeader">
-                <span className="cardLabel">01 — PRÉSENTATION &amp; CONTEXTE</span>
+                <span className="cardLabel">
+                  01 — PRÉSENTATION &amp; CONTEXTE
+                </span>
               </div>
               <p className="detailOverviewText">{item.overview}</p>
             </div>
@@ -1185,9 +1476,15 @@ function JourneyDetail({ item }) {
           <Reveal delay={0.1}>
             <div className="detailCard">
               <div className="cardHeader">
-                <span className="cardLabel">02 — PROGRAMME DES MODULES SEMESTRIELS</span>
+                <span className="cardLabel">
+                  02 — PROGRAMME DES MODULES SEMESTRIELS
+                </span>
                 <span className="cardCount">
-                  {item.semesters.reduce((acc, sem) => acc + sem.modules.length, 0)} modules enseignés
+                  {item.semesters.reduce(
+                    (acc, sem) => acc + sem.modules.length,
+                    0,
+                  )}{" "}
+                  modules enseignés
                 </span>
               </div>
 
@@ -1201,7 +1498,9 @@ function JourneyDetail({ item }) {
                     <ul className="semesterModulesList">
                       {sem.modules.map((mod, mIdx) => (
                         <li key={mod}>
-                          <span className="moduleNumber">{String(mIdx + 1).padStart(2, "0")}</span>
+                          <span className="moduleNumber">
+                            {String(mIdx + 1).padStart(2, "0")}
+                          </span>
                           <span>{mod}</span>
                         </li>
                       ))}
@@ -1216,7 +1515,9 @@ function JourneyDetail({ item }) {
             <Reveal delay={0.15}>
               <div className="detailCard" style={{ height: "100%" }}>
                 <div className="cardHeader">
-                  <span className="cardLabel">03 — COMPÉTENCES &amp; OUTILS</span>
+                  <span className="cardLabel">
+                    03 — COMPÉTENCES &amp; OUTILS
+                  </span>
                 </div>
                 <div className="detailTagsCloud">
                   {item.skills.map((skill) => (
@@ -1231,7 +1532,9 @@ function JourneyDetail({ item }) {
             <Reveal delay={0.2}>
               <div className="detailCard" style={{ height: "100%" }}>
                 <div className="cardHeader">
-                  <span className="cardLabel">04 — EXPÉRIENCES &amp; PROJETS</span>
+                  <span className="cardLabel">
+                    04 — EXPÉRIENCES &amp; PROJETS
+                  </span>
                 </div>
                 <ul className="detailExpList">
                   {item.experiences.map((exp) => (
@@ -1245,7 +1548,9 @@ function JourneyDetail({ item }) {
           <Reveal delay={0.25}>
             <div className="detailCard goalCard">
               <div className="cardHeader">
-                <span className="cardLabel">05 — OBJECTIFS &amp; PERSPECTIVES</span>
+                <span className="cardLabel">
+                  05 — OBJECTIFS &amp; PERSPECTIVES
+                </span>
               </div>
               <p className="goalText">{item.goals}</p>
               <div className="goalActions">
@@ -1286,8 +1591,15 @@ function JourneyNotFound() {
           ← RETOUR AU PORTFOLIO
         </a>
       </header>
-      <main className="detailContainer" style={{ textAlign: "center", padding: "100px 20px" }}>
-        <h1 style={{ fontFamily: "Syne", fontSize: "36px", marginBottom: "16px" }}>ÉTAPE INTROUVABLE</h1>
+      <main
+        className="detailContainer"
+        style={{ textAlign: "center", padding: "100px 20px" }}
+      >
+        <h1
+          style={{ fontFamily: "Syne", fontSize: "36px", marginBottom: "16px" }}
+        >
+          ÉTAPE INTROUVABLE
+        </h1>
         <p style={{ color: "rgba(248, 245, 239, 0.7)", marginBottom: "30px" }}>
           La page demandée n'existe pas ou a été déplacée.
         </p>
@@ -1324,7 +1636,9 @@ function PortfolioRouter() {
     return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App />;
   }
 
-  const item = journeyItems.find((journeyItem) => journeyItem.slug === journeySlug);
+  const item = journeyItems.find(
+    (journeyItem) => journeyItem.slug === journeySlug,
+  );
   return item ? <JourneyDetail item={item} /> : <JourneyNotFound />;
 }
 
