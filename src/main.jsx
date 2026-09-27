@@ -103,6 +103,117 @@ const skills = [
   "Cybersecurity",
 ];
 
+const journeyItems = [
+  {
+    slug: "bac-science-physique",
+    year: "2021—2022",
+    title: "BAC SCIENCE PHYSIQUE",
+    desc: "French Option with Honors at Ibn Batouta High School, Tangier.",
+    overview:
+      "My first step toward technology began with a scientific foundation built around analytical thinking, mathematics and physics.",
+    skills: ["Scientific reasoning", "Mathematics", "Problem-solving", "Communication"],
+    experiences: [
+      "Completed the French Option science curriculum at Ibn Batouta High School in Tangier.",
+      "Graduated with honors while developing a methodical approach to learning and problem-solving.",
+    ],
+    goals:
+      "This experience confirmed my interest in technical fields and prepared me to continue toward computer science.",
+    modules: ["Mathématiques", "Physique & Chimie", "Sciences de la Vie et de la Terre", "Philosophie & Langues"],
+    institutionName: "Lycée Ibn Batouta",
+    institutionLink: "https://www.men.gov.ma"
+  },
+  {
+    slug: "first-year-deust",
+    year: "2022—2023",
+    title: "1ST YEAR DEUST",
+    desc: "MIPC Program (Mathematics, Computer Science, Physics, Chemistry) at FST Tangier.",
+    overview:
+      "The first DEUST year introduced me to a multidisciplinary scientific environment, including the fundamentals of computer science.",
+    skills: ["Programming foundations", "Algorithms", "Mathematics", "Scientific methods"],
+    experiences: [
+      "Studied mathematics, computer science, physics and chemistry through the MIPC program at FST Tangier.",
+      "Built a foundation for understanding computational thinking and structured problem-solving.",
+    ],
+    goals:
+      "I wanted to deepen my programming knowledge and progress toward application development.",
+    modules: ["Algorithmique & Programmation en C", "Analyse Mathématique", "Algèbre Linéaire", "Mécanique du Point & Thermodynamique", "Chimie Générale"],
+    institutionName: "FST Tangier",
+    institutionLink: "https://fstt.ac.ma"
+  },
+  {
+    slug: "second-year-deust",
+    year: "2023—2024",
+    title: "2ND YEAR DEUST",
+    desc: "Faculty of Sciences and Technologies, Tangier.",
+    overview:
+      "During the second DEUST year, I continued consolidating my technical foundation and prepared for a more specialized development path.",
+    skills: ["Programming practice", "Systems thinking", "Teamwork", "Technical learning"],
+    experiences: [
+      "Continued the DEUST curriculum at the Faculty of Sciences and Technologies in Tangier.",
+      "Strengthened the analytical and technical skills required for advanced software studies.",
+    ],
+    goals:
+      "This stage was about turning a broad scientific background into a clear focus on software engineering.",
+    modules: ["Structures de Données & Programmation", "Systèmes d'Information & Bases de Données", "Architecture des Ordinateurs", "Analyse Numérique"],
+    institutionName: "FST Tangier",
+    institutionLink: "https://fstt.ac.ma"
+  },
+  {
+    slug: "bachelor-idai",
+    year: "2024—2025",
+    title: "BACHELOR DEGREE IDAI",
+    desc: "Software Application Development Engineering at FST Tangier.",
+    overview:
+      "The IDAI bachelor program allowed me to focus on designing and building useful software applications.",
+    skills: ["Web development", "Application design", "Databases", "UX/UI", "Project delivery"],
+    experiences: [
+      "Specialized in Software Application Development Engineering at FST Tangier.",
+      "Developed practical experience with application development technologies and user-centered digital products.",
+    ],
+    goals:
+      "I aimed to create reliable applications while exploring how software can solve real user needs.",
+    modules: ["Développement Web Avancé", "Développement Backend", "Conception Orientée Objet", "Bases de Données", "Génie Logiciel"],
+    institutionName: "FST Tangier (Licence IDAI)",
+    institutionLink: "https://fstt.ac.ma/portail/formation-initiale/licence/idai/"
+  },
+  {
+    slug: "jobintech-training",
+    year: "2025—2026",
+    title: "JOBINTECH TRAINING",
+    desc: "Cybersecurity and Systems Engineering at Faculty of Sciences, Rabat.",
+    overview:
+      "JobInTech broadened my perspective from building applications to understanding the systems and security practices that support them.",
+    skills: ["Cybersecurity fundamentals", "Linux", "Networks", "Systems engineering", "Secure development"],
+    experiences: [
+      "Trained in cybersecurity and systems engineering at the Faculty of Sciences in Rabat.",
+      "Explored the foundations of networks, Linux, access control and web security.",
+    ],
+    goals:
+      "This training shaped my goal of building applications with security considered from the start.",
+    modules: ["Cybersécurité", "Administration Systèmes Linux", "Sécurité Réseaux", "Cryptographie", "Sécurité des Applications Web"],
+    institutionName: "Faculté des Sciences de Rabat / JobInTech",
+    institutionLink: "https://jobintech.ma"
+  },
+  {
+    slug: "masters-sic",
+    year: "2026—NOW",
+    title: "MASTER'S DEGREE SIC",
+    desc: "Intelligent Systems and Cybersecurity at FST Tangier.",
+    overview:
+      "I am currently pursuing a Master's degree that brings together my interests in intelligent systems, software and cybersecurity.",
+    skills: ["Artificial intelligence", "Cybersecurity", "Research", "Secure systems", "Continuous learning"],
+    experiences: [
+      "Currently studying Intelligent Systems and Cybersecurity at FST Tangier.",
+      "Expanding my knowledge while connecting software development with AI and security.",
+    ],
+    goals:
+      "My objective is to keep developing thoughtful, useful and secure digital experiences.",
+    modules: ["Intelligence Artificielle Avancée", "Cybersécurité Avancée", "Sécurité des Systèmes Distribués", "Analyse de Malware", "Vision par Ordinateur"],
+    institutionName: "FST Tangier (Master SIC)",
+    institutionLink: "https://fstt.ac.ma"
+  },
+];
+
 function Reveal({ children, delay = 0, className = "" }) {
   return (
     <motion.div
@@ -339,44 +450,20 @@ function App() {
             </Reveal>
           </div>
           <div className="horizontalTimeline">
-            {[
-              {
-                year: "2021—2022",
-                title: "BAC SCIENCE PHYSIQUE",
-                desc: "French Option with Honors at Ibn Batouta High School, Tangier.",
-              },
-              {
-                year: "2022—2023",
-                title: "1ST YEAR DEUST",
-                desc: "MIPC Program (Mathematics, Computer Science, Physics, Chemistry) at FST Tangier.",
-              },
-              {
-                year: "2023—2024",
-                title: "2ND YEAR DEUST",
-                desc: "Faculty of Sciences and Technologies, Tangier.",
-              },
-              {
-                year: "2024—2025",
-                title: "BACHELOR DEGREE IDAI",
-                desc: "Software Application Development Engineering at FST Tangier.",
-              },
-              {
-                year: "2025—2026",
-                title: "JOBINTECH TRAINING",
-                desc: "Cybersecurity and Systems Engineering at Faculty of Sciences, Rabat.",
-              },
-              {
-                year: "2026—NOW",
-                title: "MASTER'S DEGREE SIC",
-                desc: "Intelligent Systems and Cybersecurity at FST Tangier.",
-              },
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.08} className="htimelineItem">
-                <div className="htimelineYear">{item.year}</div>
-                <div className="htimelineContent">
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
+            {journeyItems.map((item, i) => (
+              <Reveal key={item.slug} delay={i * 0.08} className="htimelineItem">
+                <a
+                  className="timelineLink"
+                  href={`#/journey/${item.slug}`}
+                  aria-label={`Read more about ${item.title}`}
+                >
+                  <div className="htimelineYear">{item.year}</div>
+                  <div className="htimelineContent">
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                    <span className="timelineCta">EXPLORE ↗</span>
+                  </div>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -659,6 +746,141 @@ function VolunteerCard({ v, i, onClick }) {
   );
 }
 
+function JourneyDetail({ item }) {
+  return (
+    <main className="journeyDetail">
+      <header className="detailNav dark">
+        <a className="brand" href="#/" aria-label="Back to home">
+          LINA <span>EL BARROUK</span>
+        </a>
+        <a className="backLink" href="#/">
+          ← BACK TO PORTFOLIO
+        </a>
+      </header>
+
+      <section className="detailHero dark sectionPad">
+        <div className="sectionMeta lightMeta">
+          <span>MY JOURNEY · {item.year}</span>
+          <span>EDUCATION · DEVELOPMENT · SECURITY</span>
+        </div>
+        <Reveal>
+          <p className="detailEyebrow">{item.year}</p>
+          <h1>{item.title}</h1>
+          <p className="detailLead">{item.desc}</p>
+        </Reveal>
+      </section>
+
+      <section className="detailInstitution cream sectionPad">
+        <Reveal>
+          <span className="detailLabel">INSTITUTION</span>
+          <h2>{item.institutionName}</h2>
+          <a href={item.institutionLink} target="_blank" rel="noopener noreferrer" className="detailCta">
+            VISIT WEBSITE <span>↗</span>
+          </a>
+        </Reveal>
+      </section>
+
+      <section className="detailModules blush sectionPad">
+        <Reveal>
+          <span className="detailLabel">MODULES STUDIED</span>
+          <ul className="detailList">
+             {item.modules.map((module) => (
+               <li key={module}>{module}</li>
+             ))}
+          </ul>
+        </Reveal>
+      </section>
+
+      <section className="detailOverview ivory sectionPad">
+        <Reveal className="detailCopy">
+          <span className="detailLabel">THE EXPERIENCE</span>
+          <h2>
+            A STEP TOWARD
+            <br />
+            <em>WHAT'S NEXT.</em>
+          </h2>
+          <p>{item.overview}</p>
+        </Reveal>
+      </section>
+
+      <section className="detailGrid cream sectionPad">
+        <Reveal className="detailPanel">
+          <span className="detailLabel">SKILLS I DEVELOPED</span>
+          <div className="detailTags">
+            {item.skills.map((skill) => (
+              <span key={skill}>{skill}</span>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={0.1} className="detailPanel">
+          <span className="detailLabel">KEY EXPERIENCES</span>
+          <ul className="detailList">
+            {item.experiences.map((experience) => (
+              <li key={experience}>{experience}</li>
+            ))}
+          </ul>
+        </Reveal>
+      </section>
+
+      <section className="detailGoal ivory sectionPad">
+        <Reveal>
+          <span className="detailLabel">LOOKING FORWARD</span>
+          <p>{item.goals}</p>
+          <a className="detailCta" href="#/">
+            RETURN TO MY JOURNEY <span>↗</span>
+          </a>
+        </Reveal>
+      </section>
+
+      <footer className="footer">
+        <div>
+          <strong>LINA EL BARROUK</strong>
+          <span>Software Developer · AI · Cybersecurity · Web</span>
+        </div>
+        <div className="footerRight">
+          <span>© 2026 Lina El Barrouk</span>
+          <em>Built with curiosity.</em>
+        </div>
+      </footer>
+    </main>
+  );
+}
+
+function JourneyNotFound() {
+  return (
+    <main className="journeyDetail notFound dark sectionPad">
+      <a className="backLink" href="#/">
+        ← BACK TO PORTFOLIO
+      </a>
+      <h1>JOURNEY STEP NOT FOUND.</h1>
+      <p>The page you requested does not exist.</p>
+    </main>
+  );
+}
+
+function PortfolioRouter() {
+  const [hash, setHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const updateHash = () => {
+      window.scrollTo(0, 0);
+      setHash(window.location.hash);
+    };
+
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
+
+  const journeySlug = hash.match(/^#\/journey\/([^/]+)$/)?.[1];
+
+  if (!journeySlug) {
+    return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App />;
+  }
+
+  const item = journeyItems.find((journeyItem) => journeyItem.slug === journeySlug);
+  return item ? <JourneyDetail item={item} /> : <JourneyNotFound />;
+}
+
 function VolunteerModal({ volunteer, onClose }) {
   return (
     <motion.div
@@ -709,4 +931,4 @@ function VolunteerModal({ volunteer, onClose }) {
   );
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(<PortfolioRouter />);

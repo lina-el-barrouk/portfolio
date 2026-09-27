@@ -447,7 +447,40 @@ h2 em {
   color: var(--ink);
   opacity: 0.75;
 }
+.timelineLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.timelineLink:hover,
+.timelineLink:focus-visible {
+  color: var(--terra);
+  transform: translateY(-6px);
+  outline: none;
+}
+.timelineLink:focus-visible .htimelineContent {
+  outline: 2px solid var(--terra);
+  outline-offset: 8px;
+}
+.timelineLink:hover .htimelineYear,
+.timelineLink:hover .htimelineContent h3,
+.timelineLink:focus-visible .htimelineYear,
+.timelineLink:focus-visible .htimelineContent h3 {
+  color: var(--terra);
+}
+.timelineCta {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--terra);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
 .timeline {
+
   max-width: 1050px;
   margin-left: auto;
   border-left: 1px solid var(--line);
@@ -1006,6 +1039,7 @@ h2 em {
     margin-bottom: 50px;
   }
   .horizontalTimeline {
+    display: flex;
     flex-direction: column;
     padding: 40px 0;
   }
@@ -1197,7 +1231,191 @@ h2 em {
   color: var(--ivory);
   margin: 0;
 }
+.detailNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 7vw;
+}
+.backLink {
+  color: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.backLink:hover,
+.backLink:focus-visible {
+  color: var(--blush);
+}
+.detailHero {
+  min-height: 58vh;
+  padding-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detailEyebrow,
+.detailLabel {
+  display: block;
+  color: var(--terra);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+}
+.detailHero h1 {
+  max-width: 1050px;
+  margin: 25px 0 20px;
+  font-family: Oswald, sans-serif;
+  font-size: clamp(58px, 9vw, 140px);
+  font-weight: 600;
+  line-height: 0.84;
+  letter-spacing: -0.025em;
+}
+.detailLead {
+  max-width: 630px;
+  color: rgba(248, 245, 239, 0.78);
+  font: italic 500 clamp(20px, 2.5vw, 32px) "Playfair Display";
+  line-height: 1.35;
+}
+.detailCopy {
+  max-width: 870px;
+}
+.detailCopy h2 {
+  font-family: Oswald, sans-serif;
+  font-size: clamp(52px, 7vw, 98px);
+  font-weight: 600;
+  line-height: 0.87;
+  letter-spacing: -0.025em;
+  margin: 28px 0;
+}
+.detailCopy p,
+.detailGoal p {
+  max-width: 720px;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.6;
+}
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 60px;
+}
+.detailPanel {
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.detailTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.detailTags span {
+  border: 1px solid rgba(71, 35, 45, 0.28);
+  border-radius: 999px;
+  color: var(--wine);
+  font: 500 20px Oswald;
+  padding: 9px 15px;
+}
+.detailList {
+  display: grid;
+  gap: 20px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.detailList li {
+  border-bottom: 1px solid var(--line);
+  line-height: 1.7;
+  padding: 0 0 20px 28px;
+  position: relative;
+}
+.detailList li::before {
+  color: var(--terra);
+  content: "↗";
+  left: 0;
+  position: absolute;
+}
+.detailGoal {
+  text-align: center;
+}
+.detailGoal .detailLabel {
+  margin-bottom: 26px;
+}
+.detailGoal p {
+  margin: 0 auto;
+}
+.detailInstitution h2 {
+  font-family: Oswald, sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 20px 0 30px;
+  letter-spacing: -0.01em;
+}
+.detailCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 38px;
+  border-radius: 999px;
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 17px 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.detailCta:hover,
+.detailCta:focus-visible {
+  background: var(--terra);
+}
+.notFound {
+  min-height: 100vh;
+}
+.notFound h1 {
+  max-width: 750px;
+  margin: 80px 0 20px;
+  font: 600 clamp(60px, 9vw, 130px) / 0.85 Oswald;
+}
+.notFound p {
+  color: rgba(248, 245, 239, 0.76);
+}
 @media (max-width: 850px) {
+  .detailNav {
+    padding: 18px 6vw;
+  }
+  .detailNav .brand {
+    font-size: 15px;
+  }
+  .detailNav .brand span {
+    font-size: 7px;
+  }
+  .detailNav .backLink {
+    font-size: 8px;
+  }
+  .detailHero {
+    min-height: 55vh;
+  }
+  .detailGrid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  .detailTags span {
+    font-size: 18px;
+  }
+  .detailGoal {
+    text-align: left;
+  }
+  .detailGoal p {
+    margin: 0;
+  }
+  .timelineLink {
+    align-items: flex-start;
+  }
+  .timelineCta {
+    margin-top: 12px;
+  }
   .projectModal {
     padding: 0;
     align-items: flex-start;
