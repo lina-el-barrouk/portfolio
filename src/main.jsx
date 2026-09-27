@@ -7,26 +7,71 @@ const projects = [
   {
     n: "01",
     title: "DiplomaChain",
-    subtitle: "Secure diploma verification platform",
-    desc: "A platform designed to help institutions issue and verify academic certificates through secure digital verification and blockchain technology.",
-    tags: ["FASTAPI", "REACT", "MYSQL", "HEDERA", "JWT"],
+    subtitle: "Secure Blockchain Diploma Verification",
+    desc: "A decentralized platform designed for academic institutions to issue, manage, and verify tamper-proof diplomas with instant cryptographic validation.",
+    tags: ["FASTAPI", "REACT", "HEDERA HASHGRAPH", "MYSQL", "JWT", "SECURITY"],
     type: "chain",
+    highlights: [
+      "Cryptographic certificate signing and verification on Hedera ledger.",
+      "FastAPI asynchronous backend with robust JWT role-based access control.",
+      "Intuitive React dashboard for students, universities, and verifying recruiters.",
+      "Zero-knowledge verification flow ensuring privacy and integrity."
+    ],
   },
   {
     n: "02",
     title: "Click2Learn",
-    subtitle: "AI-powered learning platform",
-    desc: "An online learning platform combining digital learning, community and artificial intelligence to create a more interactive learning experience.",
-    tags: ["AI", "CHATBOTS", "WEB", "COMMUNITY"],
+    subtitle: "AI-Powered Interactive Education Hub",
+    desc: "An intelligent learning ecosystem blending conversational AI agents, personalized curriculum pathways, and real-time collaboration tools.",
+    tags: ["PYTHON", "REACT", "OPENAI API", "NLP", "WEBSOCKETS", "TAILWIND"],
     type: "learn",
+    highlights: [
+      "Custom conversational AI assistant providing 24/7 contextual tutoring.",
+      "Adaptive quiz engine calibrating difficulty based on learner mastery.",
+      "Real-time student progress analytics and interactive study groups.",
+      "Modern, distraction-free user interface designed for deep focus."
+    ],
   },
   {
     n: "03",
     title: "Training Platform",
-    subtitle: "Web development · UX · AI",
-    desc: "A web platform created to support online training, with an integrated chatbot designed to help users find information and navigate the platform.",
-    tags: ["HTML/CSS", "JAVASCRIPT", "CHATBOT", "UX/UI"],
+    subtitle: "Modular Learning & Certification Suite",
+    desc: "A flexible enterprise web application supporting online training programs, structured curriculum modules, and interactive guidance bots.",
+    tags: ["JAVASCRIPT", "HTML5/CSS3", "CHATBOT UX", "REST APIS", "UI/UX DESIGN"],
     type: "training",
+    highlights: [
+      "Modular course builder with dynamic video, quiz, and text units.",
+      "Integrated search and help chatbot facilitating rapid onboarding.",
+      "Custom analytics dashboard tracking completion rates and test scores.",
+      "Responsive, accessible design adhering to WCAG standards."
+    ],
+  },
+];
+
+const skillCategories = [
+  {
+    title: "Software & Architecture",
+    icon: "⚡",
+    desc: "Core programming paradigms, object-oriented design, and design patterns.",
+    skills: ["Python", "Java / J2EE", "C++", "C", "Object-Oriented Design", "UML", "Data Structures", "Algorithms"],
+  },
+  {
+    title: "Fullstack & Mobile Development",
+    icon: "🌐",
+    desc: "Modern front-end frameworks, robust backends, and cross-platform APIs.",
+    skills: ["React.js", "JavaScript (ES6+)", "FastAPI", "Laravel", "PHP", "Angular", "HTML5 & Modern CSS", "RESTful APIs"],
+  },
+  {
+    title: "Cybersecurity & Systems",
+    icon: "🛡️",
+    desc: "Defensive architectures, hardening, protocol analysis, and threat mitigation.",
+    skills: ["Linux Hardening", "Bash Scripting", "OWASP Top 10", "Network Security", "PKI & Cryptography", "IAM / JWT", "Docker / DevSecOps"],
+  },
+  {
+    title: "AI & Data Science",
+    icon: "🧠",
+    desc: "Machine learning, computer vision, data analysis, and intelligent agents.",
+    skills: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "Pandas & NumPy", "Data Modeling", "MySQL & Database Admin"],
   },
 ];
 
@@ -35,81 +80,66 @@ const volunteerProjects = [
     n: "01",
     period: "SEP 2024 — JUL 2025",
     title: "Creative Minds",
-    subtitle: "English Teaching for Children",
-    desc: "Collaborated with teaching partners to provide interactive English lessons tailored to children's learning needs, fostering a fun and immersive environment.",
-    tags: ["EDUCATION", "TEACHING", "LEADERSHIP", "CREATIVITY"],
+    subtitle: "Interactive English for Youth",
+    desc: "Designed and facilitated engaging language workshops and gamified learning activities for young students, cultivating confidence and curiosity.",
+    tags: ["EDUCATION", "PEDAGOGY", "LEADERSHIP", "EMPATHY"],
     org: "Lyed f Lyed CSC",
+    impact: "Over 50+ children supported with interactive learning tools",
     type: "education",
   },
   {
     n: "02",
     period: "JAN 2025 — FEB 2025",
     title: "JOUD Campaign",
-    subtitle: "Winter Clothing Distribution",
-    desc: "Collected and distributed warm clothes for rural populations while organizing activities and entertainment for beneficiaries in remote communities.",
-    tags: ["COMMUNITY", "LOGISTICS", "TEAMWORK", "SOCIAL IMPACT"],
+    subtitle: "Winter Relief in Rural Communities",
+    desc: "Organized collection logistics, donation sorting, and field distribution of winter essentials to underserved mountain villages.",
+    tags: ["HUMANITARIAN", "LOGISTICS", "COMMUNITY", "FIELDWORK"],
     org: "Lyed f Lyed CSC",
+    impact: "Direct assistance and warm supplies delivered to remote families",
     type: "community",
   },
   {
     n: "03",
     period: "FEB 2025 — MAR 2025",
-    title: "Ramadan Kit Project",
-    subtitle: "Food Aid Distribution",
-    desc: "Collected funds and food supplies to assemble and distribute Ramadan kits to people in need, coordinating with local associations.",
-    tags: ["FUNDRAISING", "COORDINATION", "COMMUNITY", "IMPACT"],
+    title: "Ramadan Solidarity",
+    subtitle: "Essential Food Aid Initiative",
+    desc: "Managed food kit assembly and coordinated distribution networks to ensure families in precarious situations received essential nutritional aid.",
+    tags: ["SOLIDARITY", "COORDINATION", "SUPPLY CHAIN", "IMPACT"],
     org: "Lyed f Lyed CSC",
+    impact: "Hundreds of nutritional packs prepared and distributed",
     type: "aid",
   },
   {
     n: "04",
     period: "APR 2025 — MAY 2025",
     title: "Harmony of Generations",
-    subtitle: "Retirement Home Volunteering",
-    desc: "Organized activities, games, and cultural events at a retirement home to foster intergenerational connection and bring joy to elderly residents.",
-    tags: ["ELDERLY CARE", "ACTIVITIES", "CONNECTION", "EMPATHY"],
+    subtitle: "Intergenerational Social Connection",
+    desc: "Created cultural encounters, memory sharing sessions, and recreational workshops with residents of retirement homes to reduce social isolation.",
+    tags: ["ELDERLY CARE", "WELLBEING", "LISTENING", "CULTURE"],
     org: "Lyed f Lyed CSC",
+    impact: "Weekly companionship and creative events with senior citizens",
     type: "care",
   },
   {
     n: "05",
     period: "JUN 2025",
-    title: "Sanad",
-    subtitle: "Medical & Awareness Campaign",
-    desc: "Supported a blood donation and health awareness campaign, guiding participants through the process and participating in first aid training.",
-    tags: ["HEALTH", "AWARENESS", "FIRST AID", "COMMUNITY"],
+    title: "Sanad Health Mission",
+    subtitle: "Blood Donation & Public Health",
+    desc: "Participated in emergency awareness drives, donor logistics, and first-responder training during regional public health campaigns.",
+    tags: ["PUBLIC HEALTH", "FIRST AID", "CIVIC ENGAGEMENT", "AWARENESS"],
     org: "Global Shapers Tangier",
+    impact: "Mobilized local youth for life-saving blood donation drives",
     type: "health",
   },
-];
-
-const skills = [
-  "Python",
-  "Java",
-  "C++",
-  "JavaScript",
-  "PHP",
-  "React.js",
-  "Angular",
-  "HTML / CSS",
-  "Laravel",
-  "FastAPI",
-  "MySQL",
-  "Git",
-  "Linux",
-  "UML",
-  "Figma",
-  "Artificial Intelligence",
-  "Cybersecurity",
 ];
 
 const journeyItems = [
   {
     slug: "bac-science-physique",
-    year: "2021—2022",
+    year: "2021 — 2022",
     title: "BAC SCIENCES PHYSIQUES",
     desc: "Option Française avec Mention au Lycée Ibn Batouta, Tanger.",
-    institutionName: "Lycée Ibn Batouta",
+    institutionName: "Lycée Ibn Batouta, Tanger",
     institutionLink: "https://www.men.gov.ma",
     overview:
       "Une première étape vers les sciences et technologies fondée sur la rigueur analytique, les mathématiques appliquées et la physique fondamentale.",
@@ -133,7 +163,7 @@ const journeyItems = [
   },
   {
     slug: "first-year-deust",
-    year: "2022—2023",
+    year: "2022 — 2023",
     title: "1ÈRE ANNÉE DEUST MIPC",
     desc: "Tronc Commun Mathématiques, Informatique, Physique, Chimie à la FST de Tanger.",
     institutionName: "Faculté des Sciences et Techniques de Tanger (FSTT)",
@@ -173,7 +203,7 @@ const journeyItems = [
   },
   {
     slug: "second-year-deust",
-    year: "2023—2024",
+    year: "2023 — 2024",
     title: "2ÈME ANNÉE DEUST MIPC",
     desc: "Spécialisation et consolidation en informatique et sciences à la FST de Tanger.",
     institutionName: "Faculté des Sciences et Techniques de Tanger (FSTT)",
@@ -213,7 +243,7 @@ const journeyItems = [
   },
   {
     slug: "bachelor-idai",
-    year: "2024—2025",
+    year: "2024 — 2025",
     title: "LICENCE LST IDAI",
     desc: "Ingénierie du Développement des Applications Informatiques à la FST de Tanger.",
     institutionName: "FST Tanger (Licence LST IDAI)",
@@ -252,7 +282,7 @@ const journeyItems = [
   },
   {
     slug: "jobintech-training",
-    year: "2025—2026",
+    year: "2025 — 2026",
     title: "FORMATION JOBINTECH",
     desc: "Cybersécurité & Ingénierie des Systèmes à la Faculté des Sciences de Rabat.",
     institutionName: "Faculté des Sciences de Rabat / Programme JobInTech",
@@ -282,7 +312,7 @@ const journeyItems = [
   },
   {
     slug: "masters-sic",
-    year: "2026—NOW",
+    year: "2026 — NOW",
     title: "MASTER SIC (SYSTÈMES INTELLIGENTS & CYBERSÉCURITÉ)",
     desc: "Formation d'Excellence Master à la Faculté des Sciences et Techniques de Tanger.",
     institutionName: "FST Tanger (Master SIC)",
@@ -343,10 +373,10 @@ function Reveal({ children, delay = 0, className = "" }) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -357,526 +387,751 @@ function App() {
   const [menu, setMenu] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedVolunteer, setSelectedVolunteer] = useState(null);
-  const [cursor, setCursor] = useState({
-    x: 0,
-    y: 0,
-    visible: false,
-    label: "+",
-  });
+  const [activeFilter, setActiveFilter] = useState("ALL");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    mass: 0.2,
+    stiffness: 120,
+    damping: 25,
+    mass: 0.1,
   });
-
-  useEffect(() => {
-    const move = (e) =>
-      setCursor((c) => ({ ...c, x: e.clientX, y: e.clientY, visible: true }));
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
 
   const go = (id) => {
     setMenu(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
+  const filteredProjects =
+    activeFilter === "ALL"
+      ? projects
+      : projects.filter((p) =>
+          p.tags.some((t) => t.toUpperCase().includes(activeFilter.toUpperCase()))
+        );
 
   return (
     <>
       <motion.div className="progress" style={{ scaleX }} />
-      <div
-        className="cursor"
-        style={{
-          left: cursor.x,
-          top: cursor.y,
-          opacity: cursor.visible ? 1 : 0,
-        }}
-      >
-        {cursor.label}
-      </div>
 
       <header className="nav">
         <button className="brand" onClick={() => go("home")} aria-label="Home">
-          LINA <span>EL BARROUK</span>
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
+          </div>
         </button>
+
         <div className="navlinks">
-          <button onClick={() => go("work")}>WORK</button>
           <button onClick={() => go("about")}>ABOUT</button>
+          <button onClick={() => go("journey")}>JOURNEY</button>
+          <button onClick={() => go("work")}>PROJECTS</button>
+          <button onClick={() => go("cyber")}>SECURITY</button>
+          <button onClick={() => go("toolkit")}>TOOLKIT</button>
+          <button onClick={() => go("beyond")}>COMMUNITY</button>
           <button onClick={() => go("contact")}>CONTACT</button>
         </div>
-        <button className="menuBtn" onClick={() => setMenu(true)}>
-          MENU <span>—</span>
-        </button>
+
+        <div className="navAction">
+          <div className="statusPill">
+            <span className="statusDot"></span>
+            <span>MASTER SIC</span>
+          </div>
+          <button className="menuBtn" onClick={() => setMenu(true)}>
+            MENU <span>☰</span>
+          </button>
+        </div>
       </header>
 
       <AnimatePresence>
         {menu && (
           <motion.div
             className="menuOverlay"
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
           >
-            <button className="menuClose" onClick={() => setMenu(false)}>
-              CLOSE ×
-            </button>
+            <div className="menuHeader">
+              <div className="brandName">
+                LINA<span>EL BARROUK</span>
+              </div>
+              <button className="menuClose" onClick={() => setMenu(false)}>
+                FERMER ×
+              </button>
+            </div>
+
             <div className="menuItems">
               {[
-                ["01", "HOME", "home"],
-                ["02", "ABOUT", "about"],
-                ["03", "WORK", "work"],
-                ["04", "CYBERSECURITY", "cyber"],
-                ["05", "CONTACT", "contact"],
+                ["01", "HOME / ACCUEIL", "home"],
+                ["02", "ABOUT / PROFIL", "about"],
+                ["03", "JOURNEY / PARCOURS", "journey"],
+                ["04", "WORK / PROJETS", "work"],
+                ["05", "CYBERSECURITY / DÉFENSE", "cyber"],
+                ["06", "TOOLKIT / TECHNOLOGIES", "toolkit"],
+                ["07", "COMMUNITY / ENGAGEMENT", "beyond"],
+                ["08", "CONTACT / ÉCHANGE", "contact"],
               ].map(([n, t, id]) => (
                 <button key={id} onClick={() => go(id)}>
-                  <small>{n}</small>
-                  {t}
-                  <span>↗</span>
+                  <span className="menuNum">{n}</span>
+                  <span>{t}</span>
+                  <span className="menuArrow">↗</span>
                 </button>
               ))}
             </div>
+
             <div className="menuFoot">
-              Tangier, Morocco · Software Developer
+              <span>Tangier, Morocco · Software Developer</span>
+              <span>Available for high-impact initiatives & research</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <main>
-        <section id="home" className="hero dark">
+        {/* ================= HERO SECTION ================= */}
+        <section id="home" className="hero">
           <div className="heroGrid">
             <div className="heroCopy">
               <motion.div
                 className="eyebrow"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
-                SOFTWARE DEVELOPER · AI · CYBERSECURITY
+                <span>✦</span>
+                <span>SOFTWARE ENGINEER · AI · CYBER DEFENSE</span>
               </motion.div>
+
               <motion.h1
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 35 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.35,
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               >
-                BUILD.
+                ARCHITECTING
                 <br />
-                CREATE.
+                INTELLIGENT &amp;
                 <br />
-                <em>SECURE.</em>
+                <em>RESILIENT SYSTEMS.</em>
               </motion.h1>
-              <motion.p
-                className="serifLead"
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.75 }}
-              >
-                Turning ideas into meaningful digital experiences.
-              </motion.p>
+
               <motion.p
                 className="heroDesc"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.95 }}
+                transition={{ duration: 0.7, delay: 0.45 }}
               >
-                I’m Lina, a software developer passionate about building useful
-                digital experiences and exploring the intersection of artificial
-                intelligence and cybersecurity.
+                I’m <strong>Lina El Barrouk</strong>, a software developer pursuing a Master's
+                in <strong>Intelligent Systems &amp; Cybersecurity</strong>. I design reliable,
+                modern web applications engineered with security and artificial intelligence at their core.
               </motion.p>
-              <motion.button
-                className="pill light"
-                onClick={() => go("work")}
+
+              <motion.div
+                className="heroActions"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+              >
+                <button className="pill light" onClick={() => go("work")}>
+                  EXPLORE SELECTED WORK <span>↗</span>
+                </button>
+                <button className="pill ghost" onClick={() => go("journey")}>
+                  VIEW ACADEMIC JOURNEY <span>↓</span>
+                </button>
+              </motion.div>
+
+              <motion.div
+                className="heroTags"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.15 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
-                EXPLORE MY WORK <span>↗</span>
-              </motion.button>
+                <span className="heroTag">FASTAPI &amp; REACT</span>
+                <span className="heroTag">PYTHON &amp; MACHINE LEARNING</span>
+                <span className="heroTag">CYBER DEFENSE &amp; DEVSECOPS</span>
+              </motion.div>
             </div>
+
             <motion.div
               className="heroVisual"
-              initial={{ opacity: 0, x: 70 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: 0.55,
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="portraitFrame">
-                <div className="portraitPlaceholder">
-                  <span>LE</span>
-                  <small>
-                    YOUR PHOTO
-                    <br />
-                    GOES HERE
-                  </small>
+              <div className="portraitComposition">
+                <div className="floatingCard f1">
+                  <span className="fIcon">🛡️</span>
+                  <div className="fText">
+                    <small>SECURITY</small>
+                    <strong>By Design</strong>
+                  </div>
                 </div>
-                <div className="portraitLabel">LINA / 2026</div>
+
+                <div className="portraitFrame">
+                  <div className="portraitArt">
+                    <span className="monogram">LE</span>
+                    <span className="monogramRole">LINA EL BARROUK</span>
+                  </div>
+                </div>
+
+                <div className="floatingCard f2">
+                  <span className="fIcon">🧠</span>
+                  <div className="fText">
+                    <small>INTELLIGENCE</small>
+                    <strong>Master SIC</strong>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
-          <div className="scrollCue">
-            SCROLL TO EXPLORE <span>↓</span>
-          </div>
         </section>
 
-        <section id="about" className="about blush sectionPad">
-          <div className="sectionMeta">
-            <span>01 — ABOUT ME</span>
-            <span>01 / 05</span>
-          </div>
-          <div className="twoCol">
-            <Reveal>
-              <h2>
-                CURIOUS
-                <br />
-                BY <em>NATURE.</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1} className="bodyBlock">
-              <p>
-                I’m a software developer with a background in application
-                development and a growing interest in artificial intelligence
-                and cybersecurity.
-              </p>
-              <p>
-                I enjoy understanding how systems work, turning ideas into
-                applications and continuously learning new technologies.
-              </p>
-              <p>
-                Today, I’m pursuing a Master’s degree in{" "}
-                <strong>Intelligent Systems &amp; Cybersecurity</strong>, while
-                continuing to develop my technical and creative skills.
-              </p>
-              <div className="signature">Always learning. Always building.</div>
-            </Reveal>
-          </div>
-        </section>
+        {/* ================= ABOUT SECTION ================= */}
+        <section id="about" className="about ivory sectionPad">
+          <div className="sectionInner">
+            <div className="sectionMeta">
+              <span>01 — ABOUT &amp; PHILOSOPHY</span>
+              <span>THE INTERSECTION OF CODE &amp; DEFENSE</span>
+            </div>
 
-        <section className="journey cream sectionPad">
-          <div className="sectionMeta">
-            <span>MY JOURNEY</span>
-            <span>EDUCATION · DEVELOPMENT · SECURITY</span>
-          </div>
-          <div className="journeyTitle">
-            <Reveal>
-              <h2>
-                FROM CODE
-                <br />
-                TO <em>SECURITY.</em>
-              </h2>
-            </Reveal>
-          </div>
-          <div className="horizontalTimeline">
-            {journeyItems.map((item, i) => (
-              <Reveal key={item.slug} delay={i * 0.08} className="htimelineItem">
-                <a
-                  className="timelineLink"
-                  href={`#/journey/${item.slug}`}
-                  aria-label={`Read more about ${item.title}`}
-                >
-                  <div className="htimelineYear">{item.year}</div>
-                  <div className="htimelineContent">
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                    <span className="timelineCta">EXPLORE ↗</span>
-                  </div>
-                </a>
+            <div className="aboutGrid">
+              <Reveal>
+                <div className="aboutQuote">
+                  "Engineering software is not only about writing functional code; it is about{" "}
+                  <em>anticipating vulnerabilities</em>, crafting clear interfaces, and embedding{" "}
+                  <em>intelligence</em>."
+                </div>
               </Reveal>
-            ))}
+
+              <Reveal delay={0.15}>
+                <div className="aboutText">
+                  <p>
+                    With an academic grounding spanning mathematical foundations, software engineering,
+                    and intensive cybersecurity practice, my path is driven by continuous rigor and deep curiosity.
+                  </p>
+                  <p>
+                    Currently enrolled in the <strong>Master SIC</strong> (Intelligent Systems &amp;
+                    Cybersecurity) at FST Tanger, I specialize in architecting secure fullstack platforms,
+                    exploring offensive and defensive security principles, and integrating applied machine learning models.
+                  </p>
+                  <div className="aboutPillars">
+                    <div className="aboutPillarCard">
+                      <span className="pillarNum">01</span>
+                      <h4>Robust Dev</h4>
+                      <p>Clean code, modular APIs, and modern UI architectures.</p>
+                    </div>
+                    <div className="aboutPillarCard">
+                      <span className="pillarNum">02</span>
+                      <h4>Active Defense</h4>
+                      <p>Security audits, hardening, and threat mitigation.</p>
+                    </div>
+                    <div className="aboutPillarCard">
+                      <span className="pillarNum">03</span>
+                      <h4>Applied AI</h4>
+                      <p>Intelligent assistants, classification, and computer vision.</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
+        {/* ================= JOURNEY TIMELINE ================= */}
+        <section id="journey" className="journey cream sectionPad">
+          <div className="sectionInner">
+            <div className="sectionMeta">
+              <span>02 — ACADEMIC CURRICULUM</span>
+              <span>CLICK AN ERA TO VIEW FULL MODULES (S1 — S6)</span>
+            </div>
+
+            <div className="sectionHeader">
+              <Reveal>
+                <h2 className="sectionTitle">
+                  FROM CODE
+                  <br />
+                  TO <em>SECURITY.</em>
+                </h2>
+              </Reveal>
+              <p className="sectionDesc">
+                Each milestone represents a formative foundation. Select any card below to explore its
+                detailed academic curriculum, semester modules, official institutions, and hands-on deliverables.
+              </p>
+            </div>
+
+            <div className="timelineTrack">
+              {journeyItems.map((item, i) => (
+                <Reveal key={item.slug} delay={i * 0.07}>
+                  <a
+                    className="timelineCard"
+                    href={`#/journey/${item.slug}`}
+                    aria-label={`Detailed curriculum for ${item.title}`}
+                  >
+                    <div>
+                      <div className="timelineCardHead">
+                        <span className="timelineYearPill">{item.year}</span>
+                        <span className="timelineModuleCount">
+                          {item.semesters.reduce((acc, s) => acc + s.modules.length, 0)} MODULES
+                        </span>
+                      </div>
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                    </div>
+
+                    <div className="timelineCardFoot">
+                      <span className="timelineActionLink">
+                        DÉTAILS COMPLETS <span>↗</span>
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= WORK / PROJECTS ================= */}
         <section id="work" className="work dark sectionPad">
-          <div className="sectionMeta lightMeta">
-            <span>02 — SELECTED WORK</span>
-            <span>PROJECTS</span>
-          </div>
-          <div className="workHeader">
-            <Reveal>
-              <h2>
-                THINGS I’VE <em>BUILT.</em>
-              </h2>
-            </Reveal>
-            <p className="intro lightText">
-              A selection of projects where development, problem-solving and
-              curiosity meet.
-            </p>
-          </div>
-          <div className="projects">
-            {projects.map((p, i) => (
-              <ProjectCard key={p.title} p={p} i={i} onClick={() => setSelectedProject(p)} />
-            ))}
+          <div className="sectionInner">
+            <div className="sectionMeta lightMeta">
+              <span>03 — FEATURED WORK</span>
+              <span>ENGINEERED SOLUTIONS</span>
+            </div>
+
+            <div className="sectionHeader">
+              <Reveal>
+                <h2 className="sectionTitle" style={{ color: "var(--ivory)" }}>
+                  DISTINCTIVE
+                  <br />
+                  <em>DEVELOPMENTS.</em>
+                </h2>
+              </Reveal>
+              <p className="sectionDesc" style={{ color: "rgba(248, 245, 239, 0.75)" }}>
+                A selection of systems developed with focus on robust security, decentralized trust,
+                and seamless interactive experiences.
+              </p>
+            </div>
+
+            <div className="projectsFilter">
+              {["ALL", "FASTAPI", "REACT", "AI", "SECURITY"].map((f) => (
+                <button
+                  key={f}
+                  className={`filterBtn ${activeFilter === f ? "active" : ""}`}
+                  onClick={() => setActiveFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+
+            <div className="projectsGrid">
+              {filteredProjects.map((p, i) => (
+                <Reveal key={p.title} delay={i * 0.08}>
+                  <article className="projectCard" onClick={() => setSelectedProject(p)}>
+                    <div className="projectCardVisual">
+                      <div className="visualHeader">
+                        <span>PROJECT {p.n}</span>
+                        <span>DETAILS ↗</span>
+                      </div>
+                      <div className="visualBody">
+                        <div className="projectIconText">
+                          {p.title.slice(0, 4)}
+                          <span>{p.title.slice(4)}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="projectCardContent">
+                      <h3>{p.title}</h3>
+                      <h4>{p.subtitle}</h4>
+                      <p>{p.desc}</p>
+
+                      <div className="tagsRow">
+                        {p.tags.map((tag) => (
+                          <span key={tag} className="tagPill">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="projectCardFoot">
+                      <span>EXPLORE PROJECT</span>
+                      <span>↗</span>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="statement ivory">
-          <Reveal>
-            <h2>
-              I DON’T JUST
-              <br />
-              WRITE <em>CODE.</em>
-            </h2>
-            <p>I'm learning how to make it useful, intelligent and secure.</p>
-          </Reveal>
-        </section>
-
+        {/* ================= CYBERSECURITY MATRIX ================= */}
         <section id="cyber" className="cyber deep sectionPad">
-          <div className="sectionMeta lightMeta">
-            <span>03 — CYBERSECURITY</span>
-            <span>LEARN · BUILD · TEST · IMPROVE</span>
+          <div className="sectionInner">
+            <div className="sectionMeta lightMeta">
+              <span>04 — CYBER DEFENSE LAB</span>
+              <span>PROACTIVE RESILIENCE &amp; HARDENING</span>
+            </div>
+
+            <div className="cyberGrid">
+              <Reveal>
+                <div className="cyberText">
+                  <h2 className="sectionTitle" style={{ color: "var(--ivory)" }}>
+                    DEFENSE
+                    <br />
+                    IN <em>DEPTH.</em>
+                  </h2>
+                  <h3>Security is an ongoing architectural practice.</h3>
+                  <p>
+                    Combining low-level Linux administration, network segregation, modern cryptographic
+                    identities (PKI, JWT, OAuth2), and continuous vulnerability assessments according to OWASP guidelines.
+                  </p>
+                  <p>
+                    My workflow integrates automated linting, container isolation, and defense mechanisms
+                    to protect sensitive data and service integrity.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <div className="cyberMatrixCard">
+                  <div className="matrixHead">
+                    <span style={{ fontFamily: "JetBrains Mono", fontSize: "11px", color: "var(--blush)" }}>
+                      DEFENSE FRAMEWORK
+                    </span>
+                    <div className="matrixLive">
+                      <span className="matrixLiveDot"></span>
+                      ACTIVE OBSERVABILITY
+                    </div>
+                  </div>
+
+                  <div className="matrixLayers">
+                    <div className="layerBox">
+                      <div className="layerIcon">🔐</div>
+                      <h5>Identity &amp; Auth</h5>
+                      <p>JWT, PKI certificates, asymmetric hashing, and role-based policies.</p>
+                    </div>
+
+                    <div className="layerBox">
+                      <div className="layerIcon">🌐</div>
+                      <h5>Network &amp; Perimeter</h5>
+                      <p>VLAN routing, strict firewall policies, TLS encryption, and VPN tunnels.</p>
+                    </div>
+
+                    <div className="layerBox">
+                      <div className="layerIcon">🐧</div>
+                      <h5>Linux Hardening</h5>
+                      <p>Kernel parameter tuning, permission matrices, and Bash automation.</p>
+                    </div>
+
+                    <div className="layerBox">
+                      <div className="layerIcon">🛡️</div>
+                      <h5>App Sec &amp; Audit</h5>
+                      <p>OWASP Top 10 remediation, safe serialization, and container lockdown.</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
           </div>
-          <div className="cyberGrid">
+        </section>
+
+        {/* ================= TOOLKIT / SKILLS ================= */}
+        <section id="toolkit" className="toolkit cream sectionPad">
+          <div className="sectionInner">
+            <div className="sectionMeta">
+              <span>05 — TECHNICAL TOOLKIT</span>
+              <span>ENGINEERING STACK &amp; CAPABILITIES</span>
+            </div>
+
+            <div className="sectionHeader">
+              <Reveal>
+                <h2 className="sectionTitle">
+                  MODERN &amp;
+                  <br />
+                  <em>PURPOSEFUL TECH.</em>
+                </h2>
+              </Reveal>
+              <p className="sectionDesc">
+                A structured overview of the languages, frameworks, and defense tools I leverage to build
+                dependable software systems.
+              </p>
+            </div>
+
+            <div className="skillsCategoriesGrid">
+              {skillCategories.map((cat, i) => (
+                <Reveal key={cat.title} delay={i * 0.08}>
+                  <div className="skillCategoryCard">
+                    <div className="skillCategoryHead">
+                      <span className="catIcon">{cat.icon}</span>
+                      <h3>{cat.title}</h3>
+                    </div>
+                    <p className="skillCategoryDesc">{cat.desc}</p>
+                    <div className="skillPillsWrap">
+                      {cat.skills.map((s) => (
+                        <span key={s} className="skillPill">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= BEYOND THE CODE / COMMUNITY ================= */}
+        <section id="beyond" className="beyond ivory sectionPad">
+          <div className="sectionInner">
+            <div className="sectionMeta">
+              <span>06 — COMMUNITY ENGAGEMENT</span>
+              <span>LEADERSHIP, HUMAN VALUES &amp; IMPACT</span>
+            </div>
+
+            <div className="sectionHeader">
+              <Reveal>
+                <h2 className="sectionTitle">
+                  BEYOND THE
+                  <br />
+                  <em>TERMINAL.</em>
+                </h2>
+              </Reveal>
+              <p className="sectionDesc">
+                Technology finds its true value in serving people. Through humanitarian initiatives,
+                education programs, and youth development, I actively dedicate time to impactful community causes.
+              </p>
+            </div>
+
+            <div className="volunteerGrid">
+              {volunteerProjects.map((v, i) => (
+                <Reveal key={v.title} delay={i * 0.08}>
+                  <article className="volunteerCard" onClick={() => setSelectedVolunteer(v)}>
+                    <div className="volunteerHead">
+                      <span className="volunteerOrg">{v.org}</span>
+                      <span className="volunteerPeriod">{v.period}</span>
+                    </div>
+
+                    <h3>{v.title}</h3>
+                    <h4>{v.subtitle}</h4>
+                    <p>{v.desc}</p>
+
+                    <div className="volunteerImpactPill">
+                      <span>✦</span>
+                      <span>{v.impact}</span>
+                    </div>
+
+                    <div className="tagsRow">
+                      {v.tags.map((t) => (
+                        <span key={t} className="tagPill" style={{ color: "var(--wine)" }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= CONTACT SECTION ================= */}
+        <section id="contact" className="contact deep sectionPad">
+          <div className="sectionInner">
             <Reveal>
-              <h2>
-                SECURE
-                <br />
-                BY <em>DESIGN.</em>
-              </h2>
-              <p>
-                Cybersecurity is an area I’m actively exploring alongside
-                software development.
-              </p>
-              <p>
-                I’m developing my understanding of networks, Linux, access
-                control, web security and secure application development.
-              </p>
-              <strong>Learn. Build. Test. Improve.</strong>
-            </Reveal>
-            <Reveal delay={0.15} className="securityOrb">
-              <div className="orb">
-                <span>SECURITY</span>
-                <i>+</i>
-                <b>CODE</b>
+              <div className="contactCard">
+                <div className="eyebrow" style={{ margin: "0 auto 24px" }}>
+                  <span>✦</span>
+                  <span>OPEN FOR COLLABORATION</span>
+                </div>
+
+                <h2>
+                  LET’S BUILD
+                  <br />
+                  SOMETHING <em>RESILIENT.</em>
+                </h2>
+
+                <p>
+                  Whether you are seeking a software engineer for a challenging project, an academic
+                  collaboration, or a technical inquiry, my inbox is always open.
+                </p>
+
+                <a className="pill light" href="mailto:hello@linaelbarrouk.dev">
+                  INITIALIZE CONVERSATION <span>↗</span>
+                </a>
+
+                <div className="contactLinksBar">
+                  <a
+                    className="contactLinkItem"
+                    href="https://www.linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LINKEDIN <span>↗</span>
+                  </a>
+                  <a
+                    className="contactLinkItem"
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GITHUB <span>↗</span>
+                  </a>
+                  <a className="contactLinkItem" href="mailto:hello@linaelbarrouk.dev">
+                    EMAIL <span>↗</span>
+                  </a>
+                </div>
               </div>
-              <div className="orbit o1">NETWORKS</div>
-              <div className="orbit o2">LINUX</div>
-              <div className="orbit o3">WEB</div>
-              <div className="orbit o4">APPLICATIONS</div>
             </Reveal>
-          </div>
-        </section>
-
-        <section className="skills cream sectionPad">
-          <div className="sectionMeta">
-            <span>04 — TOOLKIT</span>
-            <span>TECHNOLOGIES</span>
-          </div>
-          <Reveal>
-            <h2>
-              TOOLS I USE
-              <br />
-              TO TURN IDEAS
-              <br />
-              INTO <em>REALITY.</em>
-            </h2>
-          </Reveal>
-          <div className="skillCloud">
-            {skills.map((s, i) => (
-              <motion.span
-                key={s}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {s}
-              </motion.span>
-            ))}
-          </div>
-        </section>
-
-        <section className="beyond blush sectionPad">
-          <div className="sectionMeta">
-            <span>BEYOND THE CODE</span>
-            <span>COMMUNITY · LEADERSHIP</span>
-          </div>
-          <div className="beyondHeader">
-            <Reveal>
-              <h2>
-                BEYOND THE <em>CODE.</em>
-              </h2>
-            </Reveal>
-            <p className="intro">
-              Technology is also about people. Through volunteering and community
-              projects, I’ve had the opportunity to work with others, organize
-              activities and create meaningful experiences.
-            </p>
-          </div>
-          <div className="volunteerProjects">
-            {volunteerProjects.map((v, i) => (
-              <VolunteerCard key={v.title} v={v} i={i} onClick={() => setSelectedVolunteer(v)} />
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="contact dark sectionPad">
-          <div className="sectionMeta lightMeta">
-            <span>05 — CONTACT</span>
-            <span>LET’S CONNECT</span>
-          </div>
-          <Reveal>
-            <h2>
-              LET’S BUILD
-              <br />
-              SOMETHING
-              <br />
-              <em>MEANINGFUL.</em>
-            </h2>
-            <p>
-              Have a project, an opportunity or simply an idea you’d like to
-              discuss?
-            </p>
-            <a className="contactPill" href="mailto:hello@linaelbarrouk.dev">
-              LET’S TALK <span>↗</span>
-            </a>
-          </Reveal>
-          <div className="contactLinks">
-            <a href="https://www.linkedin.com" target="_blank">
-              LinkedIn ↗
-            </a>
-            <a href="https://github.com" target="_blank">
-              GitHub ↗
-            </a>
-            <a href="mailto:hello@linaelbarrouk.dev">Email ↗</a>
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <div>
+        <div className="footerBrand">
           <strong>LINA EL BARROUK</strong>
-          <span>Software Developer · AI · Cybersecurity · Web</span>
+          <span>Software Developer · Master SIC · AI &amp; Cybersecurity</span>
         </div>
-        <div className="footerRight">
-          <span>© 2026 Lina El Barrouk</span>
-          <em>Built with curiosity.</em>
-        </div>
+        <div className="footerNote">© 2026 — Crafted with precision &amp; curiosity.</div>
       </footer>
 
       <AnimatePresence>
         {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
         {selectedVolunteer && (
-          <VolunteerModal
-            volunteer={selectedVolunteer}
-            onClose={() => setSelectedVolunteer(null)}
-          />
+          <VolunteerModal volunteer={selectedVolunteer} onClose={() => setSelectedVolunteer(null)} />
         )}
       </AnimatePresence>
     </>
   );
 }
 
-function ProjectCard({ p, i, onClick }) {
+/* ================= MODAL COMPONENTS ================= */
+function ProjectModal({ project, onClose }) {
   return (
-    <Reveal delay={i * 0.08}>
-      <article className="project" onClick={onClick}>
-        <div className="projectVisual">
-          <div className="visualChrome">
-            <span>PROJECT {p.n}</span>
-            <span>VIEW</span>
-          </div>
-          <div className="visualArt">
-            {p.type === "chain" && (
-              <>
-                <div className="chainLogo">
-                  DC<span>+</span>
-                </div>
-                <div className="doc">
-                  DIPLOMA
-                  <br />
-                  <small>VERIFIED</small>
-                </div>
-              </>
-            )}
-            {p.type === "learn" && (
-              <>
-                <div className="learnTitle">
-                  CLICK<span>2</span>LEARN
-                </div>
-                <div className="chatBubble">AI</div>
-              </>
-            )}
-            {p.type === "training" && (
-              <>
-                <div className="trainTitle">
-                  TRAINING
-                  <br />
-                  <em>Platform</em>
-                </div>
-                <div className="trainLine"></div>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="projectNo">{p.n}</div>
-        <div className="projectInfo">
-          <h3>{p.title}</h3>
-          <h4>{p.subtitle}</h4>
-          <p>{p.desc}</p>
-          <div className="tags">
-            {p.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          <a href="#" onClick={(e) => e.preventDefault()}>
-            VIEW DETAILS <span>↗</span>
-          </a>
-        </div>
-      </article>
-    </Reveal>
-  );
-}
+    <motion.div
+      className="projectModal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="modalContent"
+        initial={{ scale: 0.92, y: 30 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.92, y: 30 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modalClose" onClick={onClose} aria-label="Close modal">
+          ×
+        </button>
 
-function VolunteerCard({ v, i, onClick }) {
-  return (
-    <Reveal delay={i * 0.08}>
-      <article className="volunteerCard" onClick={onClick}>
-        <div className="volunteerVisual">
-          <div className="visualChrome">
-            <span>{v.org}</span>
-            <span>{v.period}</span>
+        <div className="modalVisualHead">
+          <div className="modalMeta">
+            <span className="modalBadge">PROJECT {project.n}</span>
+            <span style={{ fontSize: "11px", letterSpacing: "0.1em", color: "var(--blush)" }}>
+              SPECIFICATION
+            </span>
           </div>
-          <div className="volunteerIcon">
-            {v.type === "education" && <span className="iconLarge">📚</span>}
-            {v.type === "community" && <span className="iconLarge">🤝</span>}
-            {v.type === "aid" && <span className="iconLarge">🎁</span>}
-            {v.type === "care" && <span className="iconLarge">💝</span>}
-            {v.type === "health" && <span className="iconLarge">🩺</span>}
-          </div>
+          <h3>{project.title}</h3>
+          <h4>{project.subtitle}</h4>
         </div>
-        <div className="volunteerNo">{v.n}</div>
-        <div className="volunteerInfo">
-          <h3>{v.title}</h3>
-          <h4>{v.subtitle}</h4>
-          <p>{v.desc}</p>
-          <div className="tags">
-            {v.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+
+        <div className="modalBody">
+          <p>{project.desc}</p>
+
+          <h5 className="modalSubtitle">KEY ARCHITECTURAL HIGHLIGHTS</h5>
+          <ul className="modalHighlights">
+            {project.highlights.map((h) => (
+              <li key={h}>{h}</li>
+            ))}
+          </ul>
+
+          <h5 className="modalSubtitle">TECHNOLOGY STACK</h5>
+          <div className="tagsRow">
+            {project.tags.map((t) => (
+              <span key={t} className="tagPill" style={{ color: "var(--wine)", background: "rgba(71,35,45,0.06)" }}>
+                {t}
+              </span>
             ))}
           </div>
         </div>
-      </article>
-    </Reveal>
+      </motion.div>
+    </motion.div>
   );
 }
 
+function VolunteerModal({ volunteer, onClose }) {
+  return (
+    <motion.div
+      className="projectModal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="modalContent"
+        initial={{ scale: 0.92, y: 30 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.92, y: 30 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modalClose" onClick={onClose} aria-label="Close modal">
+          ×
+        </button>
+
+        <div className="modalVisualHead">
+          <div className="modalMeta">
+            <span className="modalBadge">{volunteer.org}</span>
+            <span style={{ fontSize: "11px", letterSpacing: "0.1em", color: "var(--blush)" }}>
+              {volunteer.period}
+            </span>
+          </div>
+          <h3>{volunteer.title}</h3>
+          <h4>{volunteer.subtitle}</h4>
+        </div>
+
+        <div className="modalBody">
+          <p>{volunteer.desc}</p>
+
+          <h5 className="modalSubtitle">COMMUNITY IMPACT</h5>
+          <div className="volunteerImpactPill" style={{ fontSize: "13px", padding: "10px 16px" }}>
+            <span>✦</span>
+            <span>{volunteer.impact}</span>
+          </div>
+
+          <h5 className="modalSubtitle" style={{ marginTop: "24px" }}>CORE COMPETENCIES DEVELOPED</h5>
+          <div className="tagsRow">
+            {volunteer.tags.map((t) => (
+              <span key={t} className="tagPill" style={{ color: "var(--wine)", background: "rgba(71,35,45,0.06)" }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ================= JOURNEY DETAIL VIEW ================= */
 function JourneyDetail({ item }) {
   return (
     <div className="journeyDetailPage">
       <header className="detailNav">
         <a className="brand" href="#/" aria-label="Back to home">
-          LINA <span>EL BARROUK</span>
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
+          </div>
         </a>
         <a className="backLink" href="#/">
           ← RETOUR AU PORTFOLIO
@@ -888,7 +1143,7 @@ function JourneyDetail({ item }) {
           <div className="detailHeroCard">
             <div className="detailMetaRow">
               <span className="detailBadge">{item.year}</span>
-              <span className="detailSubBadge">FORMATION & PARCOURS</span>
+              <span className="detailSubBadge">CURRICULUM ACADÉMIQUE</span>
             </div>
             <h1 className="detailMainTitle">{item.title}</h1>
             <p className="detailSubtitle">{item.desc}</p>
@@ -921,18 +1176,18 @@ function JourneyDetail({ item }) {
           <Reveal delay={0.05}>
             <div className="detailCard">
               <div className="cardHeader">
-                <span className="cardLabel">01 — PRÉSENTATION & CONTEXTE</span>
+                <span className="cardLabel">01 — PRÉSENTATION &amp; CONTEXTE</span>
               </div>
               <p className="detailOverviewText">{item.overview}</p>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="detailCard modulesCard">
+            <div className="detailCard">
               <div className="cardHeader">
-                <span className="cardLabel">02 — PROGRAMME DES MODULES (S1 — S6)</span>
+                <span className="cardLabel">02 — PROGRAMME DES MODULES SEMESTRIELS</span>
                 <span className="cardCount">
-                  {item.semesters.reduce((acc, sem) => acc + sem.modules.length, 0)} modules
+                  {item.semesters.reduce((acc, sem) => acc + sem.modules.length, 0)} modules enseignés
                 </span>
               </div>
 
@@ -940,14 +1195,14 @@ function JourneyDetail({ item }) {
                 {item.semesters.map((sem, sIdx) => (
                   <div key={sem.name || sIdx} className="semesterColumn">
                     <div className="semesterHeader">
-                      <span className="semesterIcon">📚</span>
+                      <span style={{ fontSize: "16px" }}>📖</span>
                       <h3>{sem.name}</h3>
                     </div>
                     <ul className="semesterModulesList">
                       {sem.modules.map((mod, mIdx) => (
                         <li key={mod}>
                           <span className="moduleNumber">{String(mIdx + 1).padStart(2, "0")}</span>
-                          <span className="moduleText">{mod}</span>
+                          <span>{mod}</span>
                         </li>
                       ))}
                     </ul>
@@ -958,10 +1213,10 @@ function JourneyDetail({ item }) {
           </Reveal>
 
           <div className="detailDualRow">
-            <Reveal delay={0.15} className="dualCol">
-              <div className="detailCard hFull">
+            <Reveal delay={0.15}>
+              <div className="detailCard" style={{ height: "100%" }}>
                 <div className="cardHeader">
-                  <span className="cardLabel">03 — COMPÉTENCES & OUTILS</span>
+                  <span className="cardLabel">03 — COMPÉTENCES &amp; OUTILS</span>
                 </div>
                 <div className="detailTagsCloud">
                   {item.skills.map((skill) => (
@@ -973,10 +1228,10 @@ function JourneyDetail({ item }) {
               </div>
             </Reveal>
 
-            <Reveal delay={0.2} className="dualCol">
-              <div className="detailCard hFull">
+            <Reveal delay={0.2}>
+              <div className="detailCard" style={{ height: "100%" }}>
                 <div className="cardHeader">
-                  <span className="cardLabel">04 — EXPÉRIENCES & PROJETS</span>
+                  <span className="cardLabel">04 — EXPÉRIENCES &amp; PROJETS</span>
                 </div>
                 <ul className="detailExpList">
                   {item.experiences.map((exp) => (
@@ -990,14 +1245,14 @@ function JourneyDetail({ item }) {
           <Reveal delay={0.25}>
             <div className="detailCard goalCard">
               <div className="cardHeader">
-                <span className="cardLabel">05 — PERSPECTIVES & OBJECTIFS</span>
+                <span className="cardLabel">05 — OBJECTIFS &amp; PERSPECTIVES</span>
               </div>
               <p className="goalText">{item.goals}</p>
               <div className="goalActions">
                 <a className="pill light" href="#/">
-                  ← RETOUR AU PARCOURS
+                  ← RETOUR AU PORTFOLIO
                 </a>
-                <a className="pill outline" href="#work">
+                <a className="pill ghost" href="#work">
                   VOIR MES PROJETS ↗
                 </a>
               </div>
@@ -1007,14 +1262,11 @@ function JourneyDetail({ item }) {
       </main>
 
       <footer className="footer">
-        <div>
+        <div className="footerBrand">
           <strong>LINA EL BARROUK</strong>
-          <span>Software Developer · AI · Cybersecurity · Web</span>
+          <span>Software Developer · AI · Cybersecurity</span>
         </div>
-        <div className="footerRight">
-          <span>© 2026 Lina El Barrouk</span>
-          <em>Built with curiosity.</em>
-        </div>
+        <div className="footerNote">© 2026 Lina El Barrouk</div>
       </footer>
     </div>
   );
@@ -1025,29 +1277,28 @@ function JourneyNotFound() {
     <div className="journeyDetailPage">
       <header className="detailNav">
         <a className="brand" href="#/" aria-label="Back to home">
-          LINA <span>EL BARROUK</span>
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
+          </div>
         </a>
         <a className="backLink" href="#/">
           ← RETOUR AU PORTFOLIO
         </a>
       </header>
-      <main className="detailContainer notFoundCenter">
-        <h1>ÉTAPE INTROUVABLE</h1>
-        <p>La page demandée n'existe pas ou a été déplacée.</p>
-        <div style={{ marginTop: "30px" }}>
-          <a className="pill light" href="#/">
-            ← RETOUR AU PARCOURS
-          </a>
-        </div>
+      <main className="detailContainer" style={{ textAlign: "center", padding: "100px 20px" }}>
+        <h1 style={{ fontFamily: "Syne", fontSize: "36px", marginBottom: "16px" }}>ÉTAPE INTROUVABLE</h1>
+        <p style={{ color: "rgba(248, 245, 239, 0.7)", marginBottom: "30px" }}>
+          La page demandée n'existe pas ou a été déplacée.
+        </p>
+        <a className="pill light" href="#/">
+          ← RETOUR À L'ACCUEIL
+        </a>
       </main>
       <footer className="footer">
-        <div>
+        <div className="footerBrand">
           <strong>LINA EL BARROUK</strong>
-          <span>Software Developer · AI · Cybersecurity · Web</span>
-        </div>
-        <div className="footerRight">
-          <span>© 2026 Lina El Barrouk</span>
-          <em>Built with curiosity.</em>
+          <span>Software Developer · AI · Cybersecurity</span>
         </div>
       </footer>
     </div>
@@ -1075,56 +1326,6 @@ function PortfolioRouter() {
 
   const item = journeyItems.find((journeyItem) => journeyItem.slug === journeySlug);
   return item ? <JourneyDetail item={item} /> : <JourneyNotFound />;
-}
-
-function VolunteerModal({ volunteer, onClose }) {
-  return (
-    <motion.div
-      className="projectModal"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="modalContent"
-        initial={{ scale: 0.9, y: 50 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.9, y: 50 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="modalClose" onClick={onClose}>
-          ×
-        </button>
-        <div className="modalVisual">
-          <div className="visualChrome">
-            <span>{volunteer.org}</span>
-            <span>{volunteer.period}</span>
-          </div>
-          <div className="volunteerIcon">
-            {volunteer.type === "education" && <span className="iconLarge" style={{ fontSize: "120px" }}>📚</span>}
-            {volunteer.type === "community" && <span className="iconLarge" style={{ fontSize: "120px" }}>🤝</span>}
-            {volunteer.type === "aid" && <span className="iconLarge" style={{ fontSize: "120px" }}>🎁</span>}
-            {volunteer.type === "care" && <span className="iconLarge" style={{ fontSize: "120px" }}>💝</span>}
-            {volunteer.type === "health" && <span className="iconLarge" style={{ fontSize: "120px" }}>🩺</span>}
-          </div>
-        </div>
-        <div className="modalBody">
-          <div className="projectNo">{volunteer.n}</div>
-          <h3>{volunteer.title}</h3>
-          <h4>{volunteer.subtitle}</h4>
-          <p>{volunteer.desc}</p>
-          <div className="tags">
-            {volunteer.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
 }
 
 createRoot(document.getElementById("root")).render(<PortfolioRouter />);
