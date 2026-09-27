@@ -107,110 +107,235 @@ const journeyItems = [
   {
     slug: "bac-science-physique",
     year: "2021—2022",
-    title: "BAC SCIENCE PHYSIQUE",
-    desc: "French Option with Honors at Ibn Batouta High School, Tangier.",
-    overview:
-      "My first step toward technology began with a scientific foundation built around analytical thinking, mathematics and physics.",
-    skills: ["Scientific reasoning", "Mathematics", "Problem-solving", "Communication"],
-    experiences: [
-      "Completed the French Option science curriculum at Ibn Batouta High School in Tangier.",
-      "Graduated with honors while developing a methodical approach to learning and problem-solving.",
-    ],
-    goals:
-      "This experience confirmed my interest in technical fields and prepared me to continue toward computer science.",
-    modules: ["Mathématiques", "Physique & Chimie", "Sciences de la Vie et de la Terre", "Philosophie & Langues"],
+    title: "BAC SCIENCES PHYSIQUES",
+    desc: "Option Française avec Mention au Lycée Ibn Batouta, Tanger.",
     institutionName: "Lycée Ibn Batouta",
-    institutionLink: "https://www.men.gov.ma"
+    institutionLink: "https://www.men.gov.ma",
+    overview:
+      "Une première étape vers les sciences et technologies fondée sur la rigueur analytique, les mathématiques appliquées et la physique fondamentale.",
+    semesters: [
+      {
+        name: "Piliers Scientifiques",
+        modules: [
+          "Mathématiques (Analyse, Algèbre & Géométrie)",
+          "Physique & Chimie",
+          "Sciences de la Vie et de la Terre (SVT)",
+          "Philosophie, Français & Langues Étrangères",
+        ],
+      },
+    ],
+    skills: ["Raisonnement scientifique", "Mathématiques", "Résolution de problèmes", "Rigueur analytique"],
+    experiences: [
+      "Cursus scientifique Option Française au Lycée Ibn Batouta à Tanger.",
+      "Obtention du Baccalauréat avec mention, posant les bases pour les études supérieures en informatique et technologies.",
+    ],
+    goals: "Confirmer l'attrait pour les sciences informatiques et intégrer un parcours universitaire scientifique.",
   },
   {
     slug: "first-year-deust",
     year: "2022—2023",
-    title: "1ST YEAR DEUST",
-    desc: "MIPC Program (Mathematics, Computer Science, Physics, Chemistry) at FST Tangier.",
+    title: "1ÈRE ANNÉE DEUST MIPC",
+    desc: "Tronc Commun Mathématiques, Informatique, Physique, Chimie à la FST de Tanger.",
+    institutionName: "Faculté des Sciences et Techniques de Tanger (FSTT)",
+    institutionLink: "https://fstt.ac.ma",
     overview:
-      "The first DEUST year introduced me to a multidisciplinary scientific environment, including the fundamentals of computer science.",
-    skills: ["Programming foundations", "Algorithms", "Mathematics", "Scientific methods"],
-    experiences: [
-      "Studied mathematics, computer science, physics and chemistry through the MIPC program at FST Tangier.",
-      "Built a foundation for understanding computational thinking and structured problem-solving.",
+      "La première année du DEUST pose les bases théoriques et pratiques indispensables : programmation structurée, algorithmique, calcul scientifique et analyse mathématique.",
+    semesters: [
+      {
+        name: "Semestre 1 (S1)",
+        modules: [
+          "M111 : Analyse 1 (Suites, Fonctions & Continuité)",
+          "M112 : Algèbre 1 (Espaces Vectoriels & Matrices)",
+          "M113 : Algorithmique et Programmation 1 (Langage C)",
+          "M114 : Mécanique du Point Matériel & Optique Géométrique",
+          "M115 : Thermodynamique & Structure de la Matière",
+          "M116 : Langue, Méthodologie & Communication (TEC 1)",
+        ],
+      },
+      {
+        name: "Semestre 2 (S2)",
+        modules: [
+          "M121 : Analyse 2 (Calcul Intégral & Équations Différentielles)",
+          "M122 : Algèbre 2 (Réduction des Endomorphismes & Algèbre Linéaire)",
+          "M123 : Algorithmique et Programmation 2 (Structures de Données & Pointeurs en C)",
+          "M124 : Électrostatique, Électrocinétique & Circuits",
+          "M125 : Chimie des Solutions & Équilibres Chimiques",
+          "M126 : Compétences Numériques & Anglais Technique (TEC 2)",
+        ],
+      },
     ],
-    goals:
-      "I wanted to deepen my programming knowledge and progress toward application development.",
-    modules: ["Algorithmique & Programmation en C", "Analyse Mathématique", "Algèbre Linéaire", "Mécanique du Point & Thermodynamique", "Chimie Générale"],
-    institutionName: "FST Tangier",
-    institutionLink: "https://fstt.ac.ma"
+    skills: ["Programmation en C", "Algorithmique & Pointeurs", "Analyse mathématique", "Algèbre linéaire", "Calcul scientifique"],
+    experiences: [
+      "Apprentissage approfondi des bases algorithmiques et de la programmation structurée en C.",
+      "Résolution de problèmes d'ingénierie et modélisation mathématique appliquée.",
+    ],
+    goals: "Approfondir la programmation orientée objet, les bases de données et les architectures systèmes.",
   },
   {
     slug: "second-year-deust",
     year: "2023—2024",
-    title: "2ND YEAR DEUST",
-    desc: "Faculty of Sciences and Technologies, Tangier.",
+    title: "2ÈME ANNÉE DEUST MIPC",
+    desc: "Spécialisation et consolidation en informatique et sciences à la FST de Tanger.",
+    institutionName: "Faculté des Sciences et Techniques de Tanger (FSTT)",
+    institutionLink: "https://fstt.ac.ma",
     overview:
-      "During the second DEUST year, I continued consolidating my technical foundation and prepared for a more specialized development path.",
-    skills: ["Programming practice", "Systems thinking", "Teamwork", "Technical learning"],
-    experiences: [
-      "Continued the DEUST curriculum at the Faculty of Sciences and Technologies in Tangier.",
-      "Strengthened the analytical and technical skills required for advanced software studies.",
+      "La seconde année du DEUST marque l'orientation vers le développement logiciel : programmation orientée objet, conception de bases de données, architectures matérielles et graphes.",
+    semesters: [
+      {
+        name: "Semestre 3 (S3)",
+        modules: [
+          "M211 : Analyse 3 (Séries Numériques & Fonctions de Plusieurs Variables)",
+          "M212 : Probabilités & Statistiques Appliquées",
+          "M213 : Programmation Orientée Objet (C++ / Java)",
+          "M214 : Électromagnétisme & Phénomènes Ondulatoires",
+          "M215 : Systèmes d'Exploitation & Architecture des Ordinateurs",
+          "M216 : Culture Entrepreneuriale & Communication Professionnelle",
+        ],
+      },
+      {
+        name: "Semestre 4 (S4)",
+        modules: [
+          "M221 : Analyse Numérique & Algorithmes d'Optimisation",
+          "M222 : Bases de Données Relationnelles & Langage SQL",
+          "M223 : Structures de Données Avancées & Théorie des Graphes",
+          "M224 : Électronique Numérique & Logique Combinatoire",
+          "M225 : Optique Ondulatoire & Physique Moderne",
+          "M226 : Projet de Fin de DEUST / Stage d'Initiation",
+        ],
+      },
     ],
-    goals:
-      "This stage was about turning a broad scientific background into a clear focus on software engineering.",
-    modules: ["Structures de Données & Programmation", "Systèmes d'Information & Bases de Données", "Architecture des Ordinateurs", "Analyse Numérique"],
-    institutionName: "FST Tangier",
-    institutionLink: "https://fstt.ac.ma"
+    skills: ["Programmation C++ / Java", "Bases de Données (SQL)", "Systèmes d'exploitation", "Théorie des graphes", "Modélisation relationnelle"],
+    experiences: [
+      "Conception et modélisation de bases de données avec requêtes SQL avancées.",
+      "Implémentation de structures de données dynamiques et programmation orientée objet.",
+    ],
+    goals: "Rejoindre la Licence d'Ingénierie du Développement des Applications Informatiques (IDAI).",
   },
   {
     slug: "bachelor-idai",
     year: "2024—2025",
-    title: "BACHELOR DEGREE IDAI",
-    desc: "Software Application Development Engineering at FST Tangier.",
+    title: "LICENCE LST IDAI",
+    desc: "Ingénierie du Développement des Applications Informatiques à la FST de Tanger.",
+    institutionName: "FST Tanger (Licence LST IDAI)",
+    institutionLink: "https://fstt.ac.ma/portail/formation-initiale/licence/idai/",
     overview:
-      "The IDAI bachelor program allowed me to focus on designing and building useful software applications.",
-    skills: ["Web development", "Application design", "Databases", "UX/UI", "Project delivery"],
-    experiences: [
-      "Specialized in Software Application Development Engineering at FST Tangier.",
-      "Developed practical experience with application development technologies and user-centered digital products.",
+      "La Licence Sciences et Techniques IDAI est une formation d'excellence axée sur le génie logiciel, le développement web fullstack, les architectures distribuées, le mobile et les méthodes agiles.",
+    semesters: [
+      {
+        name: "Semestre 5 (S5)",
+        modules: [
+          "M311 : Conception Orientée Objet & Modélisation UML Avancée",
+          "M312 : Développement Web Fullstack (HTML5/CSS3, JavaScript, PHP/Laravel, Node.js)",
+          "M313 : Développement d'Applications Java / J2EE & Frameworks",
+          "M314 : Administration & Optimisation des Bases de Données (SGBD / PL-SQL)",
+          "M315 : Réseaux Informatiques, Protocoles TCP/IP & Administration Système",
+          "M316 : Génie Logiciel, Méthodes Agiles (Scrum) & Gestion de Projets IT",
+        ],
+      },
+      {
+        name: "Semestre 6 (S6)",
+        modules: [
+          "M321 : Développement d'Applications Mobiles (Android / Flutter)",
+          "M322 : Architectures Distribuées, Microservices & API REST (FastAPI / Spring Boot)",
+          "M323 : Sécurité des Systèmes d'Information & Sécurité des Applications Web",
+          "M324 : Cloud Computing, Virtualisation & Introduction au DevOps (Docker, CI/CD)",
+          "M325 & M326 : Projet de Fin d'Études (PFE) & Stage Professionnel en Entreprise",
+        ],
+      },
     ],
-    goals:
-      "I aimed to create reliable applications while exploring how software can solve real user needs.",
-    modules: ["Développement Web Avancé", "Développement Backend", "Conception Orientée Objet", "Bases de Données", "Génie Logiciel"],
-    institutionName: "FST Tangier (Licence IDAI)",
-    institutionLink: "https://fstt.ac.ma/portail/formation-initiale/licence/idai/"
+    skills: ["Fullstack (React, FastAPI, Laravel)", "Java / J2EE", "Mobile Dev", "UML & Architecture", "DevOps & Docker", "APIs REST", "Bases de données"],
+    experiences: [
+      "Conception et développement de la plateforme DiplomaChain (vérification de diplômes sur Hedera Blockchain).",
+      "Développement de projets fullstack intégrant architectures sécurisées, REST APIs et interfaces modernes.",
+    ],
+    goals: "Poursuivre vers un Master spécialisé en Intelligence Artificielle et Cybersécurité.",
   },
   {
     slug: "jobintech-training",
     year: "2025—2026",
-    title: "JOBINTECH TRAINING",
-    desc: "Cybersecurity and Systems Engineering at Faculty of Sciences, Rabat.",
+    title: "FORMATION JOBINTECH",
+    desc: "Cybersécurité & Ingénierie des Systèmes à la Faculté des Sciences de Rabat.",
+    institutionName: "Faculté des Sciences de Rabat / Programme JobInTech",
+    institutionLink: "https://jobintech.ma",
     overview:
-      "JobInTech broadened my perspective from building applications to understanding the systems and security practices that support them.",
-    skills: ["Cybersecurity fundamentals", "Linux", "Networks", "Systems engineering", "Secure development"],
-    experiences: [
-      "Trained in cybersecurity and systems engineering at the Faculty of Sciences in Rabat.",
-      "Explored the foundations of networks, Linux, access control and web security.",
+      "Programme intensif d'ingénierie des systèmes et de cybersécurité, orienté vers la pratique : sécurisation des infrastructures, tests d'intrusion, monitoring SOC et DevSecOps.",
+    semesters: [
+      {
+        name: "Modules de Spécialisation Cybersécurité & Systèmes",
+        modules: [
+          "Module 1 : Administration Système Linux Avancée, Hardening OS & Bash Scripting",
+          "Module 2 : Architecture Réseaux, Protocoles Sécurisés, VLAN, Firewalling & VPN",
+          "Module 3 : Sécurité Offensive, Pentesting & Analyse des Vulnérabilités (OWASP Top 10)",
+          "Module 4 : Sécurité Défensive, SOC, Monitoring SIEM & Réponse aux Incidents",
+          "Module 5 : Cryptographie Appliquée, PKI, Gestion des Identités et des Accès (IAM / JWT)",
+          "Module 6 : Sécurité des Applications Web, DevSecOps & Sécurité Conteneurs (Docker)",
+          "Module 7 : Soft Skills, Préparation aux Certifications Techniques & Leadership",
+        ],
+      },
     ],
-    goals:
-      "This training shaped my goal of building applications with security considered from the start.",
-    modules: ["Cybersécurité", "Administration Systèmes Linux", "Sécurité Réseaux", "Cryptographie", "Sécurité des Applications Web"],
-    institutionName: "Faculté des Sciences de Rabat / JobInTech",
-    institutionLink: "https://jobintech.ma"
+    skills: ["Linux Hardening", "Sécurité Réseaux & Pare-feu", "Pentesting & OWASP", "SOC & SIEM", "Cryptographie & IAM", "DevSecOps"],
+    experiences: [
+      "Mise en place d'environnements virtualisés sécurisés avec surveillance de trafic et détection d'intrusions.",
+      "Audits de sécurité d'applications web et déploiement d'architectures d'authentification robuste.",
+    ],
+    goals: "Intégrer les principes de sécurité dès la phase de conception logicielle (Security by Design).",
   },
   {
     slug: "masters-sic",
     year: "2026—NOW",
-    title: "MASTER'S DEGREE SIC",
-    desc: "Intelligent Systems and Cybersecurity at FST Tangier.",
+    title: "MASTER SIC (SYSTÈMES INTELLIGENTS & CYBERSÉCURITÉ)",
+    desc: "Formation d'Excellence Master à la Faculté des Sciences et Techniques de Tanger.",
+    institutionName: "FST Tanger (Master SIC)",
+    institutionLink: "https://fstt.ac.ma",
     overview:
-      "I am currently pursuing a Master's degree that brings together my interests in intelligent systems, software and cybersecurity.",
-    skills: ["Artificial intelligence", "Cybersecurity", "Research", "Secure systems", "Continuous learning"],
-    experiences: [
-      "Currently studying Intelligent Systems and Cybersecurity at FST Tangier.",
-      "Expanding my knowledge while connecting software development with AI and security.",
+      "Le Master SIC réunit les deux disciplines clés du numérique contemporain : l'Intelligence Artificielle (Machine Learning, Deep Learning, Vision) et la Cybersécurité avancée (Systèmes sécurisés, Blockchain, Forensics).",
+    semesters: [
+      {
+        name: "Semestre 1 (S1)",
+        modules: [
+          "MS11 : Fondements de l'Intelligence Artificielle & Machine Learning",
+          "MS12 : Cryptographie Avancée, Protocoles de Sécurité & PKI",
+          "MS13 : Sécurité des Réseaux, Systèmes et Architectures Distribuées",
+          "MS14 : Algorithmique Avancée & Optimisation Combinatoire",
+          "MS15 : Programmation Python Avancée pour la Data Science & l'IA",
+          "MS16 : Anglais Scientifique, Déontologie & Méthodologie de Recherche",
+        ],
+      },
+      {
+        name: "Semestre 2 (S2)",
+        modules: [
+          "MS21 : Deep Learning, Computer Vision & Traitement Automatique du Langage (NLP)",
+          "MS22 : Sécurité Offensive, Tests d'Intrusion & Analyse de Vulnérabilités Avancée",
+          "MS23 : Sécurité des Applications Web, Mobiles & Cloud Security",
+          "MS24 : Internet des Objets (IoT) & Sécurité des Systèmes Embarqués",
+          "MS25 : Analyse Forensique, Reverse Engineering & Rétro-ingénierie de Malwares",
+          "MS26 : Projet Fédérateur R&D / Mini-Projet de Recherche Appliquée",
+        ],
+      },
+      {
+        name: "Semestre 3 (S3)",
+        modules: [
+          "MS31 : Intelligence Artificielle appliquée à la Cybersécurité & Threat Intelligence",
+          "MS32 : Sécurité Blockchain & Smart Contracts Sécurisés",
+          "MS33 : Gouvernance de la Sécurité, Gestion des Risques (ISO 27001/27002, EBIOS) & Audit",
+          "MS34 : Sécurité du Cloud & Architectures DevSecOps Avancées",
+          "MS35 : Systèmes Multi-Agents & Systèmes Intelligents Autonomes",
+          "MS36 : Séminaires Professionnels & Préparation au PFE",
+        ],
+      },
+      {
+        name: "Semestre 4 (S4)",
+        modules: [
+          "MS41 & MS42 : Projet de Fin d'Études (PFE) / Stage Master en Entreprise ou Laboratoire de Recherche",
+        ],
+      },
     ],
-    goals:
-      "My objective is to keep developing thoughtful, useful and secure digital experiences.",
-    modules: ["Intelligence Artificielle Avancée", "Cybersécurité Avancée", "Sécurité des Systèmes Distribués", "Analyse de Malware", "Vision par Ordinateur"],
-    institutionName: "FST Tangier (Master SIC)",
-    institutionLink: "https://fstt.ac.ma"
+    skills: ["Machine Learning & Deep Learning", "Computer Vision & NLP", "Cybersécurité avancée", "Forensics & Reverse Engineering", "Blockchain", "DevSecOps"],
+    experiences: [
+      "Recherche et conception d'architectures combinant modèles d'intelligence artificielle et mécanismes de défense cybernétique.",
+      "Développement de projets innovants alliant vision par ordinateur, traitement des données et sécurité des systèmes distribués.",
+    ],
+    goals: "Concevoir des solutions intelligentes, hautement sécurisées et à fort impact technologique.",
   },
 ];
 
@@ -748,89 +873,138 @@ function VolunteerCard({ v, i, onClick }) {
 
 function JourneyDetail({ item }) {
   return (
-    <main className="journeyDetail">
-      <header className="detailNav dark">
+    <div className="journeyDetailPage">
+      <header className="detailNav">
         <a className="brand" href="#/" aria-label="Back to home">
           LINA <span>EL BARROUK</span>
         </a>
         <a className="backLink" href="#/">
-          ← BACK TO PORTFOLIO
+          ← RETOUR AU PORTFOLIO
         </a>
       </header>
 
-      <section className="detailHero dark sectionPad">
-        <div className="sectionMeta lightMeta">
-          <span>MY JOURNEY · {item.year}</span>
-          <span>EDUCATION · DEVELOPMENT · SECURITY</span>
-        </div>
+      <main className="detailContainer">
         <Reveal>
-          <p className="detailEyebrow">{item.year}</p>
-          <h1>{item.title}</h1>
-          <p className="detailLead">{item.desc}</p>
-        </Reveal>
-      </section>
+          <div className="detailHeroCard">
+            <div className="detailMetaRow">
+              <span className="detailBadge">{item.year}</span>
+              <span className="detailSubBadge">FORMATION & PARCOURS</span>
+            </div>
+            <h1 className="detailMainTitle">{item.title}</h1>
+            <p className="detailSubtitle">{item.desc}</p>
 
-      <section className="detailInstitution cream sectionPad">
-        <Reveal>
-          <span className="detailLabel">INSTITUTION</span>
-          <h2>{item.institutionName}</h2>
-          <a href={item.institutionLink} target="_blank" rel="noopener noreferrer" className="detailCta">
-            VISIT WEBSITE <span>↗</span>
-          </a>
-        </Reveal>
-      </section>
-
-      <section className="detailModules blush sectionPad">
-        <Reveal>
-          <span className="detailLabel">MODULES STUDIED</span>
-          <ul className="detailList">
-             {item.modules.map((module) => (
-               <li key={module}>{module}</li>
-             ))}
-          </ul>
-        </Reveal>
-      </section>
-
-      <section className="detailOverview ivory sectionPad">
-        <Reveal className="detailCopy">
-          <span className="detailLabel">THE EXPERIENCE</span>
-          <h2>
-            A STEP TOWARD
-            <br />
-            <em>WHAT'S NEXT.</em>
-          </h2>
-          <p>{item.overview}</p>
-        </Reveal>
-      </section>
-
-      <section className="detailGrid cream sectionPad">
-        <Reveal className="detailPanel">
-          <span className="detailLabel">SKILLS I DEVELOPED</span>
-          <div className="detailTags">
-            {item.skills.map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
+            {item.institutionName && (
+              <div className="detailInstitutionBar">
+                <div className="institutionInfo">
+                  <span className="institutionIcon">🏛️</span>
+                  <div>
+                    <small>ÉTABLISSEMENT / FORMATION</small>
+                    <h4>{item.institutionName}</h4>
+                  </div>
+                </div>
+                {item.institutionLink && (
+                  <a
+                    href={item.institutionLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="institutionBtn"
+                  >
+                    SITE OFFICIEL <span>↗</span>
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </Reveal>
-        <Reveal delay={0.1} className="detailPanel">
-          <span className="detailLabel">KEY EXPERIENCES</span>
-          <ul className="detailList">
-            {item.experiences.map((experience) => (
-              <li key={experience}>{experience}</li>
-            ))}
-          </ul>
-        </Reveal>
-      </section>
 
-      <section className="detailGoal ivory sectionPad">
-        <Reveal>
-          <span className="detailLabel">LOOKING FORWARD</span>
-          <p>{item.goals}</p>
-          <a className="detailCta" href="#/">
-            RETURN TO MY JOURNEY <span>↗</span>
-          </a>
-        </Reveal>
-      </section>
+        <div className="detailBodyGrid">
+          <Reveal delay={0.05}>
+            <div className="detailCard">
+              <div className="cardHeader">
+                <span className="cardLabel">01 — PRÉSENTATION & CONTEXTE</span>
+              </div>
+              <p className="detailOverviewText">{item.overview}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="detailCard modulesCard">
+              <div className="cardHeader">
+                <span className="cardLabel">02 — PROGRAMME DES MODULES (S1 — S6)</span>
+                <span className="cardCount">
+                  {item.semesters.reduce((acc, sem) => acc + sem.modules.length, 0)} modules
+                </span>
+              </div>
+
+              <div className="semestersGrid">
+                {item.semesters.map((sem, sIdx) => (
+                  <div key={sem.name || sIdx} className="semesterColumn">
+                    <div className="semesterHeader">
+                      <span className="semesterIcon">📚</span>
+                      <h3>{sem.name}</h3>
+                    </div>
+                    <ul className="semesterModulesList">
+                      {sem.modules.map((mod, mIdx) => (
+                        <li key={mod}>
+                          <span className="moduleNumber">{String(mIdx + 1).padStart(2, "0")}</span>
+                          <span className="moduleText">{mod}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="detailDualRow">
+            <Reveal delay={0.15} className="dualCol">
+              <div className="detailCard hFull">
+                <div className="cardHeader">
+                  <span className="cardLabel">03 — COMPÉTENCES & OUTILS</span>
+                </div>
+                <div className="detailTagsCloud">
+                  {item.skills.map((skill) => (
+                    <span key={skill} className="skillTag">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2} className="dualCol">
+              <div className="detailCard hFull">
+                <div className="cardHeader">
+                  <span className="cardLabel">04 — EXPÉRIENCES & PROJETS</span>
+                </div>
+                <ul className="detailExpList">
+                  {item.experiences.map((exp) => (
+                    <li key={exp}>{exp}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.25}>
+            <div className="detailCard goalCard">
+              <div className="cardHeader">
+                <span className="cardLabel">05 — PERSPECTIVES & OBJECTIFS</span>
+              </div>
+              <p className="goalText">{item.goals}</p>
+              <div className="goalActions">
+                <a className="pill light" href="#/">
+                  ← RETOUR AU PARCOURS
+                </a>
+                <a className="pill outline" href="#work">
+                  VOIR MES PROJETS ↗
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </main>
 
       <footer className="footer">
         <div>
@@ -842,19 +1016,41 @@ function JourneyDetail({ item }) {
           <em>Built with curiosity.</em>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
 
 function JourneyNotFound() {
   return (
-    <main className="journeyDetail notFound dark sectionPad">
-      <a className="backLink" href="#/">
-        ← BACK TO PORTFOLIO
-      </a>
-      <h1>JOURNEY STEP NOT FOUND.</h1>
-      <p>The page you requested does not exist.</p>
-    </main>
+    <div className="journeyDetailPage">
+      <header className="detailNav">
+        <a className="brand" href="#/" aria-label="Back to home">
+          LINA <span>EL BARROUK</span>
+        </a>
+        <a className="backLink" href="#/">
+          ← RETOUR AU PORTFOLIO
+        </a>
+      </header>
+      <main className="detailContainer notFoundCenter">
+        <h1>ÉTAPE INTROUVABLE</h1>
+        <p>La page demandée n'existe pas ou a été déplacée.</p>
+        <div style={{ marginTop: "30px" }}>
+          <a className="pill light" href="#/">
+            ← RETOUR AU PARCOURS
+          </a>
+        </div>
+      </main>
+      <footer className="footer">
+        <div>
+          <strong>LINA EL BARROUK</strong>
+          <span>Software Developer · AI · Cybersecurity · Web</span>
+        </div>
+        <div className="footerRight">
+          <span>© 2026 Lina El Barrouk</span>
+          <em>Built with curiosity.</em>
+        </div>
+      </footer>
+    </div>
   );
 }
 
