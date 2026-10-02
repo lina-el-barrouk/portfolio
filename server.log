@@ -1,0 +1,5 @@
+
+> lina-portfolio@1.0.0 server
+> node server/index.js
+
+✅ Portfolio API prête sur http://localhost:3001

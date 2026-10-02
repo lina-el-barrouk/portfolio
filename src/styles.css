@@ -755,16 +755,109 @@ a {
 }
 
 /* ==========================================================================
-   JOURNEY TIMELINE ("FROM CODE TO SECURITY")
+   JOURNEY TIMELINE ("FROM CODE TO SECURITY") — FRISE CHRONOLOGIQUE
    ========================================================================== */
 .timelineTrack {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  display: flex;
+  flex-direction: row;
   gap: 24px;
-  margin-top: 30px;
+  margin-top: 40px;
+  padding: 0 0 22px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  /* Rail horizontale : reste fixe pendant le défilement horizontal */
+  background-image: linear-gradient(
+    to right,
+    rgba(71, 35, 45, 0) 0%,
+    var(--line) 60px,
+    var(--line) calc(100% - 60px),
+    rgba(71, 35, 45, 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 12px;
+  background-size: 100% 2px;
+}
+
+.timelineTrack::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timelineTrack::-webkit-scrollbar-track {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+.timelineTrack::-webkit-scrollbar-thumb {
+  background: var(--wine);
+  border-radius: 999px;
+}
+
+.timelineItemWrap {
+  /* Reveal ajoute une div : une étape de la frise = une largeur fixe */
+  flex: 0 0 340px;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+
+/* Point cliquable posé sur la rail */
+.timelineDot {
+  align-self: flex-start;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 2px solid var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 0 6px rgba(240, 235, 226, 0.9);
+}
+
+.timelineDotInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--wine);
+  transition: all 0.3s var(--ease);
+}
+
+.timelineDot:hover {
+  border-color: var(--terra);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 8px rgba(240, 235, 226, 0.95), 0 0 18px rgba(178, 63, 30, 0.35);
+}
+
+.timelineDot:hover .timelineDotInner {
+  background: var(--terra);
+}
+
+/* Connecteur vertical : du point vers la carte */
+.timelineItem::after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 12px;
+  width: 2px;
+  height: 18px;
+  background: var(--line);
+  pointer-events: none;
 }
 
 .timelineCard {
+  flex: 1;
+  width: 100%;
   background: var(--ivory);
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -1833,6 +1926,220 @@ a {
 }
 
 /* ==========================================================================
+   ADMIN PAGES
+   ========================================================================== */
+.footerAdmin {
+  margin-left: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(71, 35, 45, 0.45);
+  border-bottom: 1px solid rgba(71, 35, 45, 0.25);
+  transition: color 0.2s var(--ease);
+}
+
+.footerAdmin:hover {
+  color: var(--terra);
+}
+
+.adminNavActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.adminTabs {
+  display: flex;
+  gap: 8px;
+}
+
+.adminCard {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 30px 60px -30px rgba(15, 6, 9, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.adminGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+}
+
+.adminField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  grid-column: auto;
+}
+
+.adminField:has(textarea),
+.adminField:nth-child(n + 5) {
+  grid-column: 1 / -1;
+}
+
+.adminField label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(71, 35, 45, 0.6);
+}
+
+.adminField input,
+.adminField textarea {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: rgba(240, 235, 226, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.adminField textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.adminField input:focus,
+.adminField textarea:focus {
+  border-color: var(--terra);
+  background: var(--ivory);
+}
+
+.adminField input:disabled,
+.adminField textarea:disabled {
+  opacity: 0.6;
+}
+
+.adminSubmit {
+  align-self: flex-start;
+}
+
+.adminSubmit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.adminFormFoot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.adminError {
+  color: var(--terra);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.adminSuccess {
+  color: #2f7a3d;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Liste des contenus ajoutés (suppression) */
+.adminListCard {
+  gap: 16px;
+}
+
+.adminEmpty {
+  font-size: 13px;
+  color: rgba(31, 20, 23, 0.6);
+}
+
+.adminList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adminListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(240, 235, 226, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.adminListInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.adminListInfo strong {
+  font-family: "Syne", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--wine);
+}
+
+.adminListInfo span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(31, 20, 23, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminDelete {
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--terra);
+  background: rgba(178, 63, 30, 0.08);
+  border: 1px solid rgba(178, 63, 30, 0.35);
+  border-radius: 999px;
+  padding: 8px 16px;
+  transition: all 0.25s var(--ease);
+}
+
+.adminDelete:hover,
+.adminDelete.armed {
+  background: var(--terra);
+  color: var(--ivory);
+  border-color: var(--terra);
+}
+
+.adminDelete:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+@media (max-width: 950px) {
+  .adminGrid {
+    grid-template-columns: 1fr;
+  }
+  .adminCard {
+    padding: 24px 20px;
+  }
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 950px) {
@@ -1847,7 +2154,6 @@ a {
   .aboutGrid,
   .cyberGrid,
   .projectsGrid,
-  .timelineTrack,
   .skillsCategoriesGrid,
   .volunteerGrid {
     grid-template-columns: 1fr;
@@ -1870,5 +2176,15 @@ a {
   }
   .matrixLayers {
     grid-template-columns: 1fr;
+  }
+
+  /* Frise horizontale mobile : cartes plus étroites, défilement tactile */
+  .timelineItemWrap {
+    flex: 0 0 78vw;
+    max-width: 320px;
+  }
+
+  .timelineCard {
+    text-align: left;
   }
 }

@@ -456,6 +456,26 @@ const journeyItems = [
   },
 ];
 
+/* ================= DYNAMIC CONTENT (ADMIN API) ================= */
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const ADMIN_SESSION_KEY = "portfolioAdminSession";
+
+async function fetchAdminContent() {
+  try {
+    const res = await fetch(`${API_BASE}/content`);
+    if (!res.ok) throw new Error("unavailable");
+    const data = await res.json();
+    return {
+      projects: Array.isArray(data.projects) ? data.projects : [],
+      journeyItems: Array.isArray(data.journeyItems) ? data.journeyItems : [],
+      community: Array.isArray(data.community) ? data.community : [],
+    };
+  } catch {
+    // API not running (e.g. static build): fall back to hardcoded content only.
+    return { projects: [], journeyItems: [], community: [] };
+  }
+}
+
 function Reveal({ children, delay = 0, className = "" }) {
   return (
     <motion.div
@@ -556,7 +576,7 @@ function MailComposerMenu() {
   );
 }
 
-function App() {
+function App({ content }) {
   const [menu, setMenu] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedVolunteer, setSelectedVolunteer] = useState(null);
@@ -576,10 +596,15 @@ function App() {
     }
   };
 
+  const safeContent = content || { projects: [], journeyItems: [], community: [] };
+  const dynamicProjects = [...projects, ...(safeContent.projects || [])];
+  const dynamicJourneyItems = [...journeyItems, ...(safeContent.journeyItems || [])];
+  const dynamicVolunteers = [...volunteerProjects, ...(safeContent.community || [])];
+
   const filteredProjects =
     activeFilter === "ALL"
-      ? projects
-      : projects.filter((p) =>
+      ? dynamicProjects
+      : dynamicProjects.filter((p) =>
           p.tags.some((t) =>
             t.toUpperCase().includes(activeFilter.toUpperCase()),
           ),
@@ -855,13 +880,21 @@ function App() {
             </div>
 
             <div className="timelineTrack">
-              {journeyItems.map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.07}>
-                  <a
-                    className="timelineCard"
-                    href={`#/journey/${item.slug}`}
-                    aria-label={`Detailed curriculum for ${item.title}`}
-                  >
+              {dynamicJourneyItems.map((item, i) => (
+                <Reveal key={item.slug} delay={i * 0.05} className="timelineItemWrap">
+                  <div className="timelineItem">
+                    <a
+                      className="timelineDot"
+                      href={`#/journey/${item.slug}`}
+                      aria-label={`Voir les détails : ${item.title}`}
+                    >
+                      <span className="timelineDotInner"></span>
+                    </a>
+                    <a
+                      className="timelineCard"
+                      href={`#/journey/${item.slug}`}
+                      aria-label={`Detailed curriculum for ${item.title}`}
+                    >
                     <div>
                       <div className="timelineCardHead">
                         <span className="timelineYearPill">{item.year}</span>
@@ -882,7 +915,8 @@ function App() {
                         DÉTAILS COMPLETS <span>↗</span>
                       </span>
                     </div>
-                  </a>
+                    </a>
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -1136,7 +1170,7 @@ function App() {
             </div>
 
             <div className="volunteerGrid">
-              {volunteerProjects.map((v, i) => (
+              {dynamicVolunteers.map((v, i) => (
                 <Reveal key={v.title} delay={i * 0.08}>
                   <article
                     className="volunteerCard"
@@ -1236,7 +1270,8 @@ function App() {
           <span>Software Developer · Master SIC · AI &amp; Cybersecurity</span>
         </div>
         <div className="footerNote">
-          © 2026 — Crafted with precision &amp; curiosity.
+          © 2026 — Crafted with precision &amp; curiosity.{" "}
+          <a className="footerAdmin" href="#/admin">ADMIN</a>
         </div>
       </footer>
 
@@ -1617,8 +1652,440 @@ function JourneyNotFound() {
   );
 }
 
+/* ================= ADMIN LISTS (one per tab) ================= */
+const ADMIN_SECTIONS = {
+  project: {
+    endpoint: "projects",
+    listTitle: "PROJETS AJOUTÉS",
+    items: (c) => c.projects,
+    keyOf: (it) => it.id || it.title,
+    metaOf: (it) => [it.subtitle, it.period].filter(Boolean).join(" · "),
+  },
+  journey: {
+    endpoint: "journey",
+    listTitle: "ÉTAPES DE PARCOURS AJOUTÉES",
+    items: (c) => c.journeyItems,
+    keyOf: (it) => it.id || it.slug,
+    metaOf: (it) => it.year,
+  },
+  community: {
+    endpoint: "community",
+    listTitle: "ACTIONS COMMUNAUTAIRES AJOUTÉES",
+    items: (c) => c.community,
+    keyOf: (it) => it.id || it.title,
+    metaOf: (it) => [it.org, it.period].filter(Boolean).join(" · "),
+  },
+};
+
+/* ================= ADMIN PAGE ================= */
+function AdminPage({ onContentChanged }) {
+  const stored = sessionStorage.getItem(ADMIN_SESSION_KEY);
+  const [token, setToken] = useState(stored || "");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+
+  const [section, setSection] = useState("project");
+  const [sending, setSending] = useState(false);
+  const [deleting, setDeleting] = useState("");
+  const [notice, setNotice] = useState("");
+  const [content, setContent] = useState({
+    projects: [],
+    journeyItems: [],
+    community: [],
+  });
+
+  const refresh = () => {
+    fetchAdminContent().then(setContent);
+  };
+
+  useEffect(() => {
+    refresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const login = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Connexion impossible.");
+      sessionStorage.setItem(ADMIN_SESSION_KEY, data.token);
+      setToken(data.token);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const submit = async (endpoint, payload) => {
+    setSending(true);
+    setError("");
+    setStatus("");
+    try {
+      const res = await fetch(`${API_BASE}/${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Envoi impossible.");
+      setStatus("✅ Contenu ajouté avec succès.");
+      refresh();
+      if (onContentChanged) onContentChanged();
+      return true;
+    } catch (err) {
+      setError(err.message);
+      return false;
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const logout = () => {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    setToken("");
+  };
+
+  const remove = async (key, title) => {
+    const config = ADMIN_SECTIONS[section];
+    setError("");
+    setNotice("");
+    setDeleting(key);
+    try {
+      const res = await fetch(
+        `${API_BASE}/${config.endpoint}/${encodeURIComponent(key)}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Suppression impossible.");
+      setNotice(`🗑 « ${title} » a été supprimé.`);
+      setTimeout(() => setNotice(""), 4000);
+      refresh();
+      if (onContentChanged) onContentChanged();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setDeleting("");
+    }
+  };
+
+  return (
+    <div className="journeyDetailPage">
+      <header className="detailNav">
+        <a className="brand" href="#/" aria-label="Back to home">
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
+          </div>
+        </a>
+        <div className="adminNavActions">
+          {token && (
+            <button className="pill ghost" onClick={logout}>
+              DÉCONNEXION
+            </button>
+          )}
+          <a className="backLink" href="#/">
+            ← RETOUR AU PORTFOLIO
+          </a>
+        </div>
+      </header>
+
+      <main className="detailContainer adminContainer">
+        <Reveal>
+          <div className="detailHeroCard">
+            <div className="detailMetaRow">
+              <span className="detailBadge">ESPACE ADMIN</span>
+              <span className="detailSubBadge">GESTION DE CONTENU</span>
+            </div>
+            <h1 className="detailMainTitle">ADMINISTRATION.</h1>
+            <p className="detailSubtitle">
+              Ajoutez des projets, des étapes de parcours et des actions
+              communautaires. Ils apparaîtront à la suite du contenu existant.
+            </p>
+          </div>
+        </Reveal>
+
+        {!token ? (
+          <Reveal delay={0.05}>
+            <form className="adminCard" onSubmit={login}>
+              <div className="cardHeader">
+                <span className="cardLabel">CONNEXION ADMINISTRATEUR</span>
+              </div>
+              <div className="adminField">
+                <label htmlFor="admin-username">Identifiant</label>
+                <input
+                  id="admin-username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoComplete="username"
+                  required
+                />
+              </div>
+              <div className="adminField">
+                <label htmlFor="admin-password">Mot de passe</label>
+                <input
+                  id="admin-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+              </div>
+              {error && <p className="adminError">{error}</p>}
+              <button className="pill light adminSubmit" type="submit">
+                SE CONNECTER <span>↗</span>
+              </button>
+            </form>
+          </Reveal>
+        ) : (
+          <>
+            <Reveal delay={0.05}>
+              <div className="adminTabs">
+                {[
+                  ["project", "PROJET"],
+                  ["journey", "PARCOURS"],
+                  ["community", "COMMUNAUTÉ"],
+                ].map(([key, label]) => (
+                  <button
+                    key={key}
+                    className={`filterBtn ${section === key ? "active" : ""}`}
+                    onClick={() => setSection(key)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+
+            {error && <p className="adminError">{error}</p>}
+            {notice && <p className="adminSuccess">{notice}</p>}
+
+            {section === "project" && (
+              <Reveal delay={0.1}>
+                <AdminForm
+                  endpoint="projects"
+                  title="AJOUTER UN PROJET"
+                  submit={submit}
+                  sending={sending}
+                  fields={[
+                    { name: "title", label: "Titre *", required: true },
+                    { name: "subtitle", label: "Sous-titre" },
+                    { name: "desc", label: "Description *", textarea: true, required: true },
+                    { name: "tags", label: "Tags (séparés par des virgules)" },
+                    { name: "highlights", label: "Points forts (une ligne par point)", textarea: true },
+                  ]}
+                />
+              </Reveal>
+            )}
+
+            {section === "journey" && (
+              <Reveal delay={0.1}>
+                <AdminForm
+                  endpoint="journey"
+                  title="AJOUTER UNE ÉTAPE DE PARCOURS"
+                  submit={submit}
+                  sending={sending}
+                  fields={[
+                    { name: "year", label: "Période (ex : 2026 — 2027) *", required: true },
+                    { name: "title", label: "Titre *", required: true },
+                    { name: "desc", label: "Description courte", textarea: true },
+                    { name: "institutionName", label: "Établissement" },
+                    { name: "institutionLink", label: "Lien de l'établissement" },
+                    { name: "overview", label: "Présentation", textarea: true },
+                    { name: "modules", label: "Modules (une ligne par module)", textarea: true },
+                    { name: "skills", label: "Compétences (séparées par des virgules)" },
+                    { name: "experiences", label: "Expériences (une ligne par expérience)", textarea: true },
+                    { name: "goals", label: "Objectifs", textarea: true },
+                  ]}
+                />
+              </Reveal>
+            )}
+
+            {section === "community" && (
+              <Reveal delay={0.1}>
+                <AdminForm
+                  endpoint="community"
+                  title="AJOUTER UNE ACTION COMMUNAUTAIRE"
+                  submit={submit}
+                  sending={sending}
+                  fields={[
+                    { name: "title", label: "Titre *", required: true },
+                    { name: "subtitle", label: "Sous-titre" },
+                    { name: "period", label: "Période (ex : SEP 2026 — NOV 2026)" },
+                    { name: "org", label: "Organisation" },
+                    { name: "desc", label: "Description *", textarea: true, required: true },
+                    { name: "impact", label: "Impact" },
+                    { name: "tags", label: "Tags (séparés par des virgules)" },
+                  ]}
+                />
+              </Reveal>
+            )}
+
+            <Reveal delay={0.15}>
+              <AdminList
+                key={section}
+                config={ADMIN_SECTIONS[section]}
+                items={ADMIN_SECTIONS[section].items(content)}
+                deleting={deleting}
+                onRemove={remove}
+              />
+            </Reveal>
+          </>
+        )}
+      </main>
+
+      <footer className="footer">
+        <div className="footerBrand">
+          <strong>LINA EL BARROUK</strong>
+          <span>Software Developer · AI · Cybersecurity</span>
+        </div>
+        <div className="footerNote">© 2026 Lina El Barrouk</div>
+      </footer>
+    </div>
+  );
+}
+
+function AdminForm({ endpoint, title, fields, submit, sending }) {
+  const [values, setValues] = useState({});
+  const [done, setDone] = useState("");
+
+  const setField = (name, value) => {
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const ok = await submit(endpoint, values);
+    if (ok) {
+      setDone(title);
+      setValues({});
+      setTimeout(() => setDone(""), 4000);
+    }
+  };
+
+  return (
+    <form className="adminCard" onSubmit={handleSubmit}>
+      <div className="cardHeader">
+        <span className="cardLabel">{title}</span>
+      </div>
+      <div className="adminGrid">
+        {fields.map((field) => (
+          <div className="adminField" key={field.name}>
+            <label htmlFor={`${endpoint}-${field.name}`}>{field.label}</label>
+            {field.textarea ? (
+              <textarea
+                id={`${endpoint}-${field.name}`}
+                rows={3}
+                value={values[field.name] || ""}
+                onChange={(e) => setField(field.name, e.target.value)}
+                required={field.required}
+              />
+            ) : (
+              <input
+                id={`${endpoint}-${field.name}`}
+                value={values[field.name] || ""}
+                onChange={(e) => setField(field.name, e.target.value)}
+                required={field.required}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="adminFormFoot">
+        <button className="pill light adminSubmit" type="submit" disabled={sending}>
+          {sending ? "ENVOI…" : "AJOUTER"} <span>↗</span>
+        </button>
+        {done && <span className="adminSuccess">✅ Contenu ajouté avec succès.</span>}
+      </div>
+    </form>
+  );
+}
+
+function AdminList({ config, items, deleting, onRemove }) {
+  const [arming, setArming] = useState("");
+
+  // Clic 1 = armer le bouton, clic 2 (sous 4s) = confirmer la suppression.
+  const handleClick = (key, title) => {
+    if (arming === key) {
+      setArming("");
+      onRemove(key, title);
+    } else {
+      setArming(key);
+    }
+  };
+
+  return (
+    <div className="adminCard adminListCard">
+      <div className="cardHeader">
+        <span className="cardLabel">
+          {config.listTitle} ({items.length})
+        </span>
+      </div>
+      {items.length === 0 ? (
+        <p className="adminEmpty">
+          Aucun élément ajouté pour l'instant. Tout contenu ajouté via ce
+          formulaire apparaîtra ici et pourra être supprimé.
+        </p>
+      ) : (
+        <ul className="adminList">
+          {items.map((item, i) => {
+            const key = config.keyOf(item);
+            const meta = config.metaOf(item);
+            const armed = arming === key;
+            return (
+              <li className="adminListItem" key={key || i}>
+                <div className="adminListInfo">
+                  <strong>{item.title}</strong>
+                  {meta && <span>{meta}</span>}
+                </div>
+                <button
+                  type="button"
+                  className={`adminDelete${armed ? " armed" : ""}`}
+                  disabled={deleting === key}
+                  onClick={() => handleClick(key, item.title)}
+                >
+                  {deleting === key
+                    ? "SUPPRESSION…"
+                    : armed
+                      ? "CONFIRMER ?"
+                      : "SUPPRIMER"}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function PortfolioRouter() {
   const [hash, setHash] = useState(window.location.hash);
+  const [content, setContent] = useState(null);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchAdminContent().then((data) => {
+      if (!cancelled) setContent(data);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [reloadKey]);
 
   useEffect(() => {
     const updateHash = () => {
@@ -1630,13 +2097,18 @@ function PortfolioRouter() {
     return () => window.removeEventListener("hashchange", updateHash);
   }, []);
 
+  if (hash.startsWith("#/admin")) {
+    return <AdminPage onContentChanged={() => setReloadKey((k) => k + 1)} />;
+  }
+
   const journeySlug = hash.match(/^#\/journey\/([^/]+)$/)?.[1];
 
   if (!journeySlug) {
-    return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App />;
+    return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App content={content} />;
   }
 
-  const item = journeyItems.find(
+  const allJourneyItems = [...journeyItems, ...((content || {}).journeyItems || [])];
+  const item = allJourneyItems.find(
     (journeyItem) => journeyItem.slug === journeySlug,
   );
   return item ? <JourneyDetail item={item} /> : <JourneyNotFound />;
