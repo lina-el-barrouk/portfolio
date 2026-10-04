@@ -642,7 +642,7 @@ function MailComposerMenu() {
   );
 }
 
-function App({ content }) {
+function App({ content, scrollToId }) {
   const [menu, setMenu] = useState(false);
   const [activeFilter, setActiveFilter] = useState("ALL");
   const { scrollYProgress } = useScroll();
@@ -659,6 +659,39 @@ function App({ content }) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  /* Ancre d'un autre écran (ex: « VOIR MES PROJETS » → #work) : la section
+     n'existe pas au moment du hashchange, on l'attend puis on y va. Le
+     second passage corrige le décalage dû au chargement des médias. */
+  useEffect(() => {
+    if (!scrollToId) return;
+    let cancelled = false;
+    const timers = [];
+    const align = (behavior) => {
+      const element = document.getElementById(scrollToId);
+      if (element) element.scrollIntoView({ behavior, block: "start" });
+      return element;
+    };
+
+    const frame = requestAnimationFrame(() => align("smooth"));
+    [700, 1600].forEach((delay, i) => {
+      timers.push(
+        setTimeout(() => {
+          if (cancelled) return;
+          const element = document.getElementById(scrollToId);
+          if (element && Math.abs(element.getBoundingClientRect().top) > 8) {
+            align(i === 0 ? "smooth" : "auto");
+          }
+        }, delay),
+      );
+    });
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      timers.forEach(clearTimeout);
+    };
+  }, [scrollToId]);
 
   const safeContent = content || { projects: [], journeyItems: [], community: [] };
   const overrides = safeContent.overrides || {};
@@ -983,13 +1016,6 @@ function App({ content }) {
                     <div>
                       <div className="timelineCardHead">
                         <span className="timelineYearPill">{item.year}</span>
-                        <span className="timelineModuleCount">
-                          {item.semesters.reduce(
-                            (acc, s) => acc + s.modules.length,
-                            0,
-                          )}{" "}
-                          MODULES
-                        </span>
                       </div>
                       <h3>{item.title}</h3>
                       <p>{item.desc}</p>
@@ -2547,13 +2573,19 @@ function PortfolioRouter() {
 
   useEffect(() => {
     const updateHash = () => {
-      window.scrollTo(0, 0);
-      setHash(window.location.hash);
+      const next = window.location.hash;
+      /* Les ancres de section (#work…) ne doivent pas remonter en haut :
+         le défilement vers la cible est géré par <App scrollToId>. */
+      if (!next || next.startsWith("#/")) window.scrollTo(0, 0);
+      setHash(next);
     };
 
     window.addEventListener("hashchange", updateHash);
     return () => window.removeEventListener("hashchange", updateHash);
   }, []);
+
+  const sectionAnchor =
+    hash && !hash.startsWith("#/") ? decodeURIComponent(hash.slice(1)) : null;
 
   if (hash.startsWith("#/admin")) {
     return <AdminPage onContentChanged={() => setReloadKey((k) => k + 1)} />;
@@ -2594,7 +2626,11 @@ function PortfolioRouter() {
   const journeySlug = hash.match(/^#\/journey\/([^/]+)$/)?.[1];
 
   if (!journeySlug) {
-    return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App content={content} />;
+    return hash.startsWith("#/journey/") ? (
+      <JourneyNotFound />
+    ) : (
+      <App content={content} scrollToId={sectionAnchor} />
+    );
   }
 
   const allJourneyItems = mergeCollection(

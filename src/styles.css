@@ -792,9 +792,9 @@ a {
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  margin-top: 40px;
-  padding: 0 0 22px;
+  gap: 36px;
+  margin-top: 48px;
+  padding: 0 0 24px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
@@ -802,13 +802,13 @@ a {
   background-image: linear-gradient(
     to right,
     rgba(71, 35, 45, 0) 0%,
-    var(--line) 60px,
-    var(--line) calc(100% - 60px),
+    rgba(71, 35, 45, 0.22) 60px,
+    rgba(71, 35, 45, 0.22) calc(100% - 60px),
     rgba(71, 35, 45, 0) 100%
   );
   background-repeat: no-repeat;
-  background-position: 0 12px;
-  background-size: 100% 2px;
+  background-position: 0 9px;
+  background-size: 100% 1px;
 }
 
 .timelineTrack::-webkit-scrollbar {
@@ -836,38 +836,35 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
   flex: 1;
 }
 
 /* Point cliquable posé sur la rail */
 .timelineDot {
   align-self: flex-start;
-  width: 26px;
-  height: 26px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
-  background: var(--ivory);
-  border: 2px solid var(--wine);
+  background: var(--cream);
+  border: 1px solid rgba(71, 35, 45, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: all 0.3s var(--ease);
-  box-shadow: 0 0 0 6px rgba(240, 235, 226, 0.9);
+  transition: border-color 0.3s var(--ease);
 }
 
 .timelineDotInner {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--wine);
-  transition: all 0.3s var(--ease);
+  transition: background 0.3s var(--ease);
 }
 
 .timelineDot:hover {
   border-color: var(--terra);
-  transform: scale(1.25);
-  box-shadow: 0 0 0 8px rgba(240, 235, 226, 0.95), 0 0 18px rgba(178, 63, 30, 0.35);
 }
 
 .timelineDot:hover .timelineDotInner {
@@ -878,101 +875,92 @@ a {
 .timelineItem::after {
   content: "";
   position: absolute;
-  top: 26px;
-  left: 12px;
-  width: 2px;
-  height: 18px;
-  background: var(--line);
+  top: 20px;
+  left: 9px;
+  width: 1px;
+  height: 14px;
+  background: rgba(71, 35, 45, 0.25);
   pointer-events: none;
 }
 
 .timelineCard {
   flex: 1;
   width: 100%;
-  background: var(--ivory);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 28px;
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(71, 35, 45, 0.22);
+  border-radius: 0;
+  padding: 18px 0 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 320px;
-  transition: all 0.35s var(--ease);
+  justify-content: flex-start;
+  transition: border-top-color 0.35s var(--ease);
   position: relative;
-  overflow: hidden;
 }
 
 .timelineCard:hover {
-  transform: translateY(-8px);
-  border-color: var(--terra);
-  box-shadow: 0 20px 45px -10px rgba(71, 35, 45, 0.12);
+  border-top-color: var(--terra);
 }
 
 .timelineCardHead {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .timelineYearPill {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: var(--wine);
-  color: var(--ivory);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
 }
 
 .timelineCard.active .timelineYearPill {
-  background: var(--terra);
+  color: var(--wine);
 }
 
 .timelineCard h3 {
   font-family: "Syne", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--wine);
-  line-height: 1.3;
-  margin-bottom: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
 }
 
 .timelineCard p {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: rgba(31, 20, 23, 0.75);
-  margin-bottom: 20px;
-  flex: 1;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(31, 20, 23, 0.65);
+  margin-bottom: 18px;
 }
 
 .timelineCardFoot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-.timelineModuleCount {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: rgba(31, 20, 23, 0.55);
 }
 
 .timelineActionLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--terra);
-  transition: gap 0.2s;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(31, 20, 23, 0.5);
+  transition: color 0.25s var(--ease), gap 0.25s var(--ease);
 }
 
 .timelineCard:hover .timelineActionLink {
+  color: var(--terra);
   gap: 10px;
 }
 
