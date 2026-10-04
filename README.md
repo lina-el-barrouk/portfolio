@@ -14,15 +14,22 @@ Then open the local URL shown by Vite.
 
 ## Admin content management
 
-An admin area is available at `#/admin` (link in the footer). It lets you add:
+An admin area is available at `#/admin` (link in the footer). Each tab manages one
+part of the site — built-in content included:
 
-- **Projects** (appended to the "Featured Work" section);
-- **Journey items** (appended to the "From Code to Security" timeline, with a detail page);
-- **Community actions** (appended to the "Beyond the Terminal" section).
+- **Projects** ("Featured Work" section);
+- **Journey items** ("From Code to Security" timeline, with a detail page);
+- **Community actions** ("Beyond the Terminal" section).
 
-Each tab also lists the entries you added with a **SUPPRIMER** button — click it twice
-(a second "CONFIRMER ?" click) to delete an entry. Only admin-added content can be deleted;
-the built-in entries stay untouched.
+Project and community forms include two extra fields — **PHOTOS** and **VIDÉOS** (one URL
+per line). Videos can be YouTube/Vimeo links (embedded automatically) or direct file URLs.
+
+Every entry — built into the site or added later — can be **MODIFIER** (the form is
+prefilled with its current values) or **SUPPRIMER** (click it twice: a second
+"CONFIRMER ?" click confirms the deletion). Built-in entries are never altered in the
+source: the API stores edits as `overrides` and removals as `deleted` markers in
+`server/data.json`, so a static deployment without the API always falls back to the
+original content.
 
 Entries are stored in `server/data.json` by a small zero-dependency Node API (`npm run server`).
 Default credentials are `admin` / `admin123` — change them with the `ADMIN_USERNAME` and
@@ -39,6 +46,14 @@ In production, serve the API behind the same domain as the site, or set `VITE_AP
 3. Replace the placeholder email `hello@linaelbarrouk.dev` with the preferred contact email.
 4. Replace the three CSS project mockups with real project screenshots when available.
 5. Update the `journeyItems` array in `src/main.jsx` to customize the detailed pages opened from the “FROM CODE TO SECURITY” timeline.
+
+## Project & community detail pages
+
+Clicking a project card or a community action card opens a dedicated detail page
+(`#/project/<id>` and `#/community/<id>`) with the full text plus a **GALERIE — PHOTOS &
+VIDÉOS** section rendering the entry's `images` and `videos` arrays. When an entry has no
+media, the gallery section is simply hidden. The content comes from the `projects` and
+`volunteerProjects` arrays in `src/main.jsx`, merged with admin overrides.
 
 ## Journey timeline pages
 

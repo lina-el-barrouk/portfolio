@@ -6,6 +6,7 @@ import portrait from "../chatgptme.png";
 
 const projects = [
   {
+    id: "p1",
     n: "01",
     title: "DiplomaChain",
     subtitle: "Secure Blockchain Diploma Verification",
@@ -20,6 +21,7 @@ const projects = [
     ],
   },
   {
+    id: "p2",
     n: "02",
     title: "Click2Learn",
     subtitle: "AI-Powered Interactive Education Hub",
@@ -34,6 +36,7 @@ const projects = [
     ],
   },
   {
+    id: "p3",
     n: "03",
     title: "Training Platform",
     subtitle: "Modular Learning & Certification Suite",
@@ -58,7 +61,6 @@ const projects = [
 const skillCategories = [
   {
     title: "Software & Architecture",
-    icon: "⚡",
     desc: "Core programming paradigms, object-oriented design, and design patterns.",
     skills: [
       "Python",
@@ -73,7 +75,6 @@ const skillCategories = [
   },
   {
     title: "Fullstack & Mobile Development",
-    icon: "🌐",
     desc: "Modern front-end frameworks, robust backends, and cross-platform APIs.",
     skills: [
       "React.js",
@@ -88,7 +89,6 @@ const skillCategories = [
   },
   {
     title: "Cybersecurity & Systems",
-    icon: "🛡️",
     desc: "Defensive architectures, hardening, protocol analysis, and threat mitigation.",
     skills: [
       "Linux Hardening",
@@ -102,7 +102,6 @@ const skillCategories = [
   },
   {
     title: "AI & Data Science",
-    icon: "🧠",
     desc: "Machine learning, computer vision, data analysis, and intelligent agents.",
     skills: [
       "Machine Learning",
@@ -116,8 +115,42 @@ const skillCategories = [
   },
 ];
 
+const softSkills = [
+  {
+    title: "Communication",
+    desc: "Translating complex technical problems into clear, actionable ideas for both technical and non-technical audiences.",
+    tags: ["Public speaking", "Technical writing", "Active listening"],
+  },
+  {
+    title: "Teamwork",
+    desc: "Working across disciplines — development, security, research — and lifting the team's output rather than only my own tasks.",
+    tags: ["Cross-functional", "Code reviews", "Pair work"],
+  },
+  {
+    title: "Leadership",
+    desc: "Driving projects from the first sketch to delivery, and coordinating community programs with volunteers and partners.",
+    tags: ["Ownership", "Mentoring", "Decision making"],
+  },
+  {
+    title: "Critical Thinking",
+    desc: "Questioning assumptions, weighing evidence and breaking ambiguous challenges into small testable hypotheses.",
+    tags: ["Analysis", "Root-cause", "Research"],
+  },
+  {
+    title: "Adaptability",
+    desc: "Learning new stacks quickly and adjusting to shifting requirements without losing quality or momentum.",
+    tags: ["Fast learner", "Curiosity", "Resilience"],
+  },
+  {
+    title: "Time Management",
+    desc: "Balancing a master's program, engineering projects and community commitments with realistic, honest planning.",
+    tags: ["Prioritization", "Deadlines", "Reliability"],
+  },
+];
+
 const volunteerProjects = [
   {
+    id: "c1",
     n: "01",
     period: "SEP 2024 — JUL 2025",
     title: "Creative Minds",
@@ -129,6 +162,7 @@ const volunteerProjects = [
     type: "education",
   },
   {
+    id: "c2",
     n: "02",
     period: "JAN 2025 — FEB 2025",
     title: "JOUD Campaign",
@@ -140,6 +174,7 @@ const volunteerProjects = [
     type: "community",
   },
   {
+    id: "c3",
     n: "03",
     period: "FEB 2025 — MAR 2025",
     title: "Ramadan Solidarity",
@@ -151,6 +186,7 @@ const volunteerProjects = [
     type: "aid",
   },
   {
+    id: "c4",
     n: "04",
     period: "APR 2025 — MAY 2025",
     title: "Harmony of Generations",
@@ -162,6 +198,7 @@ const volunteerProjects = [
     type: "care",
   },
   {
+    id: "c5",
     n: "05",
     period: "JUN 2025",
     title: "Sanad Health Mission",
@@ -176,6 +213,7 @@ const volunteerProjects = [
 
 const journeyItems = [
   {
+    id: "j1",
     slug: "bac-science-physique",
     year: "2021 — 2022",
     title: "BAC SCIENCES PHYSIQUES",
@@ -209,6 +247,7 @@ const journeyItems = [
       "Confirmer l'attrait pour les sciences informatiques et intégrer un parcours universitaire scientifique.",
   },
   {
+    id: "j2",
     slug: "first-year-deust",
     year: "2022 — 2023",
     title: "1ÈRE ANNÉE DEUST MIPC",
@@ -256,6 +295,7 @@ const journeyItems = [
       "Approfondir la programmation orientée objet, les bases de données et les architectures systèmes.",
   },
   {
+    id: "j3",
     slug: "second-year-deust",
     year: "2023 — 2024",
     title: "2ÈME ANNÉE DEUST MIPC",
@@ -303,6 +343,7 @@ const journeyItems = [
       "Rejoindre la Licence d'Ingénierie du Développement des Applications Informatiques (IDAI).",
   },
   {
+    id: "j4",
     slug: "bachelor-idai",
     year: "2024 — 2025",
     title: "LICENCE LST IDAI",
@@ -352,6 +393,7 @@ const journeyItems = [
       "Poursuivre vers un Master spécialisé en Intelligence Artificielle et Cybersécurité.",
   },
   {
+    id: "j5",
     slug: "jobintech-training",
     year: "2025 — 2026",
     title: "FORMATION JOBINTECH",
@@ -390,6 +432,7 @@ const journeyItems = [
       "Intégrer les principes de sécurité dès la phase de conception logicielle (Security by Design).",
   },
   {
+    id: "j6",
     slug: "masters-sic",
     year: "2026 — NOW",
     title: "MASTER SIC (SYSTÈMES INTELLIGENTS & CYBERSÉCURITÉ)",
@@ -469,11 +512,34 @@ async function fetchAdminContent() {
       projects: Array.isArray(data.projects) ? data.projects : [],
       journeyItems: Array.isArray(data.journeyItems) ? data.journeyItems : [],
       community: Array.isArray(data.community) ? data.community : [],
+      overrides: data.overrides || {},
+      deleted: data.deleted || {},
     };
   } catch {
     // API not running (e.g. static build): fall back to hardcoded content only.
-    return { projects: [], journeyItems: [], community: [] };
+    return null;
   }
+}
+
+/* Merge built-in content with the API copy: apply edits, drop deletions,
+   append admin-added items, and (optionally) renumber the visible sequence. */
+function mergeCollection(
+  statics,
+  dynamics = [],
+  overrides = {},
+  deleted = [],
+  renumber = false,
+) {
+  const key = (item) => item.id || item.slug || item.title;
+  const merged = [
+    ...statics
+      .filter((item) => !deleted.includes(key(item)))
+      .map((item) => ({ ...item, ...(overrides[key(item)] || {}) })),
+    ...dynamics,
+  ];
+  return renumber
+    ? merged.map((item, i) => ({ ...item, n: String(i + 1).padStart(2, "0") }))
+    : merged;
 }
 
 function Reveal({ children, delay = 0, className = "" }) {
@@ -578,8 +644,6 @@ function MailComposerMenu() {
 
 function App({ content }) {
   const [menu, setMenu] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [selectedVolunteer, setSelectedVolunteer] = useState(null);
   const [activeFilter, setActiveFilter] = useState("ALL");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -597,9 +661,28 @@ function App({ content }) {
   };
 
   const safeContent = content || { projects: [], journeyItems: [], community: [] };
-  const dynamicProjects = [...projects, ...(safeContent.projects || [])];
-  const dynamicJourneyItems = [...journeyItems, ...(safeContent.journeyItems || [])];
-  const dynamicVolunteers = [...volunteerProjects, ...(safeContent.community || [])];
+  const overrides = safeContent.overrides || {};
+  const deleted = safeContent.deleted || {};
+  const dynamicProjects = mergeCollection(
+    projects,
+    safeContent.projects || [],
+    overrides.projects,
+    deleted.projects,
+    true,
+  );
+  const dynamicJourneyItems = mergeCollection(
+    journeyItems,
+    safeContent.journeyItems || [],
+    overrides.journeyItems,
+    deleted.journeyItems,
+  );
+  const dynamicVolunteers = mergeCollection(
+    volunteerProjects,
+    safeContent.community || [],
+    overrides.community,
+    deleted.community,
+    true,
+  );
 
   const filteredProjects =
     activeFilter === "ALL"
@@ -628,6 +711,7 @@ function App({ content }) {
           <button onClick={() => go("work")}>PROJECTS</button>
           <button onClick={() => go("cyber")}>SECURITY</button>
           <button onClick={() => go("toolkit")}>TOOLKIT</button>
+          <button onClick={() => go("softskills")}>SOFT SKILLS</button>
           <button onClick={() => go("beyond")}>COMMUNITY</button>
           <button onClick={() => go("contact")}>CONTACT</button>
         </div>
@@ -669,8 +753,9 @@ function App({ content }) {
                 ["04", "WORK / PROJETS", "work"],
                 ["05", "CYBERSECURITY / DÉFENSE", "cyber"],
                 ["06", "TOOLKIT / TECHNOLOGIES", "toolkit"],
-                ["07", "COMMUNITY / ENGAGEMENT", "beyond"],
-                ["08", "CONTACT / ÉCHANGE", "contact"],
+                ["07", "SOFT SKILLS / COMPÉTENCES", "softskills"],
+                ["08", "COMMUNITY / ENGAGEMENT", "beyond"],
+                ["09", "CONTACT / ÉCHANGE", "contact"],
               ].map(([n, t, id]) => (
                 <button key={id} onClick={() => go(id)}>
                   <span className="menuNum">{n}</span>
@@ -962,10 +1047,11 @@ function App({ content }) {
 
             <div className="projectsGrid">
               {filteredProjects.map((p, i) => (
-                <Reveal key={p.title} delay={i * 0.08}>
-                  <article
+                <Reveal key={p.id} delay={i * 0.08}>
+                  <a
                     className="projectCard"
-                    onClick={() => setSelectedProject(p)}
+                    href={`#/project/${p.id}`}
+                    aria-label={`Voir les détails du projet : ${p.title}`}
                   >
                     <div className="projectCardVisual">
                       <div className="visualHeader">
@@ -998,7 +1084,7 @@ function App({ content }) {
                       <span>EXPLORE PROJECT</span>
                       <span>↗</span>
                     </div>
-                  </article>
+                  </a>
                 </Reveal>
               ))}
             </div>
@@ -1127,7 +1213,7 @@ function App({ content }) {
                 <Reveal key={cat.title} delay={i * 0.08}>
                   <div className="skillCategoryCard">
                     <div className="skillCategoryHead">
-                      <span className="catIcon">{cat.icon}</span>
+                      <span className="skillNum">{String(i + 1).padStart(2, "0")}</span>
                       <h3>{cat.title}</h3>
                     </div>
                     <p className="skillCategoryDesc">{cat.desc}</p>
@@ -1145,11 +1231,59 @@ function App({ content }) {
           </div>
         </section>
 
+        {/* ================= SOFT SKILLS ================= */}
+        <section id="softskills" className="softskills blush sectionPad">
+          <div className="sectionInner">
+            <div className="sectionMeta">
+              <span>06 — SOFT SKILLS</span>
+              <span>HOW I WORK WITH PEOPLE</span>
+            </div>
+
+            <div className="sectionHeader">
+              <Reveal>
+                <h2 className="sectionTitle">
+                  BEYOND CODE,
+                  <br />
+                  <em>HUMAN SKILLS.</em>
+                </h2>
+              </Reveal>
+              <p className="sectionDesc">
+                Technology is a team sport. These are the interpersonal
+                strengths I bring to every project — from leading a workshop to
+                untangling a hard problem with a colleague.
+              </p>
+            </div>
+
+            <div className="softSkillsGrid">
+              {softSkills.map((s, i) => (
+                <Reveal key={s.title} delay={i * 0.07}>
+                  <div className="softSkillCard">
+                    <div className="softSkillHead">
+                      <span className="softSkillNum">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3>{s.title}</h3>
+                    </div>
+                    <p className="softSkillDesc">{s.desc}</p>
+                    <div className="softSkillTags">
+                      {s.tags.map((t) => (
+                        <span key={t} className="softSkillTag">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ================= BEYOND THE CODE / COMMUNITY ================= */}
         <section id="beyond" className="beyond ivory sectionPad">
           <div className="sectionInner">
             <div className="sectionMeta">
-              <span>06 — COMMUNITY ENGAGEMENT</span>
+              <span>07 — COMMUNITY ENGAGEMENT</span>
               <span>LEADERSHIP, HUMAN VALUES &amp; IMPACT</span>
             </div>
 
@@ -1171,10 +1305,11 @@ function App({ content }) {
 
             <div className="volunteerGrid">
               {dynamicVolunteers.map((v, i) => (
-                <Reveal key={v.title} delay={i * 0.08}>
-                  <article
+                <Reveal key={v.id} delay={i * 0.08}>
+                  <a
                     className="volunteerCard"
-                    onClick={() => setSelectedVolunteer(v)}
+                    href={`#/community/${v.id}`}
+                    aria-label={`Voir les détails : ${v.title}`}
                   >
                     <div className="volunteerHead">
                       <span className="volunteerOrg">{v.org}</span>
@@ -1201,7 +1336,7 @@ function App({ content }) {
                         </span>
                       ))}
                     </div>
-                  </article>
+                  </a>
                 </Reveal>
               ))}
             </div>
@@ -1274,175 +1409,256 @@ function App({ content }) {
           <a className="footerAdmin" href="#/admin">ADMIN</a>
         </div>
       </footer>
-
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-        {selectedVolunteer && (
-          <VolunteerModal
-            volunteer={selectedVolunteer}
-            onClose={() => setSelectedVolunteer(null)}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 }
 
-/* ================= MODAL COMPONENTS ================= */
-function ProjectModal({ project, onClose }) {
+/* ================= PROJECT / COMMUNITY DETAIL PAGES ================= */
+function mediaEmbed(url) {
+  const yt = String(url).match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/,
+  );
+  if (yt) {
+    return { kind: "iframe", src: `https://www.youtube.com/embed/${yt[1]}` };
+  }
+  const vimeo = String(url).match(/vimeo\.com\/(\d+)/);
+  if (vimeo) {
+    return { kind: "iframe", src: `https://player.vimeo.com/video/${vimeo[1]}` };
+  }
+  return { kind: "video", src: url };
+}
+
+function MediaGallery({ images, videos }) {
+  const img = Array.isArray(images) ? images : [];
+  const vid = Array.isArray(videos) ? videos : [];
+  if (!img.length && !vid.length) return null;
   return (
-    <motion.div
-      className="projectModal"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="modalContent"
-        initial={{ scale: 0.92, y: 30 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.92, y: 30 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          className="modalClose"
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-          ×
-        </button>
-
-        <div className="modalVisualHead">
-          <div className="modalMeta">
-            <span className="modalBadge">PROJECT {project.n}</span>
-            <span
-              style={{
-                fontSize: "11px",
-                letterSpacing: "0.1em",
-                color: "var(--blush)",
-              }}
+    <Reveal delay={0.15}>
+      <div className="detailCard">
+        <div className="cardHeader">
+          <span className="cardLabel">GALERIE — PHOTOS &amp; VIDÉOS</span>
+          <span className="cardCount">{img.length + vid.length} médias</span>
+        </div>
+        <div className="detailMediaGrid">
+          {img.map((src) => (
+            <a
+              key={src}
+              className="detailMediaImg"
+              href={src}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              SPECIFICATION
-            </span>
-          </div>
-          <h3>{project.title}</h3>
-          <h4>{project.subtitle}</h4>
+              <img src={src} alt="" loading="lazy" />
+            </a>
+          ))}
+          {vid.map((src) => {
+            const media = mediaEmbed(src);
+            return (
+              <div key={src} className="detailMediaVideo">
+                {media.kind === "iframe" ? (
+                  <iframe
+                    src={media.src}
+                    title={src}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video src={media.src} controls playsInline preload="metadata" />
+                )}
+              </div>
+            );
+          })}
         </div>
-
-        <div className="modalBody">
-          <p>{project.desc}</p>
-
-          <h5 className="modalSubtitle">KEY ARCHITECTURAL HIGHLIGHTS</h5>
-          <ul className="modalHighlights">
-            {project.highlights.map((h) => (
-              <li key={h}>{h}</li>
-            ))}
-          </ul>
-
-          <h5 className="modalSubtitle">TECHNOLOGY STACK</h5>
-          <div className="tagsRow">
-            {project.tags.map((t) => (
-              <span
-                key={t}
-                className="tagPill"
-                style={{
-                  color: "var(--wine)",
-                  background: "rgba(71,35,45,0.06)",
-                }}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </Reveal>
   );
 }
 
-function VolunteerModal({ volunteer, onClose }) {
+function DetailActions() {
   return (
-    <motion.div
-      className="projectModal"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="modalContent"
-        initial={{ scale: 0.92, y: 30 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.92, y: 30 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          className="modalClose"
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-          ×
-        </button>
-
-        <div className="modalVisualHead">
-          <div className="modalMeta">
-            <span className="modalBadge">{volunteer.org}</span>
-            <span
-              style={{
-                fontSize: "11px",
-                letterSpacing: "0.1em",
-                color: "var(--blush)",
-              }}
-            >
-              {volunteer.period}
-            </span>
-          </div>
-          <h3>{volunteer.title}</h3>
-          <h4>{volunteer.subtitle}</h4>
+    <Reveal delay={0.2}>
+      <div className="detailCard goalCard">
+        <div className="goalActions">
+          <a className="pill light" href="#/">
+            ← RETOUR AU PORTFOLIO
+          </a>
         </div>
+      </div>
+    </Reveal>
+  );
+}
 
-        <div className="modalBody">
-          <p>{volunteer.desc}</p>
-
-          <h5 className="modalSubtitle">COMMUNITY IMPACT</h5>
-          <div
-            className="volunteerImpactPill"
-            style={{ fontSize: "13px", padding: "10px 16px" }}
-          >
-            <span>✦</span>
-            <span>{volunteer.impact}</span>
+function ProjectDetail({ project }) {
+  const highlights = project.highlights || [];
+  const tags = project.tags || [];
+  return (
+    <div className="journeyDetailPage">
+      <header className="detailNav">
+        <a className="brand" href="#/" aria-label="Back to home">
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
           </div>
+        </a>
+        <a className="backLink" href="#/">
+          ← RETOUR AU PORTFOLIO
+        </a>
+      </header>
 
-          <h5 className="modalSubtitle" style={{ marginTop: "24px" }}>
-            CORE COMPETENCIES DEVELOPED
-          </h5>
-          <div className="tagsRow">
-            {volunteer.tags.map((t) => (
-              <span
-                key={t}
-                className="tagPill"
-                style={{
-                  color: "var(--wine)",
-                  background: "rgba(71,35,45,0.06)",
-                }}
-              >
-                {t}
-              </span>
-            ))}
+      <main className="detailContainer">
+        <Reveal>
+          <div className="detailHeroCard">
+            <div className="detailMetaRow">
+              <span className="detailBadge">PROJECT {project.n}</span>
+              <span className="detailSubBadge">SPÉCIFICATION TECHNIQUE</span>
+            </div>
+            <h1 className="detailMainTitle">{project.title}</h1>
+            <p className="detailSubtitle">{project.subtitle}</p>
           </div>
+        </Reveal>
+
+        <div className="detailBodyGrid">
+          <Reveal delay={0.05}>
+            <div className="detailCard">
+              <div className="cardHeader">
+                <span className="cardLabel">01 — PRÉSENTATION DU PROJET</span>
+              </div>
+              <p className="detailOverviewText">{project.desc}</p>
+            </div>
+          </Reveal>
+
+          {highlights.length > 0 && (
+            <Reveal delay={0.1}>
+              <div className="detailCard">
+                <div className="cardHeader">
+                  <span className="cardLabel">02 — POINTS FORTS CLÉS</span>
+                </div>
+                <ul className="detailExpList">
+                  {highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          )}
+
+          {tags.length > 0 && (
+            <Reveal delay={0.12}>
+              <div className="detailCard">
+                <div className="cardHeader">
+                  <span className="cardLabel">03 — STACK TECHNOLOGIQUE</span>
+                </div>
+                <div className="detailTagsCloud">
+                  {tags.map((t) => (
+                    <span key={t} className="skillTag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          <MediaGallery images={project.images} videos={project.videos} />
+          <DetailActions />
         </div>
-      </motion.div>
-    </motion.div>
+      </main>
+
+      <footer className="footer">
+        <div className="footerBrand">
+          <strong>LINA EL BARROUK</strong>
+          <span>Software Developer · AI · Cybersecurity</span>
+        </div>
+        <div className="footerNote">© 2026 Lina El Barrouk</div>
+      </footer>
+    </div>
+  );
+}
+
+function CommunityDetail({ volunteer }) {
+  const tags = volunteer.tags || [];
+  return (
+    <div className="journeyDetailPage">
+      <header className="detailNav">
+        <a className="brand" href="#/" aria-label="Back to home">
+          <div className="brandDot"></div>
+          <div className="brandName">
+            LINA<span>EL BARROUK</span>
+          </div>
+        </a>
+        <a className="backLink" href="#/">
+          ← RETOUR AU PORTFOLIO
+        </a>
+      </header>
+
+      <main className="detailContainer">
+        <Reveal>
+          <div className="detailHeroCard">
+            <div className="detailMetaRow">
+              <span className="detailBadge">{volunteer.org || "ENGAGEMENT"}</span>
+              {volunteer.period && (
+                <span className="detailSubBadge">{volunteer.period}</span>
+              )}
+            </div>
+            <h1 className="detailMainTitle">{volunteer.title}</h1>
+            <p className="detailSubtitle">{volunteer.subtitle}</p>
+          </div>
+        </Reveal>
+
+        <div className="detailBodyGrid">
+          <Reveal delay={0.05}>
+            <div className="detailCard">
+              <div className="cardHeader">
+                <span className="cardLabel">01 — DESCRIPTION DE L'ACTION</span>
+              </div>
+              <p className="detailOverviewText">{volunteer.desc}</p>
+            </div>
+          </Reveal>
+
+          {volunteer.impact && (
+            <Reveal delay={0.1}>
+              <div className="detailCard">
+                <div className="cardHeader">
+                  <span className="cardLabel">02 — IMPACT COMMUNAUTAIRE</span>
+                </div>
+                <div className="volunteerImpactPill">
+                  <span>✦</span>
+                  <span>{volunteer.impact}</span>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          {tags.length > 0 && (
+            <Reveal delay={0.12}>
+              <div className="detailCard">
+                <div className="cardHeader">
+                  <span className="cardLabel">03 — DOMAINES D'ENGAGEMENT</span>
+                </div>
+                <div className="detailTagsCloud">
+                  {tags.map((t) => (
+                    <span key={t} className="skillTag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          <MediaGallery images={volunteer.images} videos={volunteer.videos} />
+          <DetailActions />
+        </div>
+      </main>
+
+      <footer className="footer">
+        <div className="footerBrand">
+          <strong>LINA EL BARROUK</strong>
+          <span>Software Developer · AI · Cybersecurity</span>
+        </div>
+        <div className="footerNote">© 2026 Lina El Barrouk</div>
+      </footer>
+    </div>
   );
 }
 
@@ -1656,26 +1872,139 @@ function JourneyNotFound() {
 const ADMIN_SECTIONS = {
   project: {
     endpoint: "projects",
-    listTitle: "PROJETS AJOUTÉS",
+    listTitle: "PROJETS",
     items: (c) => c.projects,
     keyOf: (it) => it.id || it.title,
     metaOf: (it) => [it.subtitle, it.period].filter(Boolean).join(" · "),
   },
   journey: {
     endpoint: "journey",
-    listTitle: "ÉTAPES DE PARCOURS AJOUTÉES",
+    listTitle: "ÉTAPES DE PARCOURS",
     items: (c) => c.journeyItems,
     keyOf: (it) => it.id || it.slug,
     metaOf: (it) => it.year,
   },
   community: {
     endpoint: "community",
-    listTitle: "ACTIONS COMMUNAUTAIRES AJOUTÉES",
+    listTitle: "ACTIONS COMMUNAUTAIRES",
     items: (c) => c.community,
     keyOf: (it) => it.id || it.title,
     metaOf: (it) => [it.org, it.period].filter(Boolean).join(" · "),
   },
 };
+
+/* ================= ADMIN EDITION HELPERS ================= */
+function splitList(value, separator) {
+  return String(value || "")
+    .split(separator)
+    .map((v) => v.trim())
+    .filter(Boolean);
+}
+
+/* Form values (strings) -> full API payload, merged onto the original item so
+   fields the form does not cover (type, slug, id…) are preserved. */
+function buildPayload(section, original, values) {
+  if (section === "project") {
+    return {
+      ...original,
+      title: values.title || "",
+      subtitle: values.subtitle || "",
+      desc: values.desc || "",
+      tags: splitList(values.tags, ","),
+      highlights: splitList(values.highlights, "\n"),
+      images: splitList(values.images, "\n"),
+      videos: splitList(values.videos, "\n"),
+    };
+  }
+  if (section === "community") {
+    return {
+      ...original,
+      period: values.period || "",
+      title: values.title || "",
+      subtitle: values.subtitle || "",
+      org: values.org || "",
+      desc: values.desc || "",
+      impact: values.impact || "",
+      tags: splitList(values.tags, ","),
+      images: splitList(values.images, "\n"),
+      videos: splitList(values.videos, "\n"),
+    };
+  }
+  // journey: rebuild semesters from the flat modules textarea, keeping the
+  // original semester names/grouping when the module count is unchanged.
+  const lines = splitList(values.modules, "\n");
+  const originalSemesters = Array.isArray(original.semesters)
+    ? original.semesters
+    : [];
+  const counts = originalSemesters.map((s) => (s.modules || []).length);
+  const total = counts.reduce((a, b) => a + b, 0);
+  let semesters;
+  if (originalSemesters.length && total === lines.length && total > 0) {
+    let cursor = 0;
+    semesters = originalSemesters.map((s, i) => {
+      const group = lines.slice(cursor, cursor + counts[i]);
+      cursor += counts[i];
+      return { ...s, modules: group };
+    });
+  } else {
+    semesters = [{ name: "Modules", modules: lines }];
+  }
+  return {
+    ...original,
+    year: values.year || "",
+    title: values.title || "",
+    desc: values.desc || "",
+    institutionName: values.institutionName || "",
+    institutionLink: values.institutionLink || "",
+    overview: values.overview || "",
+    goals: values.goals || "",
+    skills: splitList(values.skills, ","),
+    experiences: splitList(values.experiences, "\n"),
+    semesters,
+  };
+}
+
+/* Full item -> pre-filled form values (arrays flattened to strings). */
+function itemToFormValues(section, item) {
+  if (section === "project") {
+    return {
+      title: item.title || "",
+      subtitle: item.subtitle || "",
+      desc: item.desc || "",
+      tags: (item.tags || []).join(", "),
+      highlights: (item.highlights || []).join("\n"),
+      images: (item.images || []).join("\n"),
+      videos: (item.videos || []).join("\n"),
+    };
+  }
+  if (section === "community") {
+    return {
+      period: item.period || "",
+      title: item.title || "",
+      subtitle: item.subtitle || "",
+      org: item.org || "",
+      desc: item.desc || "",
+      impact: item.impact || "",
+      tags: (item.tags || []).join(", "),
+      images: (item.images || []).join("\n"),
+      videos: (item.videos || []).join("\n"),
+    };
+  }
+  return {
+    year: item.year || "",
+    title: item.title || "",
+    desc: item.desc || "",
+    institutionName: item.institutionName || "",
+    institutionLink: item.institutionLink || "",
+    overview: item.overview || "",
+    modules: (item.semesters || [])
+      .flatMap((s) => s.modules || [])
+      .join("\n"),
+    skills: (item.skills || []).join(", "),
+    experiences: (item.experiences || []).join("\n"),
+    goals: item.goals || "",
+  };
+}
 
 /* ================= ADMIN PAGE ================= */
 function AdminPage({ onContentChanged }) {
@@ -1690,6 +2019,7 @@ function AdminPage({ onContentChanged }) {
   const [sending, setSending] = useState(false);
   const [deleting, setDeleting] = useState("");
   const [notice, setNotice] = useState("");
+  const [editing, setEditing] = useState(null);
   const [content, setContent] = useState({
     projects: [],
     journeyItems: [],
@@ -1697,7 +2027,37 @@ function AdminPage({ onContentChanged }) {
   });
 
   const refresh = () => {
-    fetchAdminContent().then(setContent);
+    fetchAdminContent().then((data) => {
+      const d = data || {
+        projects: [],
+        journeyItems: [],
+        community: [],
+        overrides: {},
+        deleted: {},
+      };
+      setContent({
+        projects: mergeCollection(
+          projects,
+          d.projects,
+          d.overrides.projects,
+          d.deleted.projects,
+          true,
+        ),
+        journeyItems: mergeCollection(
+          journeyItems,
+          d.journeyItems,
+          d.overrides.journeyItems,
+          d.deleted.journeyItems,
+        ),
+        community: mergeCollection(
+          volunteerProjects,
+          d.community,
+          d.overrides.community,
+          d.deleted.community,
+          true,
+        ),
+      });
+    });
   };
 
   useEffect(() => {
@@ -1723,22 +2083,35 @@ function AdminPage({ onContentChanged }) {
     }
   };
 
-  const submit = async (endpoint, payload) => {
+  const submit = async (endpoint, values, editId) => {
     setSending(true);
     setError("");
     setStatus("");
     try {
-      const res = await fetch(`${API_BASE}/${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const payload =
+        editId && editing ? buildPayload(section, editing, values) : values;
+      const res = await fetch(
+        editId
+          ? `${API_BASE}/${endpoint}/${encodeURIComponent(editId)}`
+          : `${API_BASE}/${endpoint}`,
+        {
+          method: editId ? "PUT" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
         },
-        body: JSON.stringify(payload),
-      });
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Envoi impossible.");
-      setStatus("✅ Contenu ajouté avec succès.");
+      if (editId) {
+        setNotice(`✏️ « ${payload.title} » a été modifié.`);
+        setTimeout(() => setNotice(""), 4000);
+        setEditing(null);
+      } else {
+        setStatus("✅ Contenu ajouté avec succès.");
+      }
       refresh();
       if (onContentChanged) onContentChanged();
       return true;
@@ -1753,6 +2126,15 @@ function AdminPage({ onContentChanged }) {
   const logout = () => {
     sessionStorage.removeItem(ADMIN_SESSION_KEY);
     setToken("");
+  };
+
+  const startEdit = (item) => {
+    setEditing(item);
+    requestAnimationFrame(() => {
+      document
+        .querySelector(".adminForm")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
   const remove = async (key, title) => {
@@ -1770,6 +2152,7 @@ function AdminPage({ onContentChanged }) {
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Suppression impossible.");
+      if (editing && config.keyOf(editing) === key) setEditing(null);
       setNotice(`🗑 « ${title} » a été supprimé.`);
       setTimeout(() => setNotice(""), 4000);
       refresh();
@@ -1862,7 +2245,10 @@ function AdminPage({ onContentChanged }) {
                   <button
                     key={key}
                     className={`filterBtn ${section === key ? "active" : ""}`}
-                    onClick={() => setSection(key)}
+                    onClick={() => {
+                      setSection(key);
+                      setEditing(null);
+                    }}
                   >
                     {label}
                   </button>
@@ -1876,8 +2262,18 @@ function AdminPage({ onContentChanged }) {
             {section === "project" && (
               <Reveal delay={0.1}>
                 <AdminForm
+                  key={editing ? `edit-${editing.id}` : "create"}
                   endpoint="projects"
-                  title="AJOUTER UN PROJET"
+                  title={
+                    editing
+                      ? `MODIFIER — ${editing.title}`
+                      : "AJOUTER UN PROJET"
+                  }
+                  initial={
+                    editing ? itemToFormValues("project", editing) : undefined
+                  }
+                  editId={editing?.id}
+                  onCancel={() => setEditing(null)}
                   submit={submit}
                   sending={sending}
                   fields={[
@@ -1886,6 +2282,8 @@ function AdminPage({ onContentChanged }) {
                     { name: "desc", label: "Description *", textarea: true, required: true },
                     { name: "tags", label: "Tags (séparés par des virgules)" },
                     { name: "highlights", label: "Points forts (une ligne par point)", textarea: true },
+                    { name: "images", label: "Photos (une URL par ligne)", textarea: true },
+                    { name: "videos", label: "Vidéos (une URL par ligne : YouTube, Vimeo ou fichier)", textarea: true },
                   ]}
                 />
               </Reveal>
@@ -1894,8 +2292,18 @@ function AdminPage({ onContentChanged }) {
             {section === "journey" && (
               <Reveal delay={0.1}>
                 <AdminForm
+                  key={editing ? `edit-${editing.id}` : "create"}
                   endpoint="journey"
-                  title="AJOUTER UNE ÉTAPE DE PARCOURS"
+                  title={
+                    editing
+                      ? `MODIFIER — ${editing.title}`
+                      : "AJOUTER UNE ÉTAPE DE PARCOURS"
+                  }
+                  initial={
+                    editing ? itemToFormValues("journey", editing) : undefined
+                  }
+                  editId={editing?.id}
+                  onCancel={() => setEditing(null)}
                   submit={submit}
                   sending={sending}
                   fields={[
@@ -1917,8 +2325,18 @@ function AdminPage({ onContentChanged }) {
             {section === "community" && (
               <Reveal delay={0.1}>
                 <AdminForm
+                  key={editing ? `edit-${editing.id}` : "create"}
                   endpoint="community"
-                  title="AJOUTER UNE ACTION COMMUNAUTAIRE"
+                  title={
+                    editing
+                      ? `MODIFIER — ${editing.title}`
+                      : "AJOUTER UNE ACTION COMMUNAUTAIRE"
+                  }
+                  initial={
+                    editing ? itemToFormValues("community", editing) : undefined
+                  }
+                  editId={editing?.id}
+                  onCancel={() => setEditing(null)}
                   submit={submit}
                   sending={sending}
                   fields={[
@@ -1929,6 +2347,8 @@ function AdminPage({ onContentChanged }) {
                     { name: "desc", label: "Description *", textarea: true, required: true },
                     { name: "impact", label: "Impact" },
                     { name: "tags", label: "Tags (séparés par des virgules)" },
+                    { name: "images", label: "Photos (une URL par ligne)", textarea: true },
+                    { name: "videos", label: "Vidéos (une URL par ligne : YouTube, Vimeo ou fichier)", textarea: true },
                   ]}
                 />
               </Reveal>
@@ -1940,6 +2360,10 @@ function AdminPage({ onContentChanged }) {
                 config={ADMIN_SECTIONS[section]}
                 items={ADMIN_SECTIONS[section].items(content)}
                 deleting={deleting}
+                editingId={
+                  editing ? ADMIN_SECTIONS[section].keyOf(editing) : ""
+                }
+                onEdit={startEdit}
                 onRemove={remove}
               />
             </Reveal>
@@ -1958,9 +2382,19 @@ function AdminPage({ onContentChanged }) {
   );
 }
 
-function AdminForm({ endpoint, title, fields, submit, sending }) {
-  const [values, setValues] = useState({});
+function AdminForm({
+  endpoint,
+  title,
+  fields,
+  submit,
+  sending,
+  initial,
+  editId,
+  onCancel,
+}) {
+  const [values, setValues] = useState(initial || {});
   const [done, setDone] = useState("");
+  const isEdit = Boolean(editId);
 
   const setField = (name, value) => {
     setValues((v) => ({ ...v, [name]: value }));
@@ -1968,8 +2402,8 @@ function AdminForm({ endpoint, title, fields, submit, sending }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const ok = await submit(endpoint, values);
-    if (ok) {
+    const ok = await submit(endpoint, values, editId);
+    if (ok && !isEdit) {
       setDone(title);
       setValues({});
       setTimeout(() => setDone(""), 4000);
@@ -1977,7 +2411,7 @@ function AdminForm({ endpoint, title, fields, submit, sending }) {
   };
 
   return (
-    <form className="adminCard" onSubmit={handleSubmit}>
+    <form className="adminCard adminForm" onSubmit={handleSubmit}>
       <div className="cardHeader">
         <span className="cardLabel">{title}</span>
       </div>
@@ -2006,15 +2440,25 @@ function AdminForm({ endpoint, title, fields, submit, sending }) {
       </div>
       <div className="adminFormFoot">
         <button className="pill light adminSubmit" type="submit" disabled={sending}>
-          {sending ? "ENVOI…" : "AJOUTER"} <span>↗</span>
+          {sending ? "ENVOI…" : isEdit ? "ENREGISTRER" : "AJOUTER"} <span>↗</span>
         </button>
+        {isEdit && onCancel && (
+          <button
+            className="adminCancel"
+            type="button"
+            onClick={onCancel}
+            disabled={sending}
+          >
+            ANNULER
+          </button>
+        )}
         {done && <span className="adminSuccess">✅ Contenu ajouté avec succès.</span>}
       </div>
     </form>
   );
 }
 
-function AdminList({ config, items, deleting, onRemove }) {
+function AdminList({ config, items, deleting, editingId, onEdit, onRemove }) {
   const [arming, setArming] = useState("");
 
   // Clic 1 = armer le bouton, clic 2 (sous 4s) = confirmer la suppression.
@@ -2036,8 +2480,9 @@ function AdminList({ config, items, deleting, onRemove }) {
       </div>
       {items.length === 0 ? (
         <p className="adminEmpty">
-          Aucun élément ajouté pour l'instant. Tout contenu ajouté via ce
-          formulaire apparaîtra ici et pourra être supprimé.
+          Aucun contenu dans cette section pour le moment. Ajoutez-en via le
+          formulaire ci-dessus : il apparaîtra ici et pourra être modifié ou
+          supprimé.
         </p>
       ) : (
         <ul className="adminList">
@@ -2046,23 +2491,36 @@ function AdminList({ config, items, deleting, onRemove }) {
             const meta = config.metaOf(item);
             const armed = arming === key;
             return (
-              <li className="adminListItem" key={key || i}>
+              <li
+                className={`adminListItem${editingId === key ? " editing" : ""}`}
+                key={key || i}
+              >
                 <div className="adminListInfo">
                   <strong>{item.title}</strong>
                   {meta && <span>{meta}</span>}
                 </div>
-                <button
-                  type="button"
-                  className={`adminDelete${armed ? " armed" : ""}`}
-                  disabled={deleting === key}
-                  onClick={() => handleClick(key, item.title)}
-                >
-                  {deleting === key
-                    ? "SUPPRESSION…"
-                    : armed
-                      ? "CONFIRMER ?"
-                      : "SUPPRIMER"}
-                </button>
+                <div className="adminRowActions">
+                  <button
+                    type="button"
+                    className="adminEdit"
+                    disabled={deleting === key}
+                    onClick={() => onEdit(item)}
+                  >
+                    {editingId === key ? "EN ÉDITION" : "MODIFIER"}
+                  </button>
+                  <button
+                    type="button"
+                    className={`adminDelete${armed ? " armed" : ""}`}
+                    disabled={deleting === key}
+                    onClick={() => handleClick(key, item.title)}
+                  >
+                    {deleting === key
+                      ? "SUPPRESSION…"
+                      : armed
+                        ? "CONFIRMER ?"
+                        : "SUPPRIMER"}
+                  </button>
+                </div>
               </li>
             );
           })}
@@ -2101,13 +2559,50 @@ function PortfolioRouter() {
     return <AdminPage onContentChanged={() => setReloadKey((k) => k + 1)} />;
   }
 
+  const safeContent = content || {
+    projects: [],
+    journeyItems: [],
+    community: [],
+  };
+  const ov = safeContent.overrides || {};
+  const del = safeContent.deleted || {};
+
+  const projectKey = hash.match(/^#\/project\/([^/]+)$/)?.[1];
+  if (projectKey) {
+    const found = mergeCollection(
+      projects,
+      safeContent.projects || [],
+      ov.projects,
+      del.projects,
+      true,
+    ).find((p) => p.id === projectKey);
+    return found ? <ProjectDetail project={found} /> : <JourneyNotFound />;
+  }
+
+  const communityKey = hash.match(/^#\/community\/([^/]+)$/)?.[1];
+  if (communityKey) {
+    const found = mergeCollection(
+      volunteerProjects,
+      safeContent.community || [],
+      ov.community,
+      del.community,
+      true,
+    ).find((v) => v.id === communityKey);
+    return found ? <CommunityDetail volunteer={found} /> : <JourneyNotFound />;
+  }
+
   const journeySlug = hash.match(/^#\/journey\/([^/]+)$/)?.[1];
 
   if (!journeySlug) {
     return hash.startsWith("#/journey/") ? <JourneyNotFound /> : <App content={content} />;
   }
 
-  const allJourneyItems = [...journeyItems, ...((content || {}).journeyItems || [])];
+  const allJourneyItems = mergeCollection(
+    journeyItems,
+    safeContent.journeyItems || [],
+    ov.journeyItems,
+    del.journeyItems,
+  );
   const item = allJourneyItems.find(
     (journeyItem) => journeyItem.slug === journeySlug,
   );

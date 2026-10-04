@@ -208,7 +208,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 6vh 8vw;
+  padding: 4vh 8vw;
+  overflow-y: auto;
 }
 
 .menuHeader {
@@ -237,9 +238,10 @@ a {
 .menuItems {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   max-width: 700px;
-  margin: 40px 0;
+  margin: 20px 0;
+  flex-shrink: 0;
 }
 
 .menuItems button {
@@ -248,23 +250,24 @@ a {
   justify-content: space-between;
   text-align: left;
   font-family: "Syne", sans-serif;
-  font-size: clamp(36px, 5vw, 68px);
+  font-size: clamp(24px, 4vh, 42px);
+  line-height: 1.15;
   font-weight: 700;
   color: rgba(248, 245, 239, 0.6);
-  padding: 12px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(248, 245, 239, 0.1);
   transition: all 0.35s var(--ease);
 }
 
 .menuItems button span.menuNum {
   font-family: "JetBrains Mono", monospace;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--terra);
   font-weight: 500;
 }
 
 .menuItems button span.menuArrow {
-  font-size: 28px;
+  font-size: 22px;
   opacity: 0;
   transform: translateX(-15px);
   transition: all 0.35s var(--ease);
@@ -287,11 +290,39 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   color: rgba(248, 245, 239, 0.55);
   border-top: 1px solid rgba(248, 245, 239, 0.1);
-  padding-top: 24px;
+  padding-top: 16px;
+  flex-shrink: 0;
+}
+
+/* Menu plein écran : sur petit écran les libellés longs passent en 2 lignes,
+   on réduit encore pour que les 9 sections tiennent sans défilement. */
+@media (max-width: 640px) {
+  .menuOverlay {
+    padding: 3vh 6vw;
+  }
+  .menuItems {
+    gap: 4px;
+    margin: 14px 0;
+  }
+  .menuItems button {
+    font-size: 21px;
+    padding: 7px 0;
+  }
+  .menuItems button span.menuNum {
+    font-size: 11px;
+  }
+  .menuItems button span.menuArrow {
+    font-size: 18px;
+  }
+  .menuFoot {
+    font-size: 10px;
+    gap: 8px;
+    padding-top: 12px;
+  }
 }
 
 /* ==========================================================================
@@ -1202,72 +1233,180 @@ a {
 /* ==========================================================================
    TOOLKIT / SKILLS
    ========================================================================== */
+/* ==========================================================================
+   TECHNICAL TOOLKIT — même traitement éditorial que les soft skills :
+   pas de carte pleine, un filet fin, numérotation mono, tags en texte.
+   ========================================================================== */
 .skillsCategoriesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 40px 36px;
 }
 
 .skillCategoryCard {
-  background: var(--ivory);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 30px;
-  transition: all 0.3s var(--ease);
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(71, 35, 45, 0.3);
+  border-radius: 0;
+  padding: 20px 0 0;
+  transition: border-color 0.35s var(--ease);
 }
 
 .skillCategoryCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 35px -10px rgba(71, 35, 45, 0.1);
-  border-color: var(--wine);
+  transform: none;
+  box-shadow: none;
+  border-top-color: var(--terra);
 }
 
 .skillCategoryHead {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
 }
 
-.skillCategoryHead .catIcon {
-  font-size: 24px;
+.skillCategoryHead .skillNum {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--terra);
 }
 
 .skillCategoryHead h3 {
   font-family: "Syne", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--wine);
 }
 
 .skillCategoryDesc {
-  font-size: 13px;
-  color: rgba(31, 20, 23, 0.65);
-  margin-bottom: 20px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(31, 20, 23, 0.72);
+  margin-bottom: 16px;
 }
 
 .skillPillsWrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  gap: 6px 0;
 }
 
 .skillPill {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(71, 35, 45, 0.05);
-  border: 1px solid rgba(71, 35, 45, 0.12);
-  color: var(--wine);
-  transition: all 0.25s var(--ease);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(71, 35, 45, 0.72);
+}
+
+.skillPill:not(:last-child)::after {
+  content: "·";
+  margin: 0 10px;
+  color: rgba(71, 35, 45, 0.4);
 }
 
 .skillPill:hover {
-  background: var(--wine);
-  color: var(--ivory);
-  border-color: var(--wine);
-  transform: translateY(-2px);
+  background: none;
+  color: var(--wine);
+  border-color: transparent;
+  transform: none;
+}
+
+/* ==========================================================================
+   SOFT SKILLS — style éditorial minimal : pas de carte pleine, seulement
+   un filet fin en tête de bloc, numérotation mono et tags en texte.
+   ========================================================================== */
+.softSkillsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 36px;
+}
+
+.softSkillCard {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(71, 35, 45, 0.3);
+  border-radius: 0;
+  padding: 20px 0 0;
+  transition: border-color 0.35s var(--ease);
+}
+
+.softSkillCard:hover {
+  transform: none;
+  box-shadow: none;
+  border-top-color: var(--terra);
+}
+
+.softSkillHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.softSkillNum {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--terra);
+}
+
+.softSkillHead h3 {
+  font-family: "Syne", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--wine);
+}
+
+.softSkillDesc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(31, 20, 23, 0.72);
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.softSkillTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
+}
+
+.softSkillTag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(71, 35, 45, 0.72);
+}
+
+.softSkillTag:not(:last-child)::after {
+  content: "·";
+  margin: 0 10px;
+  color: rgba(71, 35, 45, 0.4);
+}
+
+.softSkillTag:hover {
+  background: none;
+  color: var(--wine);
+  border-color: transparent;
 }
 
 /* ==========================================================================
@@ -1794,6 +1933,30 @@ a {
   color: rgba(248, 245, 239, 0.9);
 }
 
+/* Impact block on dark detail pages (the base .volunteerImpactPill is meant
+   for the light cards of the home page) */
+.detailCard .volunteerImpactPill {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: rgba(248, 245, 239, 0.92);
+  background: rgba(248, 245, 239, 0.07);
+  border: 1px solid rgba(248, 245, 239, 0.14);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 0;
+}
+
+.detailCard .volunteerImpactPill > span:first-child {
+  color: var(--terra);
+  flex-shrink: 0;
+}
+
 .semestersGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -2130,6 +2293,61 @@ a {
   cursor: wait;
 }
 
+.adminRowActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.adminEdit {
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--wine);
+  background: rgba(71, 35, 45, 0.06);
+  border: 1px solid rgba(71, 35, 45, 0.35);
+  border-radius: 999px;
+  padding: 8px 16px;
+  transition: all 0.25s var(--ease);
+}
+
+.adminEdit:hover {
+  background: var(--wine);
+  color: var(--ivory);
+  border-color: var(--wine);
+}
+
+.adminEdit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.adminListItem.editing {
+  border-color: var(--terra);
+  background: rgba(178, 63, 30, 0.05);
+}
+
+.adminCancel {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(31, 20, 23, 0.6);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  transition: all 0.25s var(--ease);
+}
+
+.adminCancel:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
 @media (max-width: 950px) {
   .adminGrid {
     grid-template-columns: 1fr;
@@ -2137,11 +2355,98 @@ a {
   .adminCard {
     padding: 24px 20px;
   }
+  .adminListItem {
+    flex-wrap: wrap;
+  }
+  .adminRowActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* ==========================================================================
+   PAGES DÉTAIL — GALÉRIE PHOTOS / VIDÉOS (projets & communauté)
+   ========================================================================== */
+.detailMediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.detailMediaImg {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(248, 245, 239, 0.14);
+  background: rgba(248, 245, 239, 0.06);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.detailMediaImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s var(--ease);
+}
+
+.detailMediaImg:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+.detailMediaImg:hover img {
+  transform: scale(1.05);
+}
+
+.detailMediaVideo {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(248, 245, 239, 0.14);
+  background: #140a0e;
+}
+
+.detailMediaVideo iframe,
+.detailMediaVideo video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
+/* 8 liens de navigation : on resserre progressivement pour éviter le
+   débordement de la pilule entre 981px et 1310px de largeur d'écran. */
+@media (max-width: 1310px) {
+  .navlinks {
+    gap: 4px;
+  }
+  .navlinks button {
+    padding: 8px 9px;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 1115px) {
+  .statusPill {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .navlinks {
+    display: none;
+  }
+}
+
 @media (max-width: 950px) {
   .nav {
     width: 94vw;
@@ -2155,6 +2460,7 @@ a {
   .cyberGrid,
   .projectsGrid,
   .skillsCategoriesGrid,
+  .softSkillsGrid,
   .volunteerGrid {
     grid-template-columns: 1fr;
     gap: 40px;

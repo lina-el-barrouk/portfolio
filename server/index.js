@@ -5,7 +5,12 @@
 //   POST /api/projects         (admin) add a project
 //   POST /api/journey          (admin) add a journey item
 //   POST /api/community        (admin) add a community/volunteer item
-//   DELETE /api/projects|journey|community/<id|slug|title>  (admin) remove an added item
+//   PUT    /api/projects|journey|community/<id>  (admin) update an item (built-in or added)
+//   DELETE /api/projects|journey|community/<id>  (admin) remove an item (built-in or added)
+//
+// Built-in (static) content lives in the frontend bundle; for those items the
+// server only stores an "override" (edited version) and a "deleted" marker,
+// both keyed by the item's stable id.
 //
 // Storage: data.json next to this file (created on first write).
 // Run with: npm run server  (default port 3001, override with PORT env var)
@@ -59,11 +64,27 @@ function readBody(req) {
 }
 
 function loadData() {
+  const empty = {
+    projects: [],
+    journeyItems: [],
+    community: [],
+    overrides: { projects: {}, journeyItems: {}, community: {} },
+    deleted: { projects: [], journeyItems: [], community: [] },
+  };
+  let data;
   try {
-    return JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
+    data = JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
   } catch {
-    return { projects: [], journeyItems: [], community: [] };
+    return empty;
   }
+  data.overrides = data.overrides || {};
+  data.deleted = data.deleted || {};
+  for (const c of COLLECTIONS) {
+    if (!Array.isArray(data[c])) data[c] = [];
+    data.overrides[c] = data.overrides[c] || {};
+    data.deleted[c] = Array.isArray(data.deleted[c]) ? data.deleted[c] : [];
+  }
+  return data;
 }
 
 function saveData(data) {
@@ -100,6 +121,18 @@ function slugify(text, fallback) {
   return slug || fallback;
 }
 
+const COLLECTIONS = ["projects", "journeyItems", "community"];
+
+function matchKey(list, key) {
+  return list.findIndex(
+    (item, i) =>
+      String(item?.id || "") === key ||
+      String(item?.slug || "") === key ||
+      String(item?.title || "") === key ||
+      String(i) === key,
+  );
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const { pathname } = url;
@@ -112,6 +145,8 @@ const server = http.createServer(async (req, res) => {
         projects: data.projects || [],
         journeyItems: data.journeyItems || [],
         community: data.community || [],
+        overrides: data.overrides,
+        deleted: data.deleted,
       });
     }
 
@@ -151,6 +186,8 @@ const server = http.createServer(async (req, res) => {
         desc,
         tags: toList(body.tags, ",").map((t) => t.toUpperCase()),
         highlights: toList(body.highlights, "\n"),
+        images: toList(body.images, "\n"),
+        videos: toList(body.videos, "\n"),
         type: "custom",
       };
       data.projects.push(project);
@@ -208,6 +245,8 @@ const server = http.createServer(async (req, res) => {
         tags: toList(body.tags, ",").map((t) => t.toUpperCase()),
         org: body.org || "",
         impact: body.impact || "",
+        images: toList(body.images, "\n"),
+        videos: toList(body.videos, "\n"),
         type: "custom",
       };
       data.community.push(item);
@@ -215,34 +254,58 @@ const server = http.createServer(async (req, res) => {
       return send(res, 201, item);
     }
 
-    // DELETE /api/{projects|journey|community}/<key> — remove an added item.
-    // key = its id, or slug (journey), or title (legacy items without id), or index.
-    const delMatch = pathname.match(/^\/api\/(projects|journey|community)\/(.+)$/);
-    if (req.method === "DELETE" && delMatch) {
-      const collection = delMatch[1] === "journey" ? "journeyItems" : delMatch[1];
-      const key = decodeURIComponent(delMatch[2]);
+    // DELETE /api/{projects|journey|community}/<key> — remove an item.
+    // key = its id, or slug (journey), or title (legacy items), or index.
+    // Added items are dropped from data.json; built-in items are marked deleted.
+    const itemMatch = pathname.match(/^\/api\/(projects|journey|community)\/([^/]+)$/);
+    if (req.method === "DELETE" && itemMatch) {
+      const collection = itemMatch[1] === "journey" ? "journeyItems" : itemMatch[1];
+      const key = decodeURIComponent(itemMatch[2]);
       const data = loadData();
-      const list = Array.isArray(data[collection]) ? data[collection] : [];
-      const index = list.findIndex(
-        (item, i) =>
-          String(item?.id || "") === key ||
-          String(item?.slug || "") === key ||
-          String(item?.title || "") === key ||
-          String(i) === key,
-      );
-      if (index === -1) {
-        return send(res, 404, { error: "Élément introuvable." });
+      const list = data[collection];
+      const index = matchKey(list, key);
+      if (index !== -1) {
+        list.splice(index, 1);
+        // Keep the displayed numbering (n) coherent after a removal.
+        if (collection !== "journeyItems") {
+          list.forEach((item, i) => {
+            item.n = String(i + 1).padStart(2, "0");
+          });
+        }
+        saveData(data);
+        return send(res, 200, { ok: true, removed: key });
       }
-      list.splice(index, 1);
-      // Keep the displayed numbering (n) coherent after a removal.
-      if (collection !== "journeyItems") {
-        list.forEach((item, i) => {
-          item.n = String(i + 1).padStart(2, "0");
-        });
-      }
-      data[collection] = list;
+      if (!data.deleted[collection].includes(key)) data.deleted[collection].push(key);
+      delete data.overrides[collection][key];
       saveData(data);
-      return send(res, 200, { ok: true, removed: index });
+      return send(res, 200, { ok: true, removed: key });
+    }
+
+    // PUT /api/{projects|journey|community}/<key> — update an item.
+    // Body = the full (client-merged) item, so fields unknown to the admin form
+    // are preserved as-is. Added items are replaced in place; built-in items
+    // are stored as an override keyed by their id.
+    if (req.method === "PUT" && itemMatch) {
+      const collection = itemMatch[1] === "journey" ? "journeyItems" : itemMatch[1];
+      const key = decodeURIComponent(itemMatch[2]);
+      const body = await readBody(req);
+      if (!body || typeof body !== "object" || !body.title) {
+        return send(res, 400, { error: "Titre requis." });
+      }
+      const data = loadData();
+      const list = data[collection];
+      const index = matchKey(list, key);
+      if (index !== -1) {
+        const original = list[index];
+        body.id = original.id || body.id || key;
+        if (original.slug && !body.slug) body.slug = original.slug;
+        list[index] = body;
+        saveData(data);
+        return send(res, 200, body);
+      }
+      data.overrides[collection][key] = body;
+      saveData(data);
+      return send(res, 200, body);
     }
 
     return send(res, 404, { error: "Route inconnue." });
